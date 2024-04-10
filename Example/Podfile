@@ -4,6 +4,8 @@ platform :ios, '10.0'
 
 target 'TYRingSlider_Example' do
   pod 'TYRingSlider', :path => '../'
+  pod 'SnapKit'
+  pod 'LookinServer', :configurations => ['Debug']
 
   target 'TYRingSlider_Tests' do
     inherit! :search_paths

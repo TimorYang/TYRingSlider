@@ -1,0 +1,22 @@
+{
+  "name": "TYRingSlider",
+  "version": "0.1.0",
+  "summary": "A short description of TYRingSlider.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zhidong.yang/TYRingSlider",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhidong.yang": "zhidong.yang@enjoyelec.net"
+  },
+  "source": {
+    "git": "https://github.com/zhidong.yang/TYRingSlider.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "TYRingSlider/Classes/**/*"
+}

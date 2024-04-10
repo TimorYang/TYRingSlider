@@ -31,7 +31,7 @@
 		142CCB94F7E3D58198B85E67 /* Pods_TYRingSlider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYRingSlider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		196290DD05E710E6C7C4F09D /* Pods-TYRingSlider_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Tests.release.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Tests/Pods-TYRingSlider_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1CEA87716C3748E298CC782E /* Pods-TYRingSlider_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Tests/Pods-TYRingSlider_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C8FFDDF80379120D8ECB966 /* TYRingSlider.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TYRingSlider.podspec; path = ../TYRingSlider.podspec; sourceTree = "<group>"; };
+		4C8FFDDF80379120D8ECB966 /* TYRingSlider.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TYRingSlider.podspec; path = ../TYRingSlider.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TYRingSlider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYRingSlider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +45,8 @@
 		6829C4206D8C953DF628A6AC /* Pods-TYRingSlider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Example.release.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Example/Pods-TYRingSlider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9EB10DFCC627EB697915D7BC /* Pods_TYRingSlider_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYRingSlider_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93A1CCE1CA45BE4F97B4B4A /* Pods-TYRingSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Example.debug.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Example/Pods-TYRingSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C37FA8FAE70D8D097EFB9F07 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		F05ACB385E23E740753DF4F7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C37FA8FAE70D8D097EFB9F07 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F05ACB385E23E740753DF4F7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,6 @@
 				1CEA87716C3748E298CC782E /* Pods-TYRingSlider_Tests.debug.xcconfig */,
 				196290DD05E710E6C7C4F09D /* Pods-TYRingSlider_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -313,10 +313,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TYRingSlider_Example/Pods-TYRingSlider_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TYRingSlider/TYRingSlider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TYRingSlider.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TYRingSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -494,6 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TYRingSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -516,6 +522,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,6 +541,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
