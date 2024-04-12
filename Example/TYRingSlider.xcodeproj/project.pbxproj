@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B81F7C12BC7F347004D8C3A /* CircularControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B81F7C02BC7F347004D8C3A /* CircularControl.swift */; };
 		41E65AE360F01BF974090068 /* Pods_TYRingSlider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB10DFCC627EB697915D7BC /* Pods_TYRingSlider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		142CCB94F7E3D58198B85E67 /* Pods_TYRingSlider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYRingSlider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		196290DD05E710E6C7C4F09D /* Pods-TYRingSlider_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Tests.release.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Tests/Pods-TYRingSlider_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1CEA87716C3748E298CC782E /* Pods-TYRingSlider_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TYRingSlider_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TYRingSlider_Tests/Pods-TYRingSlider_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B81F7C02BC7F347004D8C3A /* CircularControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularControl.swift; sourceTree = "<group>"; };
 		4C8FFDDF80379120D8ECB966 /* TYRingSlider.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TYRingSlider.podspec; path = ../TYRingSlider.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TYRingSlider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TYRingSlider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				3B81F7C02BC7F347004D8C3A /* CircularControl.swift */,
 			);
 			name = "Example for TYRingSlider";
 			path = TYRingSlider;
@@ -335,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B81F7C12BC7F347004D8C3A /* CircularControl.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

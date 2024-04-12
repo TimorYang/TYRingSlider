@@ -20,6 +20,7 @@
 		0EE48164A4E66335C4529A450F52D602 /* Color+Lookin.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CB8FAD5A53CED913FCF05AC6D7216 /* Color+Lookin.m */; };
 		104EB2F6EAFF85EF51DD6532C51BD5F3 /* LKS_AttrModificationPatchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C4767FA410B6312FB1F874980681DCAE /* LKS_AttrModificationPatchHandler.m */; };
 		10F354960FF5797C6C4E0F328958FF35 /* LookinAttrIdentifiers.m in Sources */ = {isa = PBXBuildFile; fileRef = 40758F7A9BCCBF45B7440186B76B355D /* LookinAttrIdentifiers.m */; };
+		13D5DC37D6E73FFBF686BB507DBA0F9E /* TYMultiRingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3AF9EA5C5D4FD27BE4B9FF2B2997E1 /* TYMultiRingSlider.swift */; };
 		14C2F1981D4DF3A16410835B69566BC3 /* LKS_GestureTargetActionsSearcher.h in Headers */ = {isa = PBXBuildFile; fileRef = D50F9866A554BD36941527CA928F44F5 /* LKS_GestureTargetActionsSearcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15F5128FBF26ECC6925DDED3CECDB4AA /* LookinAttributesGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9E85DED7DDD286A660E28BAE47868 /* LookinAttributesGroup.m */; };
 		16DA969922E4AB8D47B4407DA7E15307 /* LookinCustomAttrModification.h in Headers */ = {isa = PBXBuildFile; fileRef = FDDE1E9C1EDF8B5187BF44393B911E3B /* LookinCustomAttrModification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,7 +42,6 @@
 		302312265001959493EC2B3E4F736F9B /* LKS_CustomAttrGroupsMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 503A59A5BC1ED85F23B2C8DAB7A20B04 /* LKS_CustomAttrGroupsMaker.m */; };
 		30FCAD07E44C559C5889404AB0B91E23 /* Color+Lookin.h in Headers */ = {isa = PBXBuildFile; fileRef = A93C0F7902BE20952CD3081C672F98C1 /* Color+Lookin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32FACD88D69D4F7D378AA8FC054AB3F7 /* Pods-TYRingSlider_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 433D13AF7C012F06AF5A7C44D0901F40 /* Pods-TYRingSlider_Example-dummy.m */; };
-		3415353A7A72A3DFA195C8013F78A425 /* TYMultiRingPointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB522AFC7C1E72054FFF080C3D3D57B9 /* TYMultiRingPointList.swift */; };
 		3660B4F629053ABC3C1DF69366770289 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A53713484A525A62428FE92542247 /* ConstraintConfig.swift */; };
 		3738D60EC138CEF879366FE6474AAE44 /* LKS_ExportManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EC9547F422DE74ADD6908E6DF7A30E8 /* LKS_ExportManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3873DDC41B203A4B668D01A59046C735 /* LKS_CustomAttrSetterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C29A68C4AEA40BF6CBC9F20A20E21E96 /* LKS_CustomAttrSetterManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,8 +49,9 @@
 		39AF17EF0155F94062D41E64C003223D /* LookinObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 24249E4CABD052DA4821E4862E754EF9 /* LookinObject.m */; };
 		3B33ACF528A4E4E9F5E1721FB93A90DE /* UIView+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C734FC1930714C99EB30EBC0DE9A2E /* UIView+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B62F16049151C7F89C90BFCAEFC0B96 /* LKS_EventHandlerMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E752EE00CC7BE346E42A978CCDD9FA /* LKS_EventHandlerMaker.m */; };
+		3B81F7BD2BC68F39004D8C3A /* TYRangePointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B81F7BC2BC68F39004D8C3A /* TYRangePointList.swift */; };
+		3B81F7BF2BC68F5E004D8C3A /* TYRangePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B81F7BE2BC68F5E004D8C3A /* TYRangePoint.swift */; };
 		3C6E280E78F54B4FBF5D70B6F237F939 /* CALayer+Lookin.h in Headers */ = {isa = PBXBuildFile; fileRef = 55C6B6D58D1B7F1B8C805DF32C139772 /* CALayer+Lookin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3D2646FD62EA351D6986ECA652FA6185 /* TYRingSliderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7136DCCCE41A843AB0D646C0DA3A8CD2 /* TYRingSliderHelper.swift */; };
 		3EDB568B80DDFCB9EB3711FD9F44E5A6 /* UILabel+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 55BEF54484711123AD19E2E233B0C704 /* UILabel+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41B680CE3EBE2F98F98B47B755F9CCE3 /* LKS_InbuiltAttrModificationHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DA17A302DA4E1A6CA8CA645B5B4E175 /* LKS_InbuiltAttrModificationHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B6ACFCF650183030867CB3EF345E95 /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4D937AF24C64937E7073E219039920 /* ConstraintMakerFinalizable.swift */; };
@@ -67,6 +68,7 @@
 		52A41A94E70EFF39480E191E0B83F174 /* LKS_HierarchyDisplayItemsMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B9EC755CA79CD9104C51F40286794B /* LKS_HierarchyDisplayItemsMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52C5BFE46205177DFF886553BC03BEB2 /* LookinAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC993D243D7FB49E568F4439F2D5288 /* LookinAppInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5380454C48A12A6E376122ABD8096968 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17973901639D096418C39EB43905E0C9 /* ConstraintDescription.swift */; };
+		5539D93410E1CFB4FB71501117A0F341 /* TYRangeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D2530006C56EA7F666782617815F4 /* TYRangeLine.swift */; };
 		558468EAF62F1CB785CCABE68F71CEC5 /* Image+Lookin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DE9064105563B53AEB4CB539D19CC4D /* Image+Lookin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55E51F45F1E157D3B4942BA7252C277E /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D89196548EA96DBB59C700341D83BA /* ConstraintRelatableTarget.swift */; };
 		56846A18CC793FF6D9E28422067C62DD /* Lookin_PTChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC34806D19D1420BA4DC61EFC49AD08 /* Lookin_PTChannel.m */; };
@@ -97,11 +99,11 @@
 		7489B1BF48AD645BAD54865A0D64C74F /* LKS_RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6720A9065463017B56479DBDC376F3 /* LKS_RequestHandler.m */; };
 		74FCCAD9E03FB7DAF182D662622A685B /* LookinTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4BA8CAA1598F7336B862A33DEF1A41 /* LookinTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7510ACD2BEB76CC39530E3E0CAC101B4 /* LookinDisplayItemDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8780D386F0E02F6D00B0BA1ACBC3C996 /* LookinDisplayItemDetail.m */; };
-		753382D1F04F8B68F4D211BAE023A371 /* TYRingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B7006968084BD76BFA8B8641C0A476 /* TYRingSlider.swift */; };
 		75B2C032E8D36BEAB4852674EE3B218E /* Peertalk.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E1094D891587201D7426B36C3227150 /* Peertalk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78A2631904F47C43B0651BC2D4B2B653 /* UIColor+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4E46B877E6F50C61B4AD42CF7C056 /* UIColor+LookinServer.m */; };
 		78DA8B430F75384E7FDC382017661F9E /* LookinServer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0F5FCDA5B3E19BEA6CEA62652DB3D9 /* LookinServer-dummy.m */; };
 		799FEAC50ECD7E44C4F897E924AE20AD /* LookinConnectionResponseAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD0199B668B328A1E996CA9F2CEA382 /* LookinConnectionResponseAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B8AB551AFEA3A8BDA00413332E9E228 /* TYRingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518722AE3723B65A226924B636783B4 /* TYRingSlider.swift */; };
 		7C4C8FD63F3571031E92BF68CAD40D51 /* LookinCustomAttrModification.m in Sources */ = {isa = PBXBuildFile; fileRef = 131B5E00F8DD98F6DB027DC60A855BB8 /* LookinCustomAttrModification.m */; };
 		7DF36481AB497774406A959BDE19205A /* UIImage+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EDA8B53CD5D26C1A702BB14E5565D03 /* UIImage+LookinServer.m */; };
 		7FC1102AA16EAA32E39AE99805022FE6 /* UIVisualEffectView+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 03856CBBA095AB5407D9E49F59AEC934 /* UIVisualEffectView+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -111,7 +113,6 @@
 		81013623FA7983155D59CFFE1EAB6086 /* LookinDashboardBlueprint.h in Headers */ = {isa = PBXBuildFile; fileRef = 707420D00BC30E0941417C0752F9E6AE /* LookinDashboardBlueprint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84630BD24D663174E6A57BE5E73FCD6C /* LookinAutoLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 33A768D4FAEF20EE57253AB0EB117BF0 /* LookinAutoLayoutConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		856CF7CB0D739C1353FC2E2E040A4B28 /* UITextView+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0531B655449655778288D6BD0119662 /* UITextView+LookinServer.m */; };
-		8647DE0F9D8909A21B0DB4AFBEDEE9D9 /* RangeCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AD2AA08F4972352618B1E4F88BD84 /* RangeCircularSlider.swift */; };
 		86B5442060AA5CB495D1383994FD04DC /* Pods-TYRingSlider_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AED46193147B5B8EC0219C31C55F0CB /* Pods-TYRingSlider_Tests-dummy.m */; };
 		87B322637C25D58B56F129B6526F0729 /* UITextField+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 680D1A03E0BCE9EF3E9DC78C7993FB73 /* UITextField+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F68384E6143BFD01DE1D7D7110B5A5C /* LKS_ObjectRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F503FE4E7100FEA7634713F3ADA04B /* LKS_ObjectRegistry.m */; };
@@ -122,9 +123,7 @@
 		97F89081E94BA92D7C49BD26F684ABE7 /* Image+Lookin.m in Sources */ = {isa = PBXBuildFile; fileRef = A8995BB8166B003176E8CBB00304E908 /* Image+Lookin.m */; };
 		98F570DA48370453D648BD526FDAAEAA /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4E5A49F7056265253FF2B650708E6D /* LayoutConstraintItem.swift */; };
 		9AE8367F432880350619C53C1D4220C2 /* LookinConnectionAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2251755A353801593FDFEAC3D0AA07 /* LookinConnectionAttachment.m */; };
-		9C64DD75C198A67AA86550278A79B37D /* TYMultiRingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19934014179AF46E2643C4A4B0AF6920 /* TYMultiRingSlider.swift */; };
 		9C9548E8B4675954566202F7B87FF0E6 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEEA076FFF485481F3BB893B9D26338 /* ConstraintConstantTarget.swift */; };
-		9D916F4242A1007887A0C3E60C001B84 /* MidPointCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D303739F94A9745E55C98D541C1697 /* MidPointCircularSlider.swift */; };
 		9DB84BA7EAAA4568E39CB62EB8596503 /* LookinAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = C0082A79DF151C3510A7580933208842 /* LookinAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9DF4D94D4287718F0142F6FA4B728630 /* LKS_TraceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9321F3695D9E835E5970910792D4044A /* LKS_TraceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E02CFFEFE1BEC978B512286F03D31DA /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A7007A5B2EDF3B5C74EA8E76A879FF /* ConstraintInsetTarget.swift */; };
@@ -133,13 +132,15 @@
 		A006FB92B7FE2CF793B7B3E695118BFE /* LookinAttributesGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = BAC1AAAEA59B6EE6DFAB9A18304EBF22 /* LookinAttributesGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A03FDA8BC5741880B1EF11AFD248EF48 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAF0FA08B53639F5D4715150A80608 /* ConstraintOffsetTarget.swift */; };
 		A0B8F1679659F56583C5166A09A03E0E /* Lookin_PTUSBHub.h in Headers */ = {isa = PBXBuildFile; fileRef = 81A7E9F241E94190D8EF74E8F5A5B305 /* Lookin_PTUSBHub.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A250142632CDE565D8C33787B2354F1F /* TYRingSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F97ABBF2F7B3483C5FCB713015FE3FDB /* TYRingSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A2D4FB3E1317C9D5C893F3B97D0F0945 /* LKS_CustomAttrSetterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1670E1EE5C32ACA633030217B80FDC59 /* LKS_CustomAttrSetterManager.m */; };
+		A346C6BCA2D9C1F32CF7FC5006ED42CB /* TYRangeLineList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EDCA1A65C0789BAB177E13D1BA722 /* TYRangeLineList.swift */; };
 		A3E3AB7C765C21AE17B1E6EE6560040C /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E55777B776E5C4C1CF4DBC131F2BBEB7 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A49A84CB30D11DC3F4132F0CC5D9DED8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		A4DBC99CEBAB7A810B1584D7CE4A0A22 /* LookinStaticAsyncUpdateTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CFCF614AFB8D529589587D3284BCA13 /* LookinStaticAsyncUpdateTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5911485EFE0FCA9C11D793307ED05CC /* LookinHierarchyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E72D78C8BBA18F708C4B161B621D467 /* LookinHierarchyInfo.m */; };
 		A5A8BF973BFE9C9304372A26C9F2E35B /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883200EF03F8DCC0DE6947249AE437B /* ConstraintMakerExtendable.swift */; };
 		A64BDDC7BE00E69C7ADB09782B1E5BB9 /* LookinConnectionResponseAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36C94284A49D2BBDE395C234C96956 /* LookinConnectionResponseAttachment.m */; };
+		A7FE2F6EBF7681C69C62882A87D10E49 /* TYRingSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 325878D8F73C75FE688115B2F160E875 /* TYRingSlider-dummy.m */; };
 		AEC654EFF622EFBDD1BD4D14DFACF643 /* LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FBF87DBEFAC533157EAC36FECBB797 /* LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B03B5579590D528CBA6D11FF638BC2AF /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CB1469DC38C28CE1F0DD010FA984A /* Typealiases.swift */; };
 		B0972187A498B18F1C853E7FCD8CD831 /* LKS_ConnectionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E2AE1DECCDF7851DC0BF499C4245292 /* LKS_ConnectionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,22 +154,23 @@
 		B752F7C4BECB65894B1F49421049CE5F /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC74D73C01659BCFA049DEC2FB33D1D /* ConstraintView.swift */; };
 		B78B610BA77910C10C6E6827AB6B3E7C /* LKS_TraceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C418AAE951FC0A2B193140E0E8E47 /* LKS_TraceManager.m */; };
 		B7B8CA3D0B0B8B7177DF660DB3D590B4 /* Lookin_PTProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 12CE3DA06FBFA0C6012988BFFD7690E6 /* Lookin_PTProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BAA2CAD9423A7384E55DCE2BFD011121 /* TYRingSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DF6C7F5C96B7B30EB33C486239135A8 /* TYRingSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC23710D250CEDF6B334B9258B2F8416 /* LookinEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C9631F1A625B691C9CEF25DBF9F99F /* LookinEventHandler.m */; };
 		BD47CB74CD9B2B4D2D942C9B65748DFB /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9011FE9E6B1F044D3463B42C2E01C0D4 /* SnapKit-dummy.m */; };
+		BDC140DF8636A22A048E9D4230703B89 /* TYMultiRingPointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AC3B65C39FA0C2D9BFA2CB3FC26325 /* TYMultiRingPointList.swift */; };
 		BDEDF77FDDBA70C7B96F1688F4CA1FD2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
 		BF5C48FCF50928532C0624780C927895 /* LookinAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95E69B5F015C7BEAF8685DE4F16F5E /* LookinAppInfo.m */; };
 		C0737E5FEBA69CE3642874B1ED9B0206 /* UIViewController+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E8AFEBA2E2526C3FE28829DBEF1C6C /* UIViewController+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0A1803D43F259964673987013EB9479 /* CALayer+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C6E475D1D3FA4184BA0B80EF0BA6190 /* CALayer+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C5555E56DE5E162A568B730E0E7CD4C6 /* TYRingSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8FC89341009E2E91F7722B73B01DB3 /* TYRingSlider-dummy.m */; };
+		C12D0874B62F71F2127EF3889D34C061 /* TYMultiRingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301D994880D0C0AD9BE1BFB2E75C81A /* TYMultiRingPoint.swift */; };
 		C5FE93695E7D86F1976D2BC283846A69 /* LKS_ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42048760E93A24DC53E9495D08BFD2 /* LKS_ConnectionManager.m */; };
+		C668E2AD26F18BDA1360461A6C42A32A /* TYRangeRingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65703BB4E1F47F59747F0E6E8CD0D2AA /* TYRangeRingSlider.swift */; };
 		C78567203452F1116EEC694A8C7540F2 /* LookinAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 608BAE00FF8F31077C0E465292A2F76A /* LookinAttribute.m */; };
 		CB654C480212565370F96E400BE4EE4A /* LookinAttributeModification.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE60912869D5AA7A96E10879A98FC22 /* LookinAttributeModification.m */; };
-		CCF3A95D0EB957F4089000A075DCCC48 /* TYMultiRingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F0A6F0CD568BED1621449ABD3A891 /* TYMultiRingPoint.swift */; };
-		CFB5365DA1693315ACEE1AB8C6A39967 /* TYRingSlider+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FA79FEAB9AD593A596F9771E3BCF56 /* TYRingSlider+Draw.swift */; };
 		D0E4ED85E6BB1BB0F647B6C511F1209C /* UITableView+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370D6EEAA2A4A2B94C7FBB7AA2FA867 /* UITableView+LookinServer.m */; };
+		D107F9D05F0214C3BCC290589E3EC175 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		D2C06FC640FADC2598F9A23C16256984 /* NSArray+Lookin.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F0A335B03F28F882FDFD395320E9F7B /* NSArray+Lookin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D5A79667C62F8CFD3C9933F4F8246CBB /* LookinAutoLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C79DDA3022CFAC1A29CE1B8C43D97CE /* LookinAutoLayoutConstraint.m */; };
+		D6A0D2C4C16E4023FD15E60A994B6824 /* TYRingSlider+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F5DFBC6B4B9C7B1EB31345C8626C58 /* TYRingSlider+Draw.swift */; };
 		D7A3C66E5FF4D450F2FA9528F310471A /* UIView+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3E1F8F3AE93E266BE621BCAAA0158 /* UIView+LookinServer.m */; };
 		D953B546A400E0988B5F7AA9FAD55AC2 /* LookinServer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33458BAEDC6FE7F9E67B37F60CA23E98 /* LookinServer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DE3506094E248B0045A4F661063B66D6 /* UIImage+LookinServer.h in Headers */ = {isa = PBXBuildFile; fileRef = BF62966E3F09039C21B6986D99B938C3 /* UIImage+LookinServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -200,32 +202,33 @@
 		FBB5CEFE57DCB4177B8D21F26FF8722D /* LKS_RequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DF340980F3AD92D1831297E4BD7D63A /* LKS_RequestHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCECA37F521655C3997F2FFA7DB6F9E1 /* CALayer+LookinServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F25FEFE1EC89E4BC25D7FA3C194EFD10 /* CALayer+LookinServer.m */; };
 		FD246989E51801DD6CA5CFFBF81AF9A0 /* LKS_HierarchyDetailsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 503F04368931C971C44C54663234918E /* LKS_HierarchyDetailsHandler.m */; };
+		FD78933264218CDC0B2461D1CF3688CE /* TYRingSliderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D76743CC979C2792E1A27B777CC856 /* TYRingSliderHelper.swift */; };
 		FF169DE9F620B0E455BE8FAD069302DC /* LKS_CustomDisplayItemsMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = AC12D4CDBCE95B71CDD8D290F41BFA8F /* LKS_CustomDisplayItemsMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		11846A08064FA9874FE0EA9FD7D99BD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 638FEAAFC575BB76BC6AC055CDDA3506;
-			remoteInfo = LookinServer;
-		};
-		21F8F01DCCC824D2016599AC12A718AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D523C021652E40D8F1C6974D5AEF841F;
-			remoteInfo = "Pods-TYRingSlider_Example";
-		};
-		3574CA016C670A7408D80F7DC4C9180F /* PBXContainerItemProxy */ = {
+		2CC79C3082611E3083F0781AC01AFE9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
 			remoteInfo = SnapKit;
 		};
-		3C854FE31F2AB2414CDFE70BA1B28700 /* PBXContainerItemProxy */ = {
+		2F146C91750CBC2332CFD58FBC21F040 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D523C021652E40D8F1C6974D5AEF841F;
+			remoteInfo = "Pods-TYRingSlider_Example";
+		};
+		424D7A760CD0AFD4EF349D4D4B295F0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 638FEAAFC575BB76BC6AC055CDDA3506;
+			remoteInfo = LookinServer;
+		};
+		B2317222373B9724EEEDFDC19D681227 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -236,7 +239,6 @@
 
 /* Begin PBXFileReference section */
 		006E4B100FCFAC974B1DF640280CA464 /* Pods-TYRingSlider_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TYRingSlider_Example-frameworks.sh"; sourceTree = "<group>"; };
-		00837F28DB438A489CFBCE6EA23437A0 /* TYRingSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYRingSlider.debug.xcconfig; sourceTree = "<group>"; };
 		00B31E66A0AA729EADF586CC0FABC348 /* LookinDisplayItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinDisplayItem.h; path = Src/Main/Shared/LookinDisplayItem.h; sourceTree = "<group>"; };
 		00C127A562653A6C71B04848F69CDE53 /* Pods-TYRingSlider_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYRingSlider_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		010E9D199609318BC8AEE5ECF12E5534 /* UILabel+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+LookinServer.m"; path = "Src/Main/Server/Category/UILabel+LookinServer.m"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		12133E2A3495D5D353288DDFF9D15C77 /* LookinServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LookinServer.debug.xcconfig; sourceTree = "<group>"; };
 		127CB1469DC38C28CE1F0DD010FA984A /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Sources/Typealiases.swift; sourceTree = "<group>"; };
 		12CE3DA06FBFA0C6012988BFFD7690E6 /* Lookin_PTProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Lookin_PTProtocol.h; path = Src/Main/Shared/Peertalk/Lookin_PTProtocol.h; sourceTree = "<group>"; };
+		12F5DFBC6B4B9C7B1EB31345C8626C58 /* TYRingSlider+Draw.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TYRingSlider+Draw.swift"; path = "TYRingSlider/Classes/TYRingSlider+Draw.swift"; sourceTree = "<group>"; };
 		131B5E00F8DD98F6DB027DC60A855BB8 /* LookinCustomAttrModification.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinCustomAttrModification.m; path = Src/Main/Shared/LookinCustomAttrModification.m; sourceTree = "<group>"; };
 		13D3EF8F036701563F00498AE5A05C4B /* LookinAttrType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttrType.h; path = Src/Main/Shared/LookinAttrType.h; sourceTree = "<group>"; };
 		159DA5683DD04889C55100A2AA4CAA61 /* Pods-TYRingSlider_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYRingSlider_Tests"; path = Pods_TYRingSlider_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,8 +269,6 @@
 		17973901639D096418C39EB43905E0C9 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Sources/ConstraintDescription.swift; sourceTree = "<group>"; };
 		17FC73E52FC6F3B5CFDF1DF1EB0D010A /* LookinAttributesSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttributesSection.m; path = Src/Main/Shared/LookinAttributesSection.m; sourceTree = "<group>"; };
 		194C8A5DD3CDF260F4282ABD3C108EEB /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Sources/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
-		1950DBF48B5481908B6C80170DCD1E2D /* TYRingSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TYRingSlider.modulemap; sourceTree = "<group>"; };
-		19934014179AF46E2643C4A4B0AF6920 /* TYMultiRingSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingSlider.swift; path = TYRingSlider/Classes/TYMultiRingSlider.swift; sourceTree = "<group>"; };
 		19C734FC1930714C99EB30EBC0DE9A2E /* UIView+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LookinServer.h"; path = "Src/Main/Server/Category/UIView+LookinServer.h"; sourceTree = "<group>"; };
 		1B2251755A353801593FDFEAC3D0AA07 /* LookinConnectionAttachment.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinConnectionAttachment.m; path = Src/Main/Shared/LookinConnectionAttachment.m; sourceTree = "<group>"; };
 		1DF4E46B877E6F50C61B4AD42CF7C056 /* UIColor+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+LookinServer.m"; path = "Src/Main/Server/Category/UIColor+LookinServer.m"; sourceTree = "<group>"; };
@@ -277,28 +278,31 @@
 		1F2045FCDAFB63E9D38A41228AF764C5 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Sources/ConstraintMaker.swift; sourceTree = "<group>"; };
 		20A4878FFC90E0EAD28B108BE2F944AF /* NSSet+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSSet+Lookin.m"; path = "Src/Main/Shared/Category/NSSet+Lookin.m"; sourceTree = "<group>"; };
 		20C9631F1A625B691C9CEF25DBF9F99F /* LookinEventHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinEventHandler.m; path = Src/Main/Shared/LookinEventHandler.m; sourceTree = "<group>"; };
+		21AC3B65C39FA0C2D9BFA2CB3FC26325 /* TYMultiRingPointList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingPointList.swift; path = TYRingSlider/Classes/TYMultiRingPointList.swift; sourceTree = "<group>"; };
 		23DAA047CFB43C6CF1864DBE0DA8D780 /* LookinEventHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinEventHandler.h; path = Src/Main/Shared/LookinEventHandler.h; sourceTree = "<group>"; };
 		24249E4CABD052DA4821E4862E754EF9 /* LookinObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinObject.m; path = Src/Main/Shared/LookinObject.m; sourceTree = "<group>"; };
 		2459DDF5BBBB1BCF104B78C27DC33858 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
-		254B0255B9D778345ED7041D1F55FFC4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		25664483ABF4DC8EC03E7472AA04333B /* LookinServer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LookinServer; path = LookinServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A7007A5B2EDF3B5C74EA8E76A879FF /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Sources/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		28A6901D2B0AEA4D49265FA436D8667B /* CALayer+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+Lookin.m"; path = "Src/Main/Shared/Category/CALayer+Lookin.m"; sourceTree = "<group>"; };
 		2C55742E4DE65B2E88D019C49058B6E2 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Sources/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		2CC43438849F9B78D622BA48DFB9C4E8 /* LookinAttributesSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttributesSection.h; path = Src/Main/Shared/LookinAttributesSection.h; sourceTree = "<group>"; };
+		2D589262EC2AC38F52612209A32A4889 /* TYRingSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYRingSlider.release.xcconfig; sourceTree = "<group>"; };
 		2D9B49E0DFF913BC37CAC6E4DC70F92E /* Lookin_PTPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Lookin_PTPrivate.h; path = Src/Main/Shared/Peertalk/Lookin_PTPrivate.h; sourceTree = "<group>"; };
 		2DF340980F3AD92D1831297E4BD7D63A /* LKS_RequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_RequestHandler.h; path = Src/Main/Server/Connection/LKS_RequestHandler.h; sourceTree = "<group>"; };
 		2E51540F8AE4A411833FBE86ECACCB12 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Sources/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		2EE74279A8EEDDC3DF034D9119E2D4E1 /* Pods-TYRingSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYRingSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0A335B03F28F882FDFD395320E9F7B /* NSArray+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+Lookin.h"; path = "Src/Main/Shared/Category/NSArray+Lookin.h"; sourceTree = "<group>"; };
+		325878D8F73C75FE688115B2F160E875 /* TYRingSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TYRingSlider-dummy.m"; sourceTree = "<group>"; };
 		33458BAEDC6FE7F9E67B37F60CA23E98 /* LookinServer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LookinServer-umbrella.h"; sourceTree = "<group>"; };
-		335FD675C0E922AD51F6AAB1D72FE9F9 /* TYRingSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYRingSlider-prefix.pch"; sourceTree = "<group>"; };
 		33A768D4FAEF20EE57253AB0EB117BF0 /* LookinAutoLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAutoLayoutConstraint.h; path = Src/Main/Shared/LookinAutoLayoutConstraint.h; sourceTree = "<group>"; };
 		374A53713484A525A62428FE92542247 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Sources/ConstraintConfig.swift; sourceTree = "<group>"; };
 		37D89196548EA96DBB59C700341D83BA /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Sources/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		3898ABFD3676E6B1EE869D38A6B5209A /* LKS_HierarchyDisplayItemsMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_HierarchyDisplayItemsMaker.m; path = Src/Main/Server/Others/LKS_HierarchyDisplayItemsMaker.m; sourceTree = "<group>"; };
 		3A48F014D12A4146DACA24BB49A45845 /* SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.release.xcconfig; sourceTree = "<group>"; };
 		3AED46193147B5B8EC0219C31C55F0CB /* Pods-TYRingSlider_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TYRingSlider_Tests-dummy.m"; sourceTree = "<group>"; };
+		3B81F7BC2BC68F39004D8C3A /* TYRangePointList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TYRangePointList.swift; path = TYRingSlider/Classes/TYRangePointList.swift; sourceTree = "<group>"; };
+		3B81F7BE2BC68F5E004D8C3A /* TYRangePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYRangePoint.swift; sourceTree = "<group>"; };
 		3BC9E85DED7DDD286A660E28BAE47868 /* LookinAttributesGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttributesGroup.m; path = Src/Main/Shared/LookinAttributesGroup.m; sourceTree = "<group>"; };
 		3C6E475D1D3FA4184BA0B80EF0BA6190 /* CALayer+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+LookinServer.h"; path = "Src/Main/Server/Category/CALayer+LookinServer.h"; sourceTree = "<group>"; };
 		3DABEDF43010AEB00BFB0B8ABD2721C4 /* LKS_ExportManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_ExportManager.m; path = Src/Main/Server/Others/LKS_ExportManager.m; sourceTree = "<group>"; };
@@ -308,18 +312,17 @@
 		40758F7A9BCCBF45B7440186B76B355D /* LookinAttrIdentifiers.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttrIdentifiers.m; path = Src/Main/Shared/LookinAttrIdentifiers.m; sourceTree = "<group>"; };
 		41FEE6343132F8081E51F10DB204713A /* LKS_AttrGroupsMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_AttrGroupsMaker.m; path = Src/Main/Server/Others/LKS_AttrGroupsMaker.m; sourceTree = "<group>"; };
 		433D13AF7C012F06AF5A7C44D0901F40 /* Pods-TYRingSlider_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TYRingSlider_Example-dummy.m"; sourceTree = "<group>"; };
-		434AD2AA08F4972352618B1E4F88BD84 /* RangeCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeCircularSlider.swift; path = TYRingSlider/Classes/RangeCircularSlider.swift; sourceTree = "<group>"; };
 		445886007589A4203A10EE327A736D89 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Sources/ConstraintPriority.swift; sourceTree = "<group>"; };
 		45649678CEDA187663016D7C82B7D490 /* UIVisualEffectView+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIVisualEffectView+LookinServer.m"; path = "Src/Main/Server/Category/UIVisualEffectView+LookinServer.m"; sourceTree = "<group>"; };
 		4655D926DF506B16B565619366010C37 /* Pods-TYRingSlider_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TYRingSlider_Example-umbrella.h"; sourceTree = "<group>"; };
+		4750C9FCB645559519CD7BE3EFC600A1 /* TYRingSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TYRingSlider.modulemap; sourceTree = "<group>"; };
 		489C76569825DBF8328C0A3EC36F7A19 /* LKS_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_Helper.h; path = Src/Main/Server/Others/LKS_Helper.h; sourceTree = "<group>"; };
-		49D303739F94A9745E55C98D541C1697 /* MidPointCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MidPointCircularSlider.swift; path = TYRingSlider/Classes/MidPointCircularSlider.swift; sourceTree = "<group>"; };
 		4B09C77027BF0C50AF2E8AAA54291508 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
 		4E495CE41DEB69F592742636D156E28F /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Sources/ConstraintAttributes.swift; sourceTree = "<group>"; };
+		4F1D2530006C56EA7F666782617815F4 /* TYRangeLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRangeLine.swift; path = TYRingSlider/Classes/TYRangeLine.swift; sourceTree = "<group>"; };
 		4FE60912869D5AA7A96E10879A98FC22 /* LookinAttributeModification.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttributeModification.m; path = Src/Main/Shared/LookinAttributeModification.m; sourceTree = "<group>"; };
 		503A59A5BC1ED85F23B2C8DAB7A20B04 /* LKS_CustomAttrGroupsMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_CustomAttrGroupsMaker.m; path = Src/Main/Server/Others/LKS_CustomAttrGroupsMaker.m; sourceTree = "<group>"; };
 		503F04368931C971C44C54663234918E /* LKS_HierarchyDetailsHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_HierarchyDetailsHandler.m; path = Src/Main/Server/Connection/RequestHandler/LKS_HierarchyDetailsHandler.m; sourceTree = "<group>"; };
-		51B7006968084BD76BFA8B8641C0A476 /* TYRingSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRingSlider.swift; path = TYRingSlider/Classes/TYRingSlider.swift; sourceTree = "<group>"; };
 		55BEF54484711123AD19E2E233B0C704 /* UILabel+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+LookinServer.h"; path = "Src/Main/Server/Category/UILabel+LookinServer.h"; sourceTree = "<group>"; };
 		55C6B6D58D1B7F1B8C805DF32C139772 /* CALayer+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+Lookin.h"; path = "Src/Main/Shared/Category/CALayer+Lookin.h"; sourceTree = "<group>"; };
 		5773D99ABF0CA02E9DEAF561A7A5B79F /* LookinDisplayItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinDisplayItem.m; path = Src/Main/Shared/LookinDisplayItem.m; sourceTree = "<group>"; };
@@ -327,32 +330,32 @@
 		5BEEA076FFF485481F3BB893B9D26338 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Sources/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		5C4BA8CAA1598F7336B862A33DEF1A41 /* LookinTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinTuple.h; path = Src/Main/Shared/LookinTuple.h; sourceTree = "<group>"; };
 		5C4E681FFF08814D490D87EC1CD29024 /* Pods-TYRingSlider_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TYRingSlider_Example.modulemap"; sourceTree = "<group>"; };
-		5DF6C7F5C96B7B30EB33C486239135A8 /* TYRingSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYRingSlider-umbrella.h"; sourceTree = "<group>"; };
+		5E3AF9EA5C5D4FD27BE4B9FF2B2997E1 /* TYMultiRingSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingSlider.swift; path = TYRingSlider/Classes/TYMultiRingSlider.swift; sourceTree = "<group>"; };
 		603DB6146A6C8576D349B709C7A1EE50 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		608BAE00FF8F31077C0E465292A2F76A /* LookinAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttribute.m; path = Src/Main/Shared/LookinAttribute.m; sourceTree = "<group>"; };
 		6128310879E7C16CD7C6E32894386D37 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Sources/ConstraintDSL.swift; sourceTree = "<group>"; };
+		6171996D9E79EE9D8383A8C3D28B3761 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		61F397A639D514F3339F76EE3C62E768 /* LKS_EventHandlerMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_EventHandlerMaker.h; path = Src/Main/Server/Others/LKS_EventHandlerMaker.h; sourceTree = "<group>"; };
 		634BEC19950FA03BB136DD5548E4E87E /* Pods-TYRingSlider_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TYRingSlider_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		64542D7CA969CD084F2B199B23C0133C /* LKS_CustomAttrModificationHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_CustomAttrModificationHandler.m; path = Src/Main/Server/Connection/RequestHandler/LKS_CustomAttrModificationHandler.m; sourceTree = "<group>"; };
+		65703BB4E1F47F59747F0E6E8CD0D2AA /* TYRangeRingSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRangeRingSlider.swift; path = TYRingSlider/Classes/TYRangeRingSlider.swift; sourceTree = "<group>"; };
 		65B2B439E6C005D2C6A85850A3C8276D /* LKS_ObjectRegistry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_ObjectRegistry.h; path = Src/Main/Server/Others/LKS_ObjectRegistry.h; sourceTree = "<group>"; };
 		66D42AD2BC5402D556FE8EB5EE572098 /* Lookin_PTChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Lookin_PTChannel.h; path = Src/Main/Shared/Peertalk/Lookin_PTChannel.h; sourceTree = "<group>"; };
 		67520B7C7EFE1C0C6964E9C3751D3337 /* Pods-TYRingSlider_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYRingSlider_Example-Info.plist"; sourceTree = "<group>"; };
 		680D1A03E0BCE9EF3E9DC78C7993FB73 /* UITextField+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextField+LookinServer.h"; path = "Src/Main/Server/Category/UITextField+LookinServer.h"; sourceTree = "<group>"; };
-		689D80661F51430A77F94E7432F16CE0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		6B42048760E93A24DC53E9495D08BFD2 /* LKS_ConnectionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_ConnectionManager.m; path = Src/Main/Server/Connection/LKS_ConnectionManager.m; sourceTree = "<group>"; };
 		6DD5E0DEBF1CA0B42D82EE4745090CD5 /* NSObject+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Lookin.h"; path = "Src/Main/Shared/Category/NSObject+Lookin.h"; sourceTree = "<group>"; };
 		6E1A2E7698FA0E12F59B43FE6B78EC9F /* LookinStaticAsyncUpdateTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinStaticAsyncUpdateTask.m; path = Src/Main/Shared/LookinStaticAsyncUpdateTask.m; sourceTree = "<group>"; };
 		6ECF74433C725747AC3308AB4D6E3E5C /* UIViewController+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+LookinServer.m"; path = "Src/Main/Server/Category/UIViewController+LookinServer.m"; sourceTree = "<group>"; };
 		707420D00BC30E0941417C0752F9E6AE /* LookinDashboardBlueprint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinDashboardBlueprint.h; path = Src/Main/Shared/LookinDashboardBlueprint.h; sourceTree = "<group>"; };
 		70BBAFB5BA3800F8358C58FB2B9B50BE /* LookinHierarchyFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinHierarchyFile.h; path = Src/Main/Shared/LookinHierarchyFile.h; sourceTree = "<group>"; };
-		7136DCCCE41A843AB0D646C0DA3A8CD2 /* TYRingSliderHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRingSliderHelper.swift; path = TYRingSlider/Classes/TYRingSliderHelper.swift; sourceTree = "<group>"; };
 		721FF6CCFD374DE12D70A0396BEA8A6B /* LKSConfigManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKSConfigManager.m; path = Src/Main/Server/Others/LKSConfigManager.m; sourceTree = "<group>"; };
 		7275A98C9EBEF859D2005C5AC2C4A2C8 /* UIColor+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+LookinServer.h"; path = "Src/Main/Server/Category/UIColor+LookinServer.h"; sourceTree = "<group>"; };
+		7518722AE3723B65A226924B636783B4 /* TYRingSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRingSlider.swift; path = TYRingSlider/Classes/TYRingSlider.swift; sourceTree = "<group>"; };
 		753C2860547FB973EB655596C7D3D700 /* LookinWeakContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinWeakContainer.h; path = Src/Main/Shared/LookinWeakContainer.h; sourceTree = "<group>"; };
 		7587A65AA8E7FFF45750DEE513DABE15 /* Pods-TYRingSlider_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYRingSlider_Example"; path = Pods_TYRingSlider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		772CE17751235F7F0065BE2BD4FCC8C7 /* Pods-TYRingSlider_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYRingSlider_Tests-Info.plist"; sourceTree = "<group>"; };
 		78C746B15950EF299686F59F6972FAAF /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Sources/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
-		7A0F0A6F0CD568BED1621449ABD3A891 /* TYMultiRingPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingPoint.swift; path = TYRingSlider/Classes/TYMultiRingPoint.swift; sourceTree = "<group>"; };
 		7B253B20AAD07529C4445540E5EAA335 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Sources/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		7B5C2F6C3F5A5D27EDF33F18C44A1AC7 /* LookinAttributeModification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttributeModification.h; path = Src/Main/Shared/LookinAttributeModification.h; sourceTree = "<group>"; };
 		7BC34806D19D1420BA4DC61EFC49AD08 /* Lookin_PTChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Lookin_PTChannel.m; path = Src/Main/Shared/Peertalk/Lookin_PTChannel.m; sourceTree = "<group>"; };
@@ -375,6 +378,7 @@
 		8F0B2761B46A9777F3A9E6C500636578 /* LKS_GestureTargetActionsSearcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_GestureTargetActionsSearcher.m; path = Src/Main/Server/Others/LKS_GestureTargetActionsSearcher.m; sourceTree = "<group>"; };
 		9011FE9E6B1F044D3463B42C2E01C0D4 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		90A5916DE0B229FA7199AD804E620162 /* LookinDashboardBlueprint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinDashboardBlueprint.m; path = Src/Main/Shared/LookinDashboardBlueprint.m; sourceTree = "<group>"; };
+		91D76743CC979C2792E1A27B777CC856 /* TYRingSliderHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRingSliderHelper.swift; path = TYRingSlider/Classes/TYRingSliderHelper.swift; sourceTree = "<group>"; };
 		92CBC354E510ADD76613F31CA98E0B8D /* UIImageView+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+LookinServer.h"; path = "Src/Main/Server/Category/UIImageView+LookinServer.h"; sourceTree = "<group>"; };
 		92E6D8EAA78B2A9790EE83FAD359F968 /* LKS_HierarchyDetailsHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_HierarchyDetailsHandler.h; path = Src/Main/Server/Connection/RequestHandler/LKS_HierarchyDetailsHandler.h; sourceTree = "<group>"; };
 		92F951107CCADCC79CA849FBF045315C /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Sources/ConstraintViewDSL.swift; sourceTree = "<group>"; };
@@ -387,18 +391,17 @@
 		9AB5E55342C0F1F1092F595EC2034666 /* NSArray+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Lookin.m"; path = "Src/Main/Shared/Category/NSArray+Lookin.m"; sourceTree = "<group>"; };
 		9AD3E1F8F3AE93E266BE621BCAAA0158 /* UIView+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LookinServer.m"; path = "Src/Main/Server/Category/UIView+LookinServer.m"; sourceTree = "<group>"; };
 		9C7C731EF3EDA0760D56938CBA124991 /* NSSet+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+Lookin.h"; path = "Src/Main/Shared/Category/NSSet+Lookin.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E72D78C8BBA18F708C4B161B621D467 /* LookinHierarchyInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinHierarchyInfo.m; path = Src/Main/Shared/LookinHierarchyInfo.m; sourceTree = "<group>"; };
 		9EC9547F422DE74ADD6908E6DF7A30E8 /* LKS_ExportManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_ExportManager.h; path = Src/Main/Server/Others/LKS_ExportManager.h; sourceTree = "<group>"; };
 		9F0D32641A77B988B88C8DEB0A57AB12 /* UIBlurEffect+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBlurEffect+LookinServer.h"; path = "Src/Main/Server/Category/UIBlurEffect+LookinServer.h"; sourceTree = "<group>"; };
 		9F4E5A49F7056265253FF2B650708E6D /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Sources/LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		9FD0199B668B328A1E996CA9F2CEA382 /* LookinConnectionResponseAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinConnectionResponseAttachment.h; path = Src/Main/Shared/LookinConnectionResponseAttachment.h; sourceTree = "<group>"; };
+		A0B72B731ECD16AE30528CDF67C7C666 /* TYRingSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TYRingSlider-Info.plist"; sourceTree = "<group>"; };
 		A3D582CA5131BF21A4E688E4F5E6B71E /* NSString+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Lookin.h"; path = "Src/Main/Shared/Category/NSString+Lookin.h"; sourceTree = "<group>"; };
-		A6871F187651168313AC88EDD173FC71 /* TYRingSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TYRingSlider-Info.plist"; sourceTree = "<group>"; };
 		A6C4360C3528F9B258A2694B68BED549 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Sources/ConstraintRelation.swift; sourceTree = "<group>"; };
 		A8995BB8166B003176E8CBB00304E908 /* Image+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Image+Lookin.m"; path = "Src/Main/Shared/Category/Image+Lookin.m"; sourceTree = "<group>"; };
 		A93C0F7902BE20952CD3081C672F98C1 /* Color+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Color+Lookin.h"; path = "Src/Main/Shared/Category/Color+Lookin.h"; sourceTree = "<group>"; };
-		AB522AFC7C1E72054FFF080C3D3D57B9 /* TYMultiRingPointList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingPointList.swift; path = TYRingSlider/Classes/TYMultiRingPointList.swift; sourceTree = "<group>"; };
 		AB7BC0BA55A9D32AACD816A047E3090D /* LookinConnectionAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinConnectionAttachment.h; path = Src/Main/Shared/LookinConnectionAttachment.h; sourceTree = "<group>"; };
 		AC12D4CDBCE95B71CDD8D290F41BFA8F /* LKS_CustomDisplayItemsMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_CustomDisplayItemsMaker.h; path = Src/Main/Server/Others/LKS_CustomDisplayItemsMaker.h; sourceTree = "<group>"; };
 		AF2900C8DE0CFD33E84ABEB51D847312 /* Pods-TYRingSlider_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYRingSlider_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 		C42FCA6FD6FCF9425C171C3C81823C67 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Sources/LayoutConstraint.swift; sourceTree = "<group>"; };
 		C467D148B0CC2883B6B798920D9424E9 /* LKS_AttrModificationPatchHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_AttrModificationPatchHandler.h; path = Src/Main/Server/Connection/RequestHandler/LKS_AttrModificationPatchHandler.h; sourceTree = "<group>"; };
 		C4767FA410B6312FB1F874980681DCAE /* LKS_AttrModificationPatchHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_AttrModificationPatchHandler.m; path = Src/Main/Server/Connection/RequestHandler/LKS_AttrModificationPatchHandler.m; sourceTree = "<group>"; };
+		C8591F140620BC4B282B384347E1281E /* TYRingSlider.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TYRingSlider.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C9E79B41EA40322067241C1B9FC92937 /* TYRingSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYRingSlider-prefix.pch"; sourceTree = "<group>"; };
 		C9F503FE4E7100FEA7634713F3ADA04B /* LKS_ObjectRegistry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_ObjectRegistry.m; path = Src/Main/Server/Others/LKS_ObjectRegistry.m; sourceTree = "<group>"; };
 		CE95E69B5F015C7BEAF8685DE4F16F5E /* LookinAppInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAppInfo.m; path = Src/Main/Shared/LookinAppInfo.m; sourceTree = "<group>"; };
 		CFDD2EE16A77EAE08388F3E3199B99D8 /* LookinIvarTrace.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinIvarTrace.h; path = Src/Base/LookinIvarTrace.h; sourceTree = "<group>"; };
@@ -433,7 +438,6 @@
 		D7A81C5813979D24F077809799EE84DC /* UIImageView+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+LookinServer.m"; path = "Src/Main/Server/Category/UIImageView+LookinServer.m"; sourceTree = "<group>"; };
 		D8C57D74C4679AFDB2D8AAD005933390 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Sources/Debugging.swift; sourceTree = "<group>"; };
 		D97A51B5459B54C29E862744CC97D2A1 /* LookinHierarchyInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinHierarchyInfo.h; path = Src/Main/Shared/LookinHierarchyInfo.h; sourceTree = "<group>"; };
-		DAB05314D0FE511E082E887D713D7A2F /* TYRingSlider.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TYRingSlider.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DEC993D243D7FB49E568F4439F2D5288 /* LookinAppInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAppInfo.h; path = Src/Main/Shared/LookinAppInfo.h; sourceTree = "<group>"; };
 		DF0F5FCDA5B3E19BEA6CEA62652DB3D9 /* LookinServer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LookinServer-dummy.m"; sourceTree = "<group>"; };
 		E16E34FF7A1AE5326B15582E4398E54C /* Lookin_PTProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Lookin_PTProtocol.m; path = Src/Main/Shared/Peertalk/Lookin_PTProtocol.m; sourceTree = "<group>"; };
@@ -441,25 +445,27 @@
 		E236E16702541B08A79C3DF42F39A782 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Sources/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		E252F4BF3B9EF8BCFB6EFF626E59BF25 /* LookinServer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LookinServer-Info.plist"; sourceTree = "<group>"; };
 		E294A24D13257CC0EED3667221DCE028 /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Sources/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
+		E301D994880D0C0AD9BE1BFB2E75C81A /* TYMultiRingPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingPoint.swift; path = TYRingSlider/Classes/TYMultiRingPoint.swift; sourceTree = "<group>"; };
+		E3DDE88B1DC85A33D83D966652DD3FF9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E55777B776E5C4C1CF4DBC131F2BBEB7 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		E8E41DB14CC3C501CC7B94FF92DCAFDA /* LookinAttrIdentifiers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttrIdentifiers.h; path = Src/Main/Shared/LookinAttrIdentifiers.h; sourceTree = "<group>"; };
 		E9E85D98E96E5FF92769A2DE6943AF07 /* NSObject+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+LookinServer.m"; path = "Src/Main/Server/Category/NSObject+LookinServer.m"; sourceTree = "<group>"; };
 		E9F578E55C7C08352A65D573320B6CB6 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Sources/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		EA1746D5706227B5AF23B0870D8A03BE /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		ECF7EE304D90C2B7C5834790A8C9ECBC /* TYRingSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYRingSlider.release.xcconfig; sourceTree = "<group>"; };
 		ED817FFE8C7940505B6B885E54F3EB01 /* LookinServerDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinServerDefines.h; path = Src/Main/Server/Others/LookinServerDefines.h; sourceTree = "<group>"; };
 		EE369EAACFE8FB841BFEA688CEC3C87F /* Pods-TYRingSlider_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYRingSlider_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		EE548CDC4D9C38273EA92B0C7BFC9AD4 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Sources/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
+		EE8EDCA1A65C0789BAB177E13D1BA722 /* TYRangeLineList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRangeLineList.swift; path = TYRingSlider/Classes/TYRangeLineList.swift; sourceTree = "<group>"; };
 		F111B3574641B7EB3BD79EF8FF514EC2 /* LKSConfigManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKSConfigManager.h; path = Src/Main/Server/Others/LKSConfigManager.h; sourceTree = "<group>"; };
 		F1B02FA1A8102F502CC967F6085D9E10 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Sources/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
+		F2099FE6FE6EE9CAE33273ED0520053A /* TYRingSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYRingSlider.debug.xcconfig; sourceTree = "<group>"; };
 		F25FEFE1EC89E4BC25D7FA3C194EFD10 /* CALayer+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+LookinServer.m"; path = "Src/Main/Server/Category/CALayer+LookinServer.m"; sourceTree = "<group>"; };
 		F3A5918193CB6070D750C26EB7A196AD /* Lookin_PTUSBHub.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Lookin_PTUSBHub.m; path = Src/Main/Shared/Peertalk/Lookin_PTUSBHub.m; sourceTree = "<group>"; };
 		F5E8AFEBA2E2526C3FE28829DBEF1C6C /* UIViewController+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+LookinServer.h"; path = "Src/Main/Server/Category/UIViewController+LookinServer.h"; sourceTree = "<group>"; };
-		F7FA79FEAB9AD593A596F9771E3BCF56 /* TYRingSlider+Draw.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TYRingSlider+Draw.swift"; path = "TYRingSlider/Classes/TYRingSlider+Draw.swift"; sourceTree = "<group>"; };
 		F9617CE16BB8276DD4434083C851F636 /* TYRingSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TYRingSlider; path = TYRingSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F97ABBF2F7B3483C5FCB713015FE3FDB /* TYRingSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYRingSlider-umbrella.h"; sourceTree = "<group>"; };
 		FB763E4FECBDF317FF0572DDD6981850 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Sources/ConstraintInsets.swift; sourceTree = "<group>"; };
-		FC8FC89341009E2E91F7722B73B01DB3 /* TYRingSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TYRingSlider-dummy.m"; sourceTree = "<group>"; };
 		FDDE1E9C1EDF8B5187BF44393B911E3B /* LookinCustomAttrModification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinCustomAttrModification.h; path = Src/Main/Shared/LookinCustomAttrModification.h; sourceTree = "<group>"; };
 		FF41A0CC96CEEFBEA8480FB6267635B3 /* UITextField+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextField+LookinServer.m"; path = "Src/Main/Server/Category/UITextField+LookinServer.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -473,11 +479,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		70310D10BB18781B335A5133DE699984 /* Frameworks */ = {
+		5FADC00167F82FAD182BE1EFA36F2DC0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A49A84CB30D11DC3F4132F0CC5D9DED8 /* Foundation.framework in Frameworks */,
+				D107F9D05F0214C3BCC290589E3EC175 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,14 +527,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		09EA40DD46FCAE74190B5A6559CBCE3A /* Pod */ = {
+		09DD8354CCCF7A421410BBF837D68517 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				689D80661F51430A77F94E7432F16CE0 /* LICENSE */,
-				254B0255B9D778345ED7041D1F55FFC4 /* README.md */,
-				DAB05314D0FE511E082E887D713D7A2F /* TYRingSlider.podspec */,
+				86648660C8F9F5A5B3E7E616E7B60D81 /* TYRingSlider */,
 			);
-			name = Pod;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
@@ -537,24 +541,6 @@
 				59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		289FC87C5753E273DDA3833F5877CD8C /* TYRingSlider */ = {
-			isa = PBXGroup;
-			children = (
-				49D303739F94A9745E55C98D541C1697 /* MidPointCircularSlider.swift */,
-				434AD2AA08F4972352618B1E4F88BD84 /* RangeCircularSlider.swift */,
-				7A0F0A6F0CD568BED1621449ABD3A891 /* TYMultiRingPoint.swift */,
-				AB522AFC7C1E72054FFF080C3D3D57B9 /* TYMultiRingPointList.swift */,
-				19934014179AF46E2643C4A4B0AF6920 /* TYMultiRingSlider.swift */,
-				51B7006968084BD76BFA8B8641C0A476 /* TYRingSlider.swift */,
-				F7FA79FEAB9AD593A596F9771E3BCF56 /* TYRingSlider+Draw.swift */,
-				7136DCCCE41A843AB0D646C0DA3A8CD2 /* TYRingSliderHelper.swift */,
-				09EA40DD46FCAE74190B5A6559CBCE3A /* Pod */,
-				FA2EFAE255DEB36F7D3119D3074ED9BC /* Support Files */,
-			);
-			name = TYRingSlider;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		2A70C1AF22FAAF289EF76F40A4107ABE /* Pods-TYRingSlider_Example */ = {
@@ -614,14 +600,6 @@
 			path = "../Target Support Files/LookinServer";
 			sourceTree = "<group>";
 		};
-		628822BEDC6DD63CF7C9ED5633944A73 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				289FC87C5753E273DDA3833F5877CD8C /* TYRingSlider */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		69948ED293EA744B104F8B278EF49056 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,7 +615,6 @@
 				7984D416E2D18FA530FDF921EDE92556 /* Core */,
 				5BFE83A48A625E2E7E567D0DC8FF750B /* Support Files */,
 			);
-			name = LookinServer;
 			path = LookinServer;
 			sourceTree = "<group>";
 		};
@@ -838,8 +815,43 @@
 				E294A24D13257CC0EED3667221DCE028 /* UILayoutSupport+Extensions.swift */,
 				7B688345AD03199CC608FF6917D66CEF /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
+			sourceTree = "<group>";
+		};
+		86648660C8F9F5A5B3E7E616E7B60D81 /* TYRingSlider */ = {
+			isa = PBXGroup;
+			children = (
+				E301D994880D0C0AD9BE1BFB2E75C81A /* TYMultiRingPoint.swift */,
+				21AC3B65C39FA0C2D9BFA2CB3FC26325 /* TYMultiRingPointList.swift */,
+				5E3AF9EA5C5D4FD27BE4B9FF2B2997E1 /* TYMultiRingSlider.swift */,
+				4F1D2530006C56EA7F666782617815F4 /* TYRangeLine.swift */,
+				65703BB4E1F47F59747F0E6E8CD0D2AA /* TYRangeRingSlider.swift */,
+				7518722AE3723B65A226924B636783B4 /* TYRingSlider.swift */,
+				12F5DFBC6B4B9C7B1EB31345C8626C58 /* TYRingSlider+Draw.swift */,
+				91D76743CC979C2792E1A27B777CC856 /* TYRingSliderHelper.swift */,
+				EE8EDCA1A65C0789BAB177E13D1BA722 /* TYRangeLineList.swift */,
+				3B81F7BC2BC68F39004D8C3A /* TYRangePointList.swift */,
+				CF40865E801A9BFA0260ADACA043D67E /* Pod */,
+				9F4BFD9DDA70535C3D0930BE53EE7DAC /* Support Files */,
+				3B81F7BE2BC68F5E004D8C3A /* TYRangePoint.swift */,
+			);
+			name = TYRingSlider;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		9F4BFD9DDA70535C3D0930BE53EE7DAC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4750C9FCB645559519CD7BE3EFC600A1 /* TYRingSlider.modulemap */,
+				325878D8F73C75FE688115B2F160E875 /* TYRingSlider-dummy.m */,
+				A0B72B731ECD16AE30528CDF67C7C666 /* TYRingSlider-Info.plist */,
+				C9E79B41EA40322067241C1B9FC92937 /* TYRingSlider-prefix.pch */,
+				F97ABBF2F7B3483C5FCB713015FE3FDB /* TYRingSlider-umbrella.h */,
+				F2099FE6FE6EE9CAE33273ED0520053A /* TYRingSlider.debug.xcconfig */,
+				2D589262EC2AC38F52612209A32A4889 /* TYRingSlider.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TYRingSlider";
 			sourceTree = "<group>";
 		};
 		C285A4D69EF1A792F21B86121B1F79C5 /* Pods */ = {
@@ -855,7 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				628822BEDC6DD63CF7C9ED5633944A73 /* Development Pods */,
+				09DD8354CCCF7A421410BBF837D68517 /* Development Pods */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
 				C285A4D69EF1A792F21B86121B1F79C5 /* Pods */,
 				031FFA41914BE11D3C0BFE17B0054049 /* Products */,
@@ -863,29 +875,24 @@
 			);
 			sourceTree = "<group>";
 		};
-		FA2EFAE255DEB36F7D3119D3074ED9BC /* Support Files */ = {
+		CF40865E801A9BFA0260ADACA043D67E /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				1950DBF48B5481908B6C80170DCD1E2D /* TYRingSlider.modulemap */,
-				FC8FC89341009E2E91F7722B73B01DB3 /* TYRingSlider-dummy.m */,
-				A6871F187651168313AC88EDD173FC71 /* TYRingSlider-Info.plist */,
-				335FD675C0E922AD51F6AAB1D72FE9F9 /* TYRingSlider-prefix.pch */,
-				5DF6C7F5C96B7B30EB33C486239135A8 /* TYRingSlider-umbrella.h */,
-				00837F28DB438A489CFBCE6EA23437A0 /* TYRingSlider.debug.xcconfig */,
-				ECF7EE304D90C2B7C5834790A8C9ECBC /* TYRingSlider.release.xcconfig */,
+				6171996D9E79EE9D8383A8C3D28B3761 /* LICENSE */,
+				E3DDE88B1DC85A33D83D966652DD3FF9 /* README.md */,
+				C8591F140620BC4B282B384347E1281E /* TYRingSlider.podspec */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/TYRingSlider";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		125C9B73F12202C33009BA4E8C20461B /* Headers */ = {
+		5BF4D2C2D514814DB2F1B12F07E7EB4E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAA2CAD9423A7384E55DCE2BFD011121 /* TYRingSlider-umbrella.h in Headers */,
+				A250142632CDE565D8C33787B2354F1F /* TYRingSlider-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,7 +1031,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EB9FA49A420ECB82673F73D452266A2B /* PBXTargetDependency */,
+				7F8CB1E9FE3F0E7FE456E74236AFDB34 /* PBXTargetDependency */,
 			);
 			name = "Pods-TYRingSlider_Tests";
 			productName = Pods_TYRingSlider_Tests;
@@ -1051,12 +1058,12 @@
 		};
 		BCAF7EB289D2AA58140D1D99D75BCA17 /* TYRingSlider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CD01CDC76EF269435E8C0F0D7266913 /* Build configuration list for PBXNativeTarget "TYRingSlider" */;
+			buildConfigurationList = E1A47245D67C1CBB2773E049728F71D2 /* Build configuration list for PBXNativeTarget "TYRingSlider" */;
 			buildPhases = (
-				125C9B73F12202C33009BA4E8C20461B /* Headers */,
-				C005BFABA9DF2D04D1C1759E8FA15038 /* Sources */,
-				70310D10BB18781B335A5133DE699984 /* Frameworks */,
-				4B5D662FEA74FC870AB437A2DD30BBBE /* Resources */,
+				5BF4D2C2D514814DB2F1B12F07E7EB4E /* Headers */,
+				09484C295D1692A51401C238B99DC372 /* Sources */,
+				5FADC00167F82FAD182BE1EFA36F2DC0 /* Frameworks */,
+				168DEB0F8DB943B34BD4539FE4D02F99 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1079,9 +1086,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				50C62F81E8F3CDA3BFF8876D2C9CD387 /* PBXTargetDependency */,
-				F80E76A5D724D0EC99AF1F6CA352B537 /* PBXTargetDependency */,
-				5597C5CD074ACC683AABED182D386C33 /* PBXTargetDependency */,
+				DCCAAE4AEA33F2E719D661AD68CEE90F /* PBXTargetDependency */,
+				CD945430C08212FB89EDA9D7F5BDA832 /* PBXTargetDependency */,
+				708045C9C7492DAF454981807AD66826 /* PBXTargetDependency */,
 			);
 			name = "Pods-TYRingSlider_Example";
 			productName = Pods_TYRingSlider_Example;
@@ -1120,14 +1127,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1B22317FA6181697552DE372227EFC51 /* Resources */ = {
+		168DEB0F8DB943B34BD4539FE4D02F99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4B5D662FEA74FC870AB437A2DD30BBBE /* Resources */ = {
+		1B22317FA6181697552DE372227EFC51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1158,6 +1165,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		09484C295D1692A51401C238B99DC372 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C12D0874B62F71F2127EF3889D34C061 /* TYMultiRingPoint.swift in Sources */,
+				BDC140DF8636A22A048E9D4230703B89 /* TYMultiRingPointList.swift in Sources */,
+				13D5DC37D6E73FFBF686BB507DBA0F9E /* TYMultiRingSlider.swift in Sources */,
+				5539D93410E1CFB4FB71501117A0F341 /* TYRangeLine.swift in Sources */,
+				C668E2AD26F18BDA1360461A6C42A32A /* TYRangeRingSlider.swift in Sources */,
+				7B8AB551AFEA3A8BDA00413332E9E228 /* TYRingSlider.swift in Sources */,
+				D6A0D2C4C16E4023FD15E60A994B6824 /* TYRingSlider+Draw.swift in Sources */,
+				A7FE2F6EBF7681C69C62882A87D10E49 /* TYRingSlider-dummy.m in Sources */,
+				3B81F7BF2BC68F5E004D8C3A /* TYRangePoint.swift in Sources */,
+				3B81F7BD2BC68F39004D8C3A /* TYRangePointList.swift in Sources */,
+				FD78933264218CDC0B2461D1CF3688CE /* TYRingSliderHelper.swift in Sources */,
+				A346C6BCA2D9C1F32CF7FC5006ED42CB /* TYRangeLineList.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34F935D289C3F1D16C7DC70D6A42820E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1282,22 +1308,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C005BFABA9DF2D04D1C1759E8FA15038 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9D916F4242A1007887A0C3E60C001B84 /* MidPointCircularSlider.swift in Sources */,
-				8647DE0F9D8909A21B0DB4AFBEDEE9D9 /* RangeCircularSlider.swift in Sources */,
-				CCF3A95D0EB957F4089000A075DCCC48 /* TYMultiRingPoint.swift in Sources */,
-				3415353A7A72A3DFA195C8013F78A425 /* TYMultiRingPointList.swift in Sources */,
-				9C64DD75C198A67AA86550278A79B37D /* TYMultiRingSlider.swift in Sources */,
-				753382D1F04F8B68F4D211BAE023A371 /* TYRingSlider.swift in Sources */,
-				CFB5365DA1693315ACEE1AB8C6A39967 /* TYRingSlider+Draw.swift in Sources */,
-				C5555E56DE5E162A568B730E0E7CD4C6 /* TYRingSlider-dummy.m in Sources */,
-				3D2646FD62EA351D6986ECA652FA6185 /* TYRingSliderHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCAB3EB73C83E4C6FBDBDDC9225A9BB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1309,64 +1319,33 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		50C62F81E8F3CDA3BFF8876D2C9CD387 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LookinServer;
-			target = 638FEAAFC575BB76BC6AC055CDDA3506 /* LookinServer */;
-			targetProxy = 11846A08064FA9874FE0EA9FD7D99BD5 /* PBXContainerItemProxy */;
-		};
-		5597C5CD074ACC683AABED182D386C33 /* PBXTargetDependency */ = {
+		708045C9C7492DAF454981807AD66826 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TYRingSlider;
 			target = BCAF7EB289D2AA58140D1D99D75BCA17 /* TYRingSlider */;
-			targetProxy = 3C854FE31F2AB2414CDFE70BA1B28700 /* PBXContainerItemProxy */;
+			targetProxy = B2317222373B9724EEEDFDC19D681227 /* PBXContainerItemProxy */;
 		};
-		EB9FA49A420ECB82673F73D452266A2B /* PBXTargetDependency */ = {
+		7F8CB1E9FE3F0E7FE456E74236AFDB34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TYRingSlider_Example";
 			target = D523C021652E40D8F1C6974D5AEF841F /* Pods-TYRingSlider_Example */;
-			targetProxy = 21F8F01DCCC824D2016599AC12A718AF /* PBXContainerItemProxy */;
+			targetProxy = 2F146C91750CBC2332CFD58FBC21F040 /* PBXContainerItemProxy */;
 		};
-		F80E76A5D724D0EC99AF1F6CA352B537 /* PBXTargetDependency */ = {
+		CD945430C08212FB89EDA9D7F5BDA832 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SnapKit;
 			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = 3574CA016C670A7408D80F7DC4C9180F /* PBXContainerItemProxy */;
+			targetProxy = 2CC79C3082611E3083F0781AC01AFE9C /* PBXContainerItemProxy */;
+		};
+		DCCAAE4AEA33F2E719D661AD68CEE90F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LookinServer;
+			target = 638FEAAFC575BB76BC6AC055CDDA3506 /* LookinServer */;
+			targetProxy = 424D7A760CD0AFD4EF349D4D4B295F0D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3BA2BAA5F301CD75C2E61345E13F6364 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00837F28DB438A489CFBCE6EA23437A0 /* TYRingSlider.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TYRingSlider/TYRingSlider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TYRingSlider/TYRingSlider-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TYRingSlider/TYRingSlider.modulemap";
-				PRODUCT_MODULE_NAME = TYRingSlider;
-				PRODUCT_NAME = TYRingSlider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		3BDDABFA72E2351B9E3C9243EF7FE77E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B27DF7F5C9CD32C0C0492FB26297F9D1 /* LookinServer.release.xcconfig */;
@@ -1464,9 +1443,9 @@
 			};
 			name = Release;
 		};
-		605099FBE95054FE3AEC043F44F2C4D8 /* Release */ = {
+		5A5629EAAB90CA33782CD9AEEE661249 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECF7EE304D90C2B7C5834790A8C9ECBC /* TYRingSlider.release.xcconfig */;
+			baseConfigurationReference = 2D589262EC2AC38F52612209A32A4889 /* TYRingSlider.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1580,8 +1559,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1783,6 +1761,37 @@
 			};
 			name = Debug;
 		};
+		F6B82DDD3AE8BD868878F115A921781C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2099FE6FE6EE9CAE33273ED0520053A /* TYRingSlider.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TYRingSlider/TYRingSlider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TYRingSlider/TYRingSlider-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TYRingSlider/TYRingSlider.modulemap";
+				PRODUCT_MODULE_NAME = TYRingSlider;
+				PRODUCT_NAME = TYRingSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1813,15 +1822,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CD01CDC76EF269435E8C0F0D7266913 /* Build configuration list for PBXNativeTarget "TYRingSlider" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3BA2BAA5F301CD75C2E61345E13F6364 /* Debug */,
-				605099FBE95054FE3AEC043F44F2C4D8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		95C393648ABABAF31DBD51A99042360F /* Build configuration list for PBXNativeTarget "LookinServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1836,6 +1836,15 @@
 			buildConfigurations = (
 				A6C587CFA315EA0B153F8B3AA01B3CFB /* Debug */,
 				C6494A7C09417046355C0C325AF7A074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1A47245D67C1CBB2773E049728F71D2 /* Build configuration list for PBXNativeTarget "TYRingSlider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6B82DDD3AE8BD868878F115A921781C /* Debug */,
+				5A5629EAAB90CA33782CD9AEEE661249 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

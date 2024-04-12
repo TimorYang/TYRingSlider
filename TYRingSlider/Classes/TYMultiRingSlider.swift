@@ -200,18 +200,6 @@ open class TYMultiRingSlider: TYRingSlider {
         return isInside
     }
     
-    private func arePointsTouchingOnSameCircle(point1: CGFloat, point2: CGFloat) -> Bool {
-        guard let _step = step else { return false }
-        if  _step > 0 {
-            let interval = Interval(min: minimumValue, max: maximumValue, rounds: numberOfRounds)
-            let minRadian = TYRingSliderHelper.scaleToAngle(value: _step, inInterval: interval)
-            let minAngle = TYRingSliderHelper.degrees(fromRadians: minRadian)
-            return TYRingSliderHelper.arePointsTouchingOnSameCircle(point1: point1, point2: point2, touchRadius: radius, minAngle: minAngle, interval: interval)
-        } else {
-            return false
-        }
-    }
-    
     private func findMoveableRange(the point: TYMultiRingPoint, in pointList: TYMultiRingPointList) -> (start: CGFloat, end: CGFloat) {
         guard pointList.nodeCount != 0 else { return (CGFLOAT_MIN, CGFLOAT_MAX) }
         if pointList.nodeCount == 1 {

@@ -93,6 +93,19 @@ extension TYRingSlider {
         TYRingSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
     }
     
+    internal func drawFilledArc(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext, withDiskColor diskColor: UIColor, withTrackColor trackColor: UIColor) {
+        diskColor.setFill()
+        trackColor.setStroke()
+        
+        let circle = Circle(origin: bounds.center, radius: self.radius)
+        let arc = Arc(circle: circle, startAngle: startAngle, endAngle: endAngle)
+        
+        // fill Arc
+        TYRingSlider.drawDisk(withArc: arc, inContext: context)
+        // stroke Arc
+        TYRingSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
+    }
+    
     internal func drawDiskImage(withImage image: UIImage, inContext context: CGContext) {
         UIGraphicsPushContext(context)
         context.beginPath()
@@ -104,6 +117,17 @@ extension TYRingSlider {
 
     internal func drawShadowArc(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext) {
         trackShadowColor.setStroke()
+
+        let origin = CGPoint(x: bounds.center.x + trackShadowOffset.x, y: bounds.center.y + trackShadowOffset.y)
+        let circle = Circle(origin: origin, radius: self.radius)
+        let arc = Arc(circle: circle, startAngle: startAngle, endAngle: endAngle)
+
+        // stroke Arc
+        TYRingSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
+    }
+    
+    internal func drawShadowArc(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext, withColor color: UIColor) {
+        color.setStroke()
 
         let origin = CGPoint(x: bounds.center.x + trackShadowOffset.x, y: bounds.center.y + trackShadowOffset.y)
         let circle = Circle(origin: origin, radius: self.radius)

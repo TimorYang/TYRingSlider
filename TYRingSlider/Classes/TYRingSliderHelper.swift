@@ -216,7 +216,7 @@ internal class TYRingSliderHelper {
         let angleInterval = Interval(min: circleMinValue , max: circleMaxValue)
         
         let angle = scaleValue(aValue, fromInterval: oldInterval, toInterval: angleInterval)
-        return  angle
+        return angle
     }
     
     /**
@@ -306,6 +306,68 @@ internal class TYRingSliderHelper {
         // 计算两点之间的最小角度差
         let angleDifference = min(abs(angle1 - angle2), 360 - abs(angle1 - angle2))
         let result = angleDifference <= minAngle
+        print("113113: angle1: \(angle1), angle2: \(angle2), result:\(result)")
+        return result
+    }
+    
+    internal static func arePointsTouchingOnSameCircle(point1: CGFloat, point2: CGFloat, movementDirection:MovementDirection, touchRadius: CGFloat, minAngle: CGFloat, interval: Interval) -> Bool {
+        // 临界点
+        let boundaryPoint = TYRingSliderHelper.degrees(fromRadians: 2.0 * Double.pi)
+        let angle1 = TYRingSliderHelper.degrees(fromRadians: TYRingSliderHelper.scaleToAngle(value: point1, inInterval: interval))
+        // get end angle from end value
+        let angle2 = TYRingSliderHelper.degrees(fromRadians: TYRingSliderHelper.scaleToAngle(value: point2, inInterval: interval))
+        var result = false
+        if movementDirection == .clockwise { // 顺时针 angle1 < angle2
+//            if angle1 <= angle2 {
+//            }
+            result = angle1 - angle2 >= minAngle
+//            else {
+//                result = angle1 - boundaryPoint - angle2 >= minAngle
+//            }
+        } else if movementDirection == .counterclockwise {
+            if angle1 >= angle2 {
+                result = angle1 - angle2 <= minAngle
+            } else {
+                result = angle1 - (boundaryPoint - angle2) <= minAngle
+            }
+        }
+        print("123123: angle1: \(angle1), angle2: \(angle2), minAngle: \(minAngle), result:\(result)")
+        return result
+    }
+    
+    internal static func arePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat, movementDirection:MovementDirection, distance: CGFloat, interval: Interval) -> Bool {
+        let point = point1 == interval.max ? 0 : point1
+        if start > end {
+            if point >= end && point <= start {
+                print("133133: start: \(start), end: \(end), point: \(point), result:\(true)")
+                return true
+            }
+        } else {
+            if !(point > start && point < end) {
+                print("133133: start: \(start), end: \(end), point: \(point), result:\(true)")
+                return true
+            }
+        }
+        // 临界点
+        let boundaryPoint = interval.max
+        var result = false
+        var targetPoint = point
+        if movementDirection == .clockwise {
+            targetPoint = end
+            var length = targetPoint - point
+            if point > targetPoint {
+                length = boundaryPoint - point + targetPoint
+            }
+            result = length <= distance
+        } else if movementDirection == .counterclockwise {
+            targetPoint = start
+            var length = point - targetPoint
+            if point < targetPoint {
+                length = boundaryPoint - targetPoint + point
+            }
+            result = length <= distance
+        }
+        print("133133: start: \(start), end: \(end), point: \(point), targetPoint: \(targetPoint), result:\(result)")
         return result
     }
 }
