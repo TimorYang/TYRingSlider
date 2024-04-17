@@ -13,15 +13,21 @@ open class TYMultiRingSlider: TYRingSlider {
     open var maxThumbPointCount = Int.max
     
     open var thumbPoints: [CGFloat]? {
-        didSet {
-            if let _thumbPoints = thumbPoints {
+        set {
+            if let _thumbPoints = newValue {
                 if _thumbPoints.count > maxThumbPointCount {
                     thumbPointList = nil
                     assert(true, "The number of Thumb is greater than the maximum value")
                     return
                 }
                 thumbPointList = thumbPointsConvertToMultiPointList(from: _thumbPoints)
+            } else {
+                thumbPointList = nil
             }
+        }
+        
+        get {
+            return pointList2Points(thumbPointList)
         }
     }
     
@@ -220,8 +226,25 @@ open class TYMultiRingSlider: TYRingSlider {
         return (startValue, endValue)
     }
     
+    private func pointList2Points(_ list: TYMultiRingPointList?) -> [CGFloat]? {
+        if let _list = list {
+            var result = [CGFloat]()
+            list?.traverse({ (point: TYMultiRingPoint) in
+                result.append(point.value == 12 ? 0 : point.value)
+                return true
+            })
+            return result
+        }
+        return nil
+    }
+    
     // MARK: - Private Properties
-    private var thumbPointList: TYMultiRingPointList?
+    private var thumbPointList: TYMultiRingPointList? {
+        didSet {
+            setNeedsDisplay()
+            sendActions(for: .valueChanged)
+        }
+    }
     
     private enum SelectedThumb {
         case thumb
