@@ -136,6 +136,16 @@ extension TYRingSlider {
         // stroke Arc
         TYRingSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
     }
+    
+    internal func drawDisableDisk(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext) {
+        UIColor(red: 0.11, green: 0.08, blue: 0.15, alpha: 0.2000).setFill()
+
+        let circle = Circle(origin: bounds.center, radius: self.radius + radiusOffSet)
+        let arc = Arc(circle: circle, startAngle: startAngle, endAngle: endAngle)
+        
+        // fill Arc
+        TYRingSlider.drawDisk(withArc: arc, inContext: context)
+    }
 
     /**
      Draw the thumb and return the coordinates of its center

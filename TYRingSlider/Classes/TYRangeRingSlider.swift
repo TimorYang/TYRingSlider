@@ -12,13 +12,21 @@ open class TYRingSliderTimeRange: NSObject {
     open var start: CGFloat? // 起始时间
     open var end: CGFloat? // 结束时间
     open var lineColor = UIColor.clear // 填充颜色
+    open var lineType: String = ""
+    open var backgroundColor = UIColor.clear
     open var showThumb = false
     
-    public init(start: CGFloat? = nil, end: CGFloat? = nil, lineColor: UIColor = .clear, showThumb: Bool = false) {
+    public init(start: CGFloat? = nil, end: CGFloat? = nil, lineColor: UIColor = .clear, lineType: String = "", backgroundColor: UIColor = .clear, showThumb: Bool = false) {
         self.start = start
         self.end = end
         self.lineColor = lineColor
+        self.lineType = lineType
+        self.backgroundColor = backgroundColor
         self.showThumb = showThumb
+    }
+    
+    open override var description: String {
+        return "TYRingSliderTimeRange(start: \(start), end: \(end), lineColor: \(lineColor), lineType: \(lineType), showThumb: \(showThumb)"
     }
 }
 
@@ -88,7 +96,6 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 rangeLineList = nil
             }
-            setNeedsDisplay()
         }
         get {
             if let _rangeLineList = rangeLineList {
@@ -99,6 +106,26 @@ open class TYRangeRingSlider: TYRingSlider {
     }
     
     open var minDistance: CGFloat?
+
+    open var enable: Bool {
+        get {
+            return _enable
+        }
+        set {
+            if _enable != newValue { // 检查值是否改变
+                _enable = newValue  // 更新私有存储属性
+                setNeedsDisplay()   // 做一些操作，例如重绘
+            }
+        }
+    }
+    
+    // MARK: public method
+    open func allTimeRangeList() -> [TYRingSliderTimeRange]? {
+        if let _rangeLineList = rangeLineList {
+            return rangeLineList2TimeRangeList(from: _rangeLineList, includeFreeTime: true)
+        }
+        return nil
+    }
     
     // MARK: private properties / methods
     
@@ -119,6 +146,8 @@ open class TYRangeRingSlider: TYRingSlider {
      * By default the value is none
      */
     fileprivate var selectedThumb: SelectedThumb = .none
+    
+    fileprivate var _enable: Bool = true // 私有存储属性
     
     /**
      Checks if the touched point affect the thumb
@@ -145,6 +174,17 @@ open class TYRangeRingSlider: TYRingSlider {
         // tolerance 15°
         let isInside = degree < 15 || degree > 345
         return isInside
+    }
+    
+    // MARK: - Override methods
+    public override init(frame: CGRect) {
+        super .init(frame: frame)
+        self.addGestureRecognizer(self.tapGestureRecognizer)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.addGestureRecognizer(self.tapGestureRecognizer)
     }
     
     // MARK: Drawing
@@ -205,6 +245,13 @@ open class TYRangeRingSlider: TYRingSlider {
         if let _diskImage = diskImage {
             drawDiskImage(withImage: _diskImage, inContext: context)
         }
+        
+        if _enable == false {
+            let startAngle = TYRingSliderHelper.scaleToAngle(value: 0, inInterval: interval) + TYRingSliderHelper.circleInitialAngle
+            // get end angle from end value
+            let endAngle = TYRingSliderHelper.scaleToAngle(value: maximumValue, inInterval: interval) + TYRingSliderHelper.circleInitialAngle
+            drawDisableDisk(fromAngle: startAngle, toAngle: endAngle, inContext: context)
+        }
     }
     
     // MARK: User interaction methods
@@ -215,6 +262,9 @@ open class TYRangeRingSlider: TYRingSlider {
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         sendActions(for: .editingDidBegin)
         // the position of the pan gesture
+        if enable == false {
+            return false
+        }
         let touchPosition = touch.location(in: self)
         selectedThumb = thumb(for: touchPosition)
 
@@ -411,13 +461,101 @@ open class TYRangeRingSlider: TYRingSlider {
         return result
     }
     
+    // MARK: - Action
+    @objc private func actionForTapGestureRecognizer(_ sender: UITapGestureRecognizer) {
+        guard let _rangeLineList = rangeLineList else { return }
+        if _enable == false {
+            return
+        }
+        let touchPoint = sender.location(in: self)
+        var targetItem:TYRangeLine?
+        _rangeLineList.traverse { (item: TYRangeLine) in
+            if (isPointInArcCentered(touchPoint, item.start, item.end)) {
+                targetItem = item
+                return false
+            }
+            return true
+        }
+        if let _targetItem = targetItem {
+            _rangeLineList.traverse { (item: TYRangeLine) in
+                item.showThumb = false
+                return true
+            }
+            _targetItem.showThumb = true
+            setNeedsDisplay()
+            sendActions(for: .valueChanged)
+        }
+    }
+    
     // MARK: - Private Method
+    private func rangeLineList2TimeRangeList(from lineList: TYRangeLineList, includeFreeTime: Bool = false) -> [TYRingSliderTimeRange]? {
+        if includeFreeTime == false {
+            return rangeLineList2TimeRangeList(from: lineList)
+        } else {
+            var minStart = maximumValue
+            var targetLine: TYRangeLine?
+            lineList.traverse { (item: TYRangeLine) in
+                if minStart > item.start {
+                    minStart = item.start
+                    targetLine = item
+                }
+                return true
+            }
+            var list = [TYRingSliderTimeRange]()
+            lineList.traverse(from: targetLine!, forward: true) { (item: TYRangeLine) in
+                let tmp = TYRingSliderTimeRange()
+                tmp.start = item.start
+                tmp.end = item.end == maximumValue ? 0 : item.end
+                tmp.lineColor = item.lineColor
+                tmp.lineType = item.lineType
+                tmp.backgroundColor = item.backgroundColor
+                tmp.showThumb = item.showThumb
+                list.append(tmp)
+                
+                // 判断结尾和开始有没有间距
+                if let _nextLine = item.next {
+                    if _nextLine.start > item.end {
+                        if _nextLine.start - item.end >= 0.01 {
+                            // 加一段 off picke 的
+                            let tmp = TYRingSliderTimeRange()
+                            tmp.start = item.end + 0.01
+                            tmp.end = _nextLine.start - 0.01
+                            tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
+                            tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
+                            tmp.backgroundColor = .white
+                            list.append(tmp)
+                        }
+                    } else {
+                        if maximumValue - item.end + _nextLine.start >= 0.01 {
+                            // 加一段 off picke 的
+                            let tmp = TYRingSliderTimeRange()
+                            tmp.start = item.end + 0.01
+                            tmp.end = _nextLine.start - 0.01
+                            tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
+                            tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
+                            tmp.backgroundColor = .white
+                            list.append(tmp)
+                        }
+                    }
+                }
+                return true
+            }
+            if list.count == 0 {
+                return nil
+            }
+            return list
+        }
+    }
+    
     private func rangeLineList2TimeRangeList(from lineList: TYRangeLineList) -> [TYRingSliderTimeRange]? {
         var list = [TYRingSliderTimeRange]()
         lineList.traverse { (item: TYRangeLine) in
             let tmp = TYRingSliderTimeRange()
             tmp.start = item.start
             tmp.end = item.end == maximumValue ? 0 : item.end
+            tmp.lineColor = item.lineColor
+            tmp.lineType = item.lineType
+            tmp.backgroundColor = item.backgroundColor
             list.append(tmp)
             return true
         }
@@ -430,7 +568,8 @@ open class TYRangeRingSlider: TYRingSlider {
     private func timeRangeList2RangeLineList(from timeRangeList: [TYRingSliderTimeRange]) -> TYRangeLineList? {
         let result = TYRangeLineList()
         for item in timeRangeList {
-            let point = TYRangeLine(start: item.start!, end: item.end!, lineColor: item.lineColor, showThumb: item.showThumb)
+            print("timeRangeList2RangeLineList: \(item)")
+            let point = TYRangeLine(start: item.start!, end: item.end!, lineColor: item.lineColor, lineType: item.lineType, backgroundColor: item.backgroundColor, showThumb: item.showThumb)
             result.append(node: point)
         }
         if result.isEmpty {
@@ -542,8 +681,46 @@ open class TYRangeRingSlider: TYRingSlider {
         print("2341: @@@@@@@@@@@@@@@@@新值结束@@@@@@@@@@@@@@@@@")
     }
     
+    private func isPointInArcCentered(_ point: CGPoint, _ start: CGFloat, _ end: CGFloat) -> Bool {
+        
+        let innerRadius = radius - lineWidth / 2
+        let outerRadius = radius + lineWidth / 2
+        
+        // 计算点到圆心的距离
+        let distanceToCenter = hypot(point.x - bounds.center.x, point.y - bounds.center.y)
+        
+        // 检查点是否在内圆和外圆之间
+        guard distanceToCenter >= innerRadius && distanceToCenter <= outerRadius else {
+            return false
+        }
+        
+        // 计算点相对于圆心的角度
+        let angle = atan2(point.y - bounds.center.y, point.x - bounds.center.x)
+        let interval = Interval(min: minimumValue, max: maximumValue, rounds: numberOfRounds)
+        let startAngle = TYRingSliderHelper.scaleToAngle(value: start, inInterval: interval) + TYRingSliderHelper.circleInitialAngle
+        // get end angle from end value
+        let endAngle = TYRingSliderHelper.scaleToAngle(value: end, inInterval: interval) + TYRingSliderHelper.circleInitialAngle
+        // 将角度转换为0到2π之间的值
+        let normalizedAngle = angle < 0 ? angle + 2 * .pi : angle
+        
+        let normalizedStartAngle = startAngle < 0 ? startAngle + 2 * .pi : startAngle
+        let normalizedEndAngle = endAngle < 0 ? endAngle + 2 * .pi : endAngle
+        
+        // 判断点的角度是否在弧线的角度范围内
+        if normalizedStartAngle < normalizedEndAngle {
+            return normalizedAngle >= normalizedStartAngle && normalizedAngle <= normalizedEndAngle
+        } else {
+            return normalizedAngle >= normalizedStartAngle || normalizedAngle <= normalizedEndAngle
+        }
+    }
+    
     // MARK: - Private Properties
-    private var rangeLineList: TYRangeLineList?
+    private var rangeLineList: TYRangeLineList? {
+        didSet {
+            setNeedsDisplay()
+            sendActions(for: .valueChanged)
+        }
+    }
     
     /**
      * Interval point
@@ -551,5 +728,11 @@ open class TYRangeRingSlider: TYRingSlider {
     fileprivate var selectedRangeLine: TYRangeLine?
     
     private var oldTouchPoint: CGPoint = .zero
+    
+    private var tapGestureRecognizer: UITapGestureRecognizer {
+        let gestureRecognizer = UITapGestureRecognizer()
+        gestureRecognizer.addTarget(self, action: #selector(actionForTapGestureRecognizer(_:)))
+        return gestureRecognizer
+    }
 
 }
