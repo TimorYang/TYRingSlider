@@ -312,7 +312,7 @@ open class TYRangeRingSlider: TYRingSlider {
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
-                            let distance = index % 2 == 0 ? _minDistance - 0.01 : 0.01
+                            let distance = index % 2 == 0 ? _minDistance : 0.0
                             let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
@@ -338,8 +338,9 @@ open class TYRangeRingSlider: TYRingSlider {
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
+                        print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
-                            let distance = index % 2 == 0 ? 0.01 : _minDistance - 0.01
+                            let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .counterclockwise, distance: distance)
@@ -351,6 +352,8 @@ open class TYRangeRingSlider: TYRingSlider {
                             currentPoint = previousPoint
                             index += 1
                         } while currentPoint !== _firstPoint
+                        print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
                     print("999666: ------------结束逆时针旋转------------")
@@ -379,7 +382,7 @@ open class TYRangeRingSlider: TYRingSlider {
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
-                            let distance = index % 2 == 0 ? 0.01 : _minDistance - 0.01
+                            let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
@@ -401,16 +404,17 @@ open class TYRangeRingSlider: TYRingSlider {
                     print("2222: ------------结束顺时针旋转------------")
                 case .counterclockwise:
                     /// 逆时针旋转
-                    print("999666: ------------开始逆时针旋转------------")
+                    print("2222: ------------开始逆时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
                         repeat {
-                            let distance = index % 2 == 0 ? _minDistance - 0.01 : 0.01
+                            let distance = index % 2 == 0 ? _minDistance : 0.0
                             let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .counterclockwise, distance: distance)
                             if result {
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint), nextPoint: \(nextPoint)")
                                 previousPoint.value = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
                             } else {
                                 break
@@ -420,13 +424,13 @@ open class TYRangeRingSlider: TYRingSlider {
                         } while currentPoint !== _firstPoint
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
-                    print("999666: ------------结束逆时针旋转------------")
+                    print("2222: ------------结束逆时针旋转------------")
                 case .stationary:
                     print("101010666: 点没有移动或在完全对称的位置")
                 }
             }
         case .none:
-            print("none")
+            print("2222: none")
         }
         
         oldTouchPoint = touchPosition
@@ -495,7 +499,7 @@ open class TYRangeRingSlider: TYRingSlider {
             var minStart = maximumValue
             var targetLine: TYRangeLine?
             lineList.traverse { (item: TYRangeLine) in
-                if minStart > item.start {
+                if minStart >= item.start {
                     minStart = item.start
                     targetLine = item
                 }
@@ -515,22 +519,22 @@ open class TYRangeRingSlider: TYRingSlider {
                 // 判断结尾和开始有没有间距
                 if let _nextLine = item.next {
                     if _nextLine.start > item.end {
-                        if _nextLine.start - item.end >= 0.01 {
+                        if _nextLine.start - item.end > 0 {
                             // 加一段 off picke 的
                             let tmp = TYRingSliderTimeRange()
-                            tmp.start = item.end + 0.01
-                            tmp.end = _nextLine.start - 0.01
+                            tmp.start = item.end
+                            tmp.end = _nextLine.start
                             tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
                             tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
                             tmp.backgroundColor = .white
                             list.append(tmp)
                         }
-                    } else {
-                        if maximumValue - item.end + _nextLine.start >= 0.01 {
+                    } else if _nextLine.start < item.end  {
+                        if maximumValue - item.end + _nextLine.start > 0 {
                             // 加一段 off picke 的
                             let tmp = TYRingSliderTimeRange()
-                            tmp.start = item.end + 0.01
-                            tmp.end = _nextLine.start - 0.01
+                            tmp.start = item.end
+                            tmp.end = _nextLine.start
                             tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
                             tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
                             tmp.backgroundColor = .white

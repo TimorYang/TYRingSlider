@@ -336,36 +336,45 @@ internal class TYRingSliderHelper {
     }
     
     internal static func arePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat, movementDirection:MovementDirection, distance: CGFloat, interval: Interval) -> Bool {
-        let point = point1 == interval.max ? 0 : point1
-        if start > end {
-            if point >= end && point <= start {
-                print("133133: start: \(start), end: \(end), point: \(point), result:\(true)")
-                return true
-            }
-        } else {
-            if !(point > start && point < end) {
-                print("133133: start: \(start), end: \(end), point: \(point), result:\(true)")
-                return true
-            }
-        }
+        let point = point1
         // 临界点
+        let start = start == interval.min ? interval.max : start
+        let end = end == interval.max ? 0 : end
         let boundaryPoint = interval.max
         var result = false
         var targetPoint = point
-        if movementDirection == .clockwise {
-            targetPoint = end
-            var length = targetPoint - point
-            if point > targetPoint {
-                length = boundaryPoint - point + targetPoint
+        // 先判断 start 和 end 是否跨天
+        if start <= end { // 不跨天
+            if movementDirection == .clockwise {
+                targetPoint = end
+                var length = targetPoint - point
+                result = length <= distance
+            } else if movementDirection == .counterclockwise {
+                targetPoint = start
+                var length = point - targetPoint
+                result = length <= distance
             }
-            result = length <= distance
-        } else if movementDirection == .counterclockwise {
-            targetPoint = start
-            var length = point - targetPoint
-            if point < targetPoint {
-                length = boundaryPoint - targetPoint + point
+        } else {
+            if movementDirection == .clockwise {
+                if boundaryPoint - point > boundaryPoint - start { // 过 0 点
+                    targetPoint = end
+                    var length = targetPoint - point
+                    result = length <= distance
+                } else { // 没有过 0 点
+                    targetPoint = end
+                    var length = boundaryPoint - point + targetPoint
+                    result = length <= distance
+                }
+            } else if movementDirection == .counterclockwise {
+                targetPoint = start
+                if point - interval.min > end - interval.min { // 没过 0 点
+                    var length = point - targetPoint
+                    result = length <= distance
+                } else {
+                    var length = point + interval.max - targetPoint
+                    result = length <= distance
+                }
             }
-            result = length <= distance
         }
         print("133133: start: \(start), end: \(end), point: \(point), targetPoint: \(targetPoint), result:\(result)")
         return result

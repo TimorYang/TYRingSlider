@@ -27,9 +27,9 @@ class ViewController: UIViewController {
     // MARK: - Init Data
     private func initData() {
         let _timeRange1 = TYRingSliderTimeRange(start: 1 * 60 * 60, end: 3 * 60 * 60, lineColor: .red, showThumb: true)
-        let _timeRange2 = TYRingSliderTimeRange(start: 10 * 60 * 60, end: 12 * 60 * 60, lineColor: .blue, showThumb: false)
-//        let _timeRange3 = TYRingSliderTimeRange(start: 10 * 60 * 60, end: 11 * 60 * 60, lineColor: .purple, showThumb: false)
-        rangeSlider.timeRangeList = [_timeRange1, _timeRange2]
+        let _timeRange2 = TYRingSliderTimeRange(start: 8 * 60 * 60, end: 12 * 60 * 60, lineColor: .blue, showThumb: false)
+        let _timeRange3 = TYRingSliderTimeRange(start: 14 * 60 * 60, end: 16 * 60 * 60, lineColor: .purple, showThumb: false)
+        rangeSlider.timeRangeList = [_timeRange1]
     }
     
     // MARK: - UI
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         slider.stepTickColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1020)
         slider.stepTickWidth = 2
         slider.stepTickLength = 10
-        slider.minDistance = 2 * 60 * 60
+        slider.minDistance = 0.5 * 60 * 60
         return slider
     }()
     
