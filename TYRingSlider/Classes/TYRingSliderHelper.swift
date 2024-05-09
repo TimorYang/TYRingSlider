@@ -347,31 +347,31 @@ internal class TYRingSliderHelper {
         if start <= end { // 不跨天
             if movementDirection == .clockwise {
                 targetPoint = end
-                var length = targetPoint - point
+                let length = targetPoint - point
                 result = length <= distance
             } else if movementDirection == .counterclockwise {
                 targetPoint = start
-                var length = point - targetPoint
+                let length = point - targetPoint
                 result = length <= distance
             }
         } else {
             if movementDirection == .clockwise {
-                if boundaryPoint - point > boundaryPoint - start { // 过 0 点
+                if boundaryPoint - point >= boundaryPoint - start { // 过 0 点
                     targetPoint = end
-                    var length = targetPoint - point
+                    let length = targetPoint - point
                     result = length <= distance
                 } else { // 没有过 0 点
                     targetPoint = end
-                    var length = boundaryPoint - point + targetPoint
+                    let length = boundaryPoint - point + targetPoint
                     result = length <= distance
                 }
             } else if movementDirection == .counterclockwise {
                 targetPoint = start
                 if point - interval.min > end - interval.min { // 没过 0 点
-                    var length = point - targetPoint
+                    let length = point - targetPoint
                     result = length <= distance
                 } else {
-                    var length = point + interval.max - targetPoint
+                    let length = point + interval.max - targetPoint
                     result = length <= distance
                 }
             }

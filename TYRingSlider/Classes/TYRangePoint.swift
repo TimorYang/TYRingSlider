@@ -21,6 +21,7 @@ class TYRangePoint: NSObject {
     weak var previous: TYRangePoint?
     
     override var description: String {
-        return "CircularPoint(index: \(index), value: \(value), isStart: \(isStart), isEnd: \(isEnd), hasPrevious: \(previous != nil), hasNext: \(next != nil)"
+//        return "CircularPoint(index: \(index), value: \(value), isStart: \(isStart), isEnd: \(isEnd), hasPrevious: \(previous != nil), hasNext: \(next != nil)"
+        return "CircularPoint(index: \(index), value: \(value), isStart: \(isStart), isEnd: \(isEnd))"
     }
 }

@@ -326,7 +326,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             }
                             currentPoint = nextPoint
                             index += 1
-                        } while currentPoint !== _firstPoint
+                        } while currentPoint !== _firstPoint.previous!
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
@@ -351,7 +351,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             }
                             currentPoint = previousPoint
                             index += 1
-                        } while currentPoint !== _firstPoint
+                        } while currentPoint !== _firstPoint.next!
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
@@ -388,15 +388,16 @@ open class TYRangeRingSlider: TYRingSlider {
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
                             if result {
                                 print("133133:  发生碰撞")
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), nextPoint: \(nextPoint)")
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 nextPoint.value = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                print("2222: 碰撞后的数据 nextPoint: \(nextPoint)")
                             } else {
-                                print("2222: 无法找到碰撞")
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 break
                             }
                             currentPoint = nextPoint
                             index += 1
-                        } while currentPoint !== _firstPoint
+                        } while currentPoint !== _firstPoint.previous!
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
@@ -421,7 +422,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             }
                             currentPoint = previousPoint
                             index += 1
-                        } while currentPoint !== _firstPoint
+                        } while currentPoint !== _firstPoint.next!
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
                     print("2222: ------------结束逆时针旋转------------")
@@ -737,6 +738,58 @@ open class TYRangeRingSlider: TYRingSlider {
         let gestureRecognizer = UITapGestureRecognizer()
         gestureRecognizer.addTarget(self, action: #selector(actionForTapGestureRecognizer(_:)))
         return gestureRecognizer
+    }
+    
+    
+    public static func testArePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat, movementDirection:MovementDirection, distance: CGFloat) -> Bool {
+        let point = point1
+        // 临界点
+        let start = start == 0.0 ? 86400.0 : start
+        let end = end == 86400.0 ? 0 : end
+        let boundaryPoint = 86400.0
+        var result = false
+        var targetPoint = point
+        // 先判断 start 和 end 是否跨天
+        if start <= end { // 不跨天
+            if movementDirection == .clockwise {
+                targetPoint = end
+                let length = targetPoint - point
+                result = length <= distance
+            } else if movementDirection == .counterclockwise {
+                targetPoint = start
+                let length = point - targetPoint
+                result = length <= distance
+            }
+        } else {
+            if movementDirection == .clockwise {
+                if boundaryPoint - point >= boundaryPoint - start { // 过 0 点
+                    targetPoint = end
+                    let length = targetPoint - point
+                    result = length <= distance
+                } else { // 没有过 0 点
+                    targetPoint = end
+                    let length = boundaryPoint - point + targetPoint
+                    result = length <= distance
+                }
+            } else if movementDirection == .counterclockwise {
+                targetPoint = start
+                if point - 0.0 >= end - 0.0 { // 没过 0 点
+                    var length = point - targetPoint
+                    result = length <= distance
+                } else {
+                    let length = point + 86400.0 - targetPoint
+                    result = length <= distance
+                }
+            }
+        }
+        print("133133: start: \(start), end: \(end), point: \(point), targetPoint: \(targetPoint), result:\(result)")
+        return result
+    }
+    
+    public enum MovementDirection {
+        case clockwise
+        case counterclockwise
+        case stationary
     }
 
 }
