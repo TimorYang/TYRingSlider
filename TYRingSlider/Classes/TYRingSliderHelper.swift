@@ -356,7 +356,7 @@ internal class TYRingSliderHelper {
             }
         } else {
             if movementDirection == .clockwise {
-                if boundaryPoint - point >= boundaryPoint - start { // 过 0 点
+                if boundaryPoint - point > boundaryPoint - start { // 过 0 点
                     targetPoint = end
                     let length = targetPoint - point
                     result = length <= distance

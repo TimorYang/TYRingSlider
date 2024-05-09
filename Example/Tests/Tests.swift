@@ -6,6 +6,7 @@ class Tests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        let result = TYRangeRingSlider.testArePointsTouchingOnSameCircle(point1: 3600, start: 3600, end: 1800, movementDirection: .clockwise, distance: 0)
     }
     
     override func tearDown() {

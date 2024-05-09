@@ -318,10 +318,11 @@ open class TYRangeRingSlider: TYRingSlider {
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
                             if result {
                                 print("133133:  发生碰撞")
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), nextPoint: \(nextPoint)")
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 nextPoint.value = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                print("2222: 碰撞后的数据 nextPoint: \(nextPoint)")
                             } else {
-                                print("2222: 无法找到碰撞")
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 break
                             }
                             currentPoint = nextPoint
@@ -345,8 +346,11 @@ open class TYRangeRingSlider: TYRingSlider {
                             let nextPoint = currentPoint.next!
                             let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .counterclockwise, distance: distance)
                             if result {
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 previousPoint.value = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                print("2222: 碰撞后的数据 previousPoint: \(previousPoint)")
                             } else {
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
                                 break
                             }
                             currentPoint = previousPoint
