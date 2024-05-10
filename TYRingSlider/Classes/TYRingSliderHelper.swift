@@ -335,48 +335,57 @@ internal class TYRingSliderHelper {
         return result
     }
     
-    internal static func arePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat, movementDirection:MovementDirection, distance: CGFloat, interval: Interval) -> Bool {
-        let point = point1
-        // 临界点
-        let start = start == interval.min ? interval.max : start
-        let end = end == interval.max ? 0 : end
-        let boundaryPoint = interval.max
+    internal static func arePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat, movementDirection:MovementDirection, distance: CGFloat, interval: Interval, isCrossDay: Bool) -> Bool {
         var result = false
-        var targetPoint = point
-        // 先判断 start 和 end 是否跨天
-        if start <= end { // 不跨天
-            if movementDirection == .clockwise {
-                targetPoint = end
-                let length = targetPoint - point
-                result = length <= distance
-            } else if movementDirection == .counterclockwise {
-                targetPoint = start
-                let length = point - targetPoint
-                result = length <= distance
-            }
-        } else {
-            if movementDirection == .clockwise {
-                if boundaryPoint - point > boundaryPoint - start { // 过 0 点
-                    targetPoint = end
-                    let length = targetPoint - point
-                    result = length <= distance
-                } else { // 没有过 0 点
-                    targetPoint = end
-                    let length = boundaryPoint - point + targetPoint
-                    result = length <= distance
-                }
-            } else if movementDirection == .counterclockwise {
-                targetPoint = start
-                if point - interval.min > end - interval.min { // 没过 0 点
-                    let length = point - targetPoint
-                    result = length <= distance
+        if movementDirection == .clockwise {
+            if isCrossDay {
+                // 跨 0 的问题. point > targetPoint 恒成立, 所以当 point <= targetPoint 就认为碰撞或者越过了
+                if targetPoint - distance >= 0 {
+                    let value = targetPoint - distance == 0 ? interval.max : targetPoint - distance
+                    result = point <= value
+                    print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \(value / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 跨 0 喽")
                 } else {
-                    let length = point + interval.max - targetPoint
-                    result = length <= distance
+                    let value = interval.max + targetPoint - distance
+                    result = point >= value
+                    print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \(value / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 正常")
                 }
+            } else {
+                // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point >= targetPoint 就认为碰撞或者越过了
+                // 基于distance 计算 targetPoint
+                let newTargetPoint = targetPoint - distance >= 0 ? targetPoint - distance : interval.max + targetPoint - distance
+                if point == 0.0 && newTargetPoint == 23.5 * 60 * 60 {
+                    result = true
+                } else {
+                    result = point >= newTargetPoint
+                }
+                print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \(newTargetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 正常")
+            }
+                
+        } else if movementDirection == .counterclockwise {
+            if isCrossDay {
+                // 跨 0 的问题. point < targetPoint 恒成立, 所以 当point >= targetPoint 就认为碰撞或者越过了
+                if targetPoint + distance <= interval.max {
+                    result = point >= targetPoint + distance
+                    print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \((targetPoint + distance) / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 跨 0 喽")
+                } else {
+                    let value = targetPoint + distance
+                    let point = point == interval.min ? interval.max : point
+                    result = point <= value
+                    print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \(value / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 正常")
+                }
+            } else {
+                // 不讨论回到原点的问题. point > targetPoint 恒成立, 所以 当point <= targetPoint 就认为碰撞或者越过了
+                // 基于distance 计算 targetPoint
+                let newTargetPoint = targetPoint + distance
+                let point = point == interval.min ? interval.max : point
+                if point == interval.min && newTargetPoint == 0.5 * 60 * 60 {
+                    result = true
+                } else {
+                    result = point <= newTargetPoint
+                }
+                print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), newTargetPoint: \(newTargetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result) 正常")
             }
         }
-        print("133133: start: \(start), end: \(end), point: \(point), targetPoint: \(targetPoint), result:\(result)")
         return result
     }
 }

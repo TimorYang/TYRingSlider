@@ -290,6 +290,7 @@ open class TYRangeRingSlider: TYRingSlider {
         // the position of the pan gesture
         let touchPosition = touch.location(in: self)
         let startPoint = CGPoint(x: bounds.center.x, y: 0)
+        let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
         switch selectedThumb {
         case .startThumb:
             let oldValue = _selectedRangeLine.start
@@ -299,9 +300,9 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.start = value
             if let _minDistance = minDistance {
-                let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
                 let pointList = lineList2PointList(from: _rangeLineList, startPoint: _selectedRangeLine, isBegin: true)
                 switch movementDirection {
                 case .clockwise:
@@ -311,23 +312,28 @@ open class TYRangeRingSlider: TYRingSlider {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
-                            let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, distance: distance, isCrossDay: currentPoint.isCross && nextPoint.isCross)
                             if result {
                                 print("133133:  发生碰撞")
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
-                                nextPoint.value = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
-                                print("2222: 碰撞后的数据 nextPoint: \(nextPoint)")
+                                
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
+                                let resultValue = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
+                                updatePointsCrossDayStatus(in: pointList)
                             } else {
-                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
                             currentPoint = nextPoint
                             index += 1
                         } while currentPoint !== _firstPoint.previous!
+                        print("2222:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("2222:  ")
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
@@ -335,32 +341,36 @@ open class TYRangeRingSlider: TYRingSlider {
                     print("2222: ------------结束顺时针旋转------------")
                 case .counterclockwise:
                     /// 逆时针旋转
-                    print("999666: ------------开始逆时针旋转------------")
+                    print("2222:: ------------开始逆时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
                             let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let previousPoint = currentPoint.previous!
-                            let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .counterclockwise, distance: distance)
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, distance: distance, isCrossDay: currentPoint.isCross && previousPoint.isCross)
                             if result {
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
-                                previousPoint.value = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
-                                print("2222: 碰撞后的数据 previousPoint: \(previousPoint)")
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
+                                let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
+                                updatePointsCrossDayStatus(in: pointList)
                             } else {
-                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
                             currentPoint = previousPoint
                             index += 1
                         } while currentPoint !== _firstPoint.next!
+                        print("2222:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("2222:  ")
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
-                    print("999666: ------------结束逆时针旋转------------")
+                    print("2222:: ------------结束逆时针旋转------------")
                 case .stationary:
                     print("101010666: 点没有移动或在完全对称的位置")
                 }
@@ -373,9 +383,9 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.end = value
             if let _minDistance = minDistance {
-                let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
                 let pointList = lineList2PointList(from: _rangeLineList, startPoint: _selectedRangeLine, isBegin: false)
                 switch movementDirection {
                 case .clockwise:
@@ -385,23 +395,28 @@ open class TYRangeRingSlider: TYRingSlider {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
                             let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let previousPoint = currentPoint.previous!
                             let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .clockwise, distance: distance)
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, distance: distance, isCrossDay: currentPoint.isCross && nextPoint.isCross)
                             if result {
                                 print("133133:  发生碰撞")
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
-                                nextPoint.value = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
-                                print("2222: 碰撞后的数据 nextPoint: \(nextPoint)")
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
+                                let resultValue = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
+                                updatePointsCrossDayStatus(in: pointList)
                             } else {
-                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint), previousPoint: \(previousPoint), nextPoint: \(nextPoint), distance: \(distance)")
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
                             currentPoint = nextPoint
                             index += 1
                         } while currentPoint !== _firstPoint.previous!
+                        print("2222:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("2222:  ")
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
@@ -413,20 +428,29 @@ open class TYRangeRingSlider: TYRingSlider {
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
+                        print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
                             let previousPoint = currentPoint.previous!
-                            let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point1: currentPoint.value, start: previousPoint.value, end: nextPoint.value, movementDirection: .counterclockwise, distance: distance)
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, distance: distance, isCrossDay: currentPoint.isCross && previousPoint.isCross)
                             if result {
-                                print("2222: 发生碰撞 currentPoint: \(currentPoint), nextPoint: \(nextPoint)")
-                                previousPoint.value = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
+                                let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
+                                updatePointsCrossDayStatus(in: pointList)
                             } else {
+                                print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
                             currentPoint = previousPoint
                             index += 1
                         } while currentPoint !== _firstPoint.next!
+                        print("2222:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("2222:  ")
+                        print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+                        print("133133:  ")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
                     print("2222: ------------结束逆时针旋转------------")
@@ -603,10 +627,10 @@ open class TYRangeRingSlider: TYRingSlider {
         return TYRingSliderHelper.arePointsTouchingOnSameCircle(point1: point1, point2: point2, movementDirection: movementDirection, touchRadius: radius, minAngle: 0, interval: interval)
     }
     
-    private func arePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat,  movementDirection:TYRingSliderHelper.MovementDirection, distance: CGFloat?) -> Bool {
+    private func arePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat,  movementDirection:TYRingSliderHelper.MovementDirection, distance: CGFloat?, isCrossDay: Bool) -> Bool {
         guard let _distance = distance else { return false }
         let interval = Interval(min: minimumValue, max: maximumValue, rounds: numberOfRounds)
-        return TYRingSliderHelper.arePointsTouchingOnSameCircle(point1: point1, start: start, end: end, movementDirection: movementDirection, distance: _distance, interval: interval)
+        return TYRingSliderHelper.arePointsTouchingOnSameCircle(point: point, targetPoint: targetPoint, movementDirection: movementDirection, distance: _distance, interval: interval, isCrossDay: isCrossDay)
     }
     
     private func lineList2PointList(from lineList: TYRangeLineList, startPoint target:TYRangeLine, isBegin begin: Bool ) -> TYRangePointList {
@@ -618,30 +642,31 @@ open class TYRangeRingSlider: TYRingSlider {
             print("666: \(item)")
             if loop == 1 {
                 if begin == false {
-                    result.append(value: item.end, isStart: false, isEnd: true)
+                    result.append(value: item.end, isStart: false, isEnd: true, isCross: false, lineTag: loop)
                     lastValue = item.start
                 } else {
-                    result.append(value: item.start, isStart: true, isEnd: false)
-                    result.append(value: item.end, isStart: false, isEnd: false)
+                    result.append(value: item.start, isStart: true, isEnd: false, isCross: false, lineTag: loop)
+                    result.append(value: item.end, isStart: false, isEnd: false, isCross: false, lineTag: loop)
                 }
             } else if loop == lineList.count {
                 if begin == true {
-                    result.append(value: item.start, isStart: false, isEnd: false)
-                    result.append(value: item.end, isStart: false, isEnd: true)
+                    result.append(value: item.start, isStart: false, isEnd: false, isCross: false, lineTag: loop)
+                    result.append(value: item.end, isStart: false, isEnd: true, isCross: false, lineTag: loop)
                 } else {
-                    result.append(value: item.start, isStart: false, isEnd: false)
-                    result.append(value: item.end, isStart: false, isEnd: false )
+                    result.append(value: item.start, isStart: false, isEnd: false, isCross: false, lineTag: loop)
+                    result.append(value: item.end, isStart: false, isEnd: false, isCross: false, lineTag: loop)
                 }
             } else {
-                result.append(value: item.start, isStart: false, isEnd: false)
-                result.append(value: item.end, isStart: false, isEnd: false)
+                result.append(value: item.start, isStart: false, isEnd: false, isCross: false, lineTag: loop)
+                result.append(value: item.end, isStart: false, isEnd: false, isCross: false, lineTag: loop)
             }
             loop+=1
             return true
         }
         if let _lastValue = lastValue {
-            result.append(value: _lastValue, isStart: true, isEnd: false)
+            result.append(value: _lastValue, isStart: true, isEnd: false, isCross: false, lineTag: 1)
         }
+        updatePointsCrossDayStatus(in: result)
         print("666: -------------point end-------------)")
         print("666: -------------start-------------)")
         result.traverse { (item: TYRangePoint) in
@@ -650,6 +675,55 @@ open class TYRangeRingSlider: TYRingSlider {
         }
         print("666: -------------end-------------)")
         return result
+    }
+    
+    private func updatePointsCrossDayStatus(in pointList: TYRangePointList) {
+        // 排序
+        var pointArray = [TYRangePoint]()
+        pointList.traverse { (item: TYRangePoint) in
+            pointArray.append(item)
+            return true
+        }
+        // 这里一定是 >= 2 的
+        if pointArray.count >= 2 {
+            pointArray.sort { $0.value < $1.value }
+            // 寻找异常的两个点
+            var isBigger = false
+            var comparePoint = pointArray.first!
+            for (index, item) in pointArray.enumerated() {
+                if index == 0 {
+                    continue
+                }
+                if (comparePoint.value > item.value) {
+                    isBigger = true
+                    comparePoint.isCross = true
+                    item.isCross = true
+                    break
+                } else {
+                    item.isCross = false
+                    comparePoint = item
+                }
+            }
+            
+            if isBigger == false {
+                // 循环数组没找到, 就判断首尾
+                let firstPoint = pointArray.first!
+                if firstPoint.value != 0 {
+                    if comparePoint.value > firstPoint.value {
+                        comparePoint.isCross = true
+                        firstPoint.isCross = true
+                        isBigger = true
+                    }
+                }
+            }
+            
+            print("250250: -------------point end-------------)")
+            print("250250: -------------start-------------)")
+            for item in pointArray {
+                print("250250: \(item)")
+            }
+            print("250250: -------------end-------------)")
+        }
     }
     
     private func modifyLineList(by pointList: TYRangePointList, selectLine line: TYRangeLine) {
@@ -745,48 +819,23 @@ open class TYRangeRingSlider: TYRingSlider {
     }
     
     
-    public static func testArePointsTouchingOnSameCircle(point1: CGFloat, start: CGFloat, end: CGFloat, movementDirection:MovementDirection, distance: CGFloat) -> Bool {
-        let point = point1
-        // 临界点
-        let start = start == 0.0 ? 86400.0 : start
-        let end = end == 86400.0 ? 0 : end
-        let boundaryPoint = 86400.0
+    public static func testArePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat, movementDirection:MovementDirection, distance: CGFloat) -> Bool {
         var result = false
-        var targetPoint = point
-        // 先判断 start 和 end 是否跨天
-        if start <= end { // 不跨天
-            if movementDirection == .clockwise {
-                targetPoint = end
-                let length = targetPoint - point
-                result = length <= distance
-            } else if movementDirection == .counterclockwise {
-                targetPoint = start
-                let length = point - targetPoint
-                result = length <= distance
-            }
-        } else {
-            if movementDirection == .clockwise {
-                if boundaryPoint - point >= boundaryPoint - start { // 过 0 点
-                    targetPoint = end
-                    let length = targetPoint - point
-                    result = length <= distance
-                } else { // 没有过 0 点
-                    targetPoint = end
-                    let length = boundaryPoint - point + targetPoint
-                    result = length <= distance
-                }
-            } else if movementDirection == .counterclockwise {
-                targetPoint = start
-                if point - 0.0 >= end - 0.0 { // 没过 0 点
-                    var length = point - targetPoint
-                    result = length <= distance
-                } else {
-                    let length = point + 86400.0 - targetPoint
-                    result = length <= distance
-                }
-            }
+        if movementDirection == .clockwise {
+            // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point >= targetPoint 就认为碰撞或者越过了
+            // 如果 point < targePoint 说明跨越了0点, 所以targePoint需要偏移
+            let targetPoint = targetPoint < point ? targetPoint + 86400 : targetPoint
+            // 基于distance 计算 targetPoint
+            let newTargetPoint = targetPoint - distance >= 0 ? targetPoint - distance : 86400 + targetPoint - distance
+            result = point >= newTargetPoint
+        } else if movementDirection == .counterclockwise {
+            // 不讨论回到原点的问题. point > targetPoint 恒成立, 所以 当point <= targetPoint 就认为碰撞或者越过了
+            // 如果 point < targePoint 说明跨越了0点, 所以targePoint需要偏移
+            let targetPoint = targetPoint > point ? targetPoint - 86400 : targetPoint
+            // 基于distance 计算 targetPoint
+            let newTargetPoint = targetPoint + distance <= 86400 ? targetPoint + distance : targetPoint + distance - 86400
+            result = point <= newTargetPoint
         }
-        print("133133: start: \(start), end: \(end), point: \(point), targetPoint: \(targetPoint), result:\(result)")
         return result
     }
     

@@ -16,12 +16,17 @@ class TYRangePoint: NSObject {
     /// 是否是终点
     var isEnd = false
     
+    var isCross = false
+    
+    var lineTag: Int = -1
+    
     var next: TYRangePoint?
     
     weak var previous: TYRangePoint?
     
     override var description: String {
 //        return "CircularPoint(index: \(index), value: \(value), isStart: \(isStart), isEnd: \(isEnd), hasPrevious: \(previous != nil), hasNext: \(next != nil)"
-        return "CircularPoint(index: \(index), value: \(value), isStart: \(isStart), isEnd: \(isEnd))"
+//        return "CircularPoint(index: \(index), value: \(value), isCross: \(isCross), isStart: \(isStart), isEnd: \(isEnd), lineTag: \(lineTag)"
+        return "CircularPoint(index: \(index), value: \(value / 3600.0), isCross: \(isCross), lineTag: \(lineTag)"
     }
 }

@@ -26,11 +26,13 @@ class TYRangePointList: NSObject {
     }
     
     // 添加新元素到链表
-    func append(value: CGFloat, isStart: Bool, isEnd: Bool) {
+    func append(value: CGFloat, isStart: Bool, isEnd: Bool, isCross: Bool, lineTag: Int) {
         let newPoint = TYRangePoint()
         newPoint.value = value
         newPoint.isStart = isStart
         newPoint.isEnd = isEnd
+        newPoint.isCross = isCross
+        newPoint.lineTag = lineTag
         newPoint.index = count
         
         if let headPoint = head {
