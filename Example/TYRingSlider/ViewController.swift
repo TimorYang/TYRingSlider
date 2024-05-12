@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let _timeRange2 = TYRingSliderTimeRange(start: 8 * 60 * 60, end: 12 * 60 * 60, lineColor: .blue, showThumb: false)
         let _timeRange3 = TYRingSliderTimeRange(start: 14 * 60 * 60, end: 16 * 60 * 60, lineColor: .purple, showThumb: false)
         let _timeRange4 = TYRingSliderTimeRange(start: 17 * 60 * 60, end: 18 * 60 * 60, lineColor: .orange, showThumb: false)
-        rangeSlider.timeRangeList = [_timeRange1, _timeRange2, _timeRange3]
+        rangeSlider.timeRangeList = [_timeRange1, _timeRange2, _timeRange3, _timeRange4]
     }
     
     // MARK: - UI
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         slider.stepTickColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1020)
         slider.stepTickWidth = 2
         slider.stepTickLength = 10
-        slider.minDistance = 1 * 60 * 60
+        slider.minDistance = 0.5 * 60 * 60
         return slider
     }()
     
