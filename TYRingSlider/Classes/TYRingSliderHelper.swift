@@ -348,7 +348,7 @@ internal class TYRingSliderHelper {
             } else {
                 // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point >= targetPoint 就认为碰撞或者越过了
                 // 基于distance 计算 targetPoint
-//                let point = point == interval.min ? interval.max : point
+                let point = point == interval.min ? interval.max : point
                 result = targetPoint - point
                 print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result / 3600) 正常")
             }

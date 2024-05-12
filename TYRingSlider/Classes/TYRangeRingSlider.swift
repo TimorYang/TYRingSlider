@@ -476,7 +476,6 @@ open class TYRangeRingSlider: TYRingSlider {
                             print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
                             // 顺时针都是 ⬆️ 趋势, 如果运动点的就值到目标点是 ⬇️ 趋势, 认为跨天
                             var isCross = false
-//                            movePointOldValue == minimumValue ? maximumValue : movePointOldValue
                             if movePointOldValue > nextPoint.value {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
                                 // 计算当前点在哪边
@@ -525,16 +524,40 @@ open class TYRangeRingSlider: TYRingSlider {
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        var movePointOldValue = oldValue
+                        print("22221: 逆时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
                             let previousPoint = currentPoint.previous!
-                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: currentPoint.isCross && previousPoint.isCross)
+                            //                            if moveDistance > 0 {
+                            print("22221: index: \(index)")
+                            print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
+                            // 逆时针都是 ⬇️ 趋势, 如果运动点的就值到目标点是 ⬆️ 趋势, 认为跨天
+                            var isCross = false
+                            if movePointOldValue < previousPoint.value {
+                                print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
+                                // 计算当前点在哪边
+                                if currentPoint.value >= minimumValue && currentPoint.value <= oldValue {
+                                    // 跨天了
+                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
+                                    isCross = true
+                                } else {
+                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
+                                }
+                                isCross = true
+                            } else {
+                                
+                                print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
+                            }
+                            print("22221: index: \(index)")
+                            //                            }
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: isCross)
+                            movePointOldValue = previousPoint.value
                             if result <= distance {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                let resultValue = currentPoint.value - distance < minimumValue ? currentPoint.value - distance + maximumValue : currentPoint.value - distance
                                 previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
-                                updatePointsCrossDayStatus(in: pointList, changedPointIndex: previousPoint.index, movementDirection: .counterclockwise)
                             } else {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
