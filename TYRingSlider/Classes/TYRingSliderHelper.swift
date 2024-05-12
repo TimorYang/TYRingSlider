@@ -336,7 +336,7 @@ internal class TYRingSliderHelper {
     }
     
     internal static func arePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat, movementDirection:MovementDirection, distance: CGFloat, interval: Interval, isCrossDay: Bool) -> Bool {
-//        return false
+        return false
         var result = false
         if movementDirection == .clockwise {
             if isCrossDay {

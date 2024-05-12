@@ -300,11 +300,7 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
-            if movementDirection == .clockwise {
-                value = value == maximumValue ? minimumValue : value
-            } else if movementDirection == .counterclockwise {
-                value = value == minimumValue ? maximumValue : value
-            }
+            value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.start = value
             if let _minDistance = minDistance {
                 let pointList = lineList2PointList(from: _rangeLineList, startPoint: _selectedRangeLine, isBegin: true)
@@ -359,7 +355,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             if result {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
-                                previousPoint.value = resultValue == minimumValue ? maximumValue : resultValue
+                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
                                 updatePointsCrossDayStatus(in: pointList, changedPointIndex: previousPoint.index, movementDirection: .counterclockwise)
                             } else {
@@ -388,12 +384,8 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
-            if movementDirection == .clockwise {
-                value = value == maximumValue ? minimumValue : value
-            } else if movementDirection == .counterclockwise {
-                value = value == minimumValue ? maximumValue : value
-            }
             print("33333312: value: \(value)")
+            value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.end = value
             if let _minDistance = minDistance {
                 let pointList = lineList2PointList(from: _rangeLineList, startPoint: _selectedRangeLine, isBegin: false)
@@ -448,7 +440,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             if result {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
-                                previousPoint.value = resultValue == minimumValue ? maximumValue : resultValue
+                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
                                 updatePointsCrossDayStatus(in: pointList, changedPointIndex: previousPoint.index, movementDirection: .counterclockwise)
                             } else {
@@ -702,6 +694,8 @@ open class TYRangeRingSlider: TYRingSlider {
             return true
         }
         
+        var isPointDirty = false
+        
         var pointsArray = [TYRangePoint]()
         // 清除跨天标记
         pointList.traverse { (item: TYRangePoint) in
@@ -710,6 +704,23 @@ open class TYRangeRingSlider: TYRingSlider {
             return true
         }
         
+        // 判断点是不是脏数据
+        
+        print("290290: ------start--------")
+//        if let _index = pointsArray.firstIndex(of: changedPoint) {
+//            if _index == pointsArray.count - 1 {
+//                let previousPoint = pointsArray[_index - 1]
+//                let nextPoint = pointsArray[0]
+//                if !(changedPoint.lineTag - 1 == previousPoint.lineTag && changedPoint.lineTag + 1 == nextPoint.lineTag) {
+//                    // 数据不正常
+//                    isPointDirty = true
+//                }
+//            }
+//        }
+        print("290290: \(isPointDirty)")
+        print("290290: ------end--------")
+        
+        /*
         print("280280: ------start--------")
         
         var crossPointArray = [TYRangePoint]()
@@ -758,7 +769,19 @@ open class TYRangeRingSlider: TYRingSlider {
         }
         print("240240: -------------end-------------)")
         if crossPointArray.count >= 2 {
-            let tmpArray = crossPointArray.suffix(2)
+            var dirtyPointArray = [TYRangePoint]()
+            for i in 0..<crossPointArray.count-1 {
+                let distance = abs(crossPointArray[i].index - crossPointArray[i + 1].index)
+                if distance == 1 || distance == pointList.nodeCount - 1 {
+                    continue
+                } else {
+                    if crossPointArray[i].index < crossPointArray[i + 1].index {
+                        dirtyPointArray.append(crossPointArray[i].next!)
+                    } else {
+                        dirtyPointArray.append(crossPointArray[i].previous!)
+                    }
+                }
+            }
             var realCrossPointArray = [TYRangePoint]()
             print("260260: -------------start-------------)")
             let first = crossPointArray.first!
@@ -766,8 +789,8 @@ open class TYRangeRingSlider: TYRingSlider {
             let distance = abs(first.index - end.index)
             print("260260: \(distance)")
             print("260260: -------------end-------------)")
-            if  distance == 1 || distance == pointList.nodeCount - 1 {
-                for item in tmpArray {
+            if dirtyPointArray.count == 0 {
+                for item in crossPointArray {
                     item.isCross = true
                     realCrossPointArray.append(item)
                 }
@@ -777,46 +800,69 @@ open class TYRangeRingSlider: TYRingSlider {
                     // 第一个需要和第二个比较
                     if changedPoint.value > changedPoint.next!.value {
                         // 异常数据,这个时候,任务 最后一个和被间隔的才是跨 0 的
-                        changedPoint.previous!.isCross = true
-                        changedPoint.isCross = true
-                        realCrossPointArray.append(changedPoint.previous!)
-                        realCrossPointArray.append(changedPoint)
+//                        changedPoint.previous!.isCross = true
+//                        changedPoint.isCross = true
+                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
+                            crossPointArray.remove(at: _index)
+                        }
+//                        realCrossPointArray.append(changedPoint.previous!)
+//                        realCrossPointArray.append(changedPoint)
                     } else {
                         // 正常数据, 最后一个和第一个比较, 看结果
                         if changedPoint.previous!.value > changedPoint.value { // 这就是跨 0 了
-                            changedPoint.previous!.isCross = true
-                            changedPoint.isCross = true
-                            realCrossPointArray.append(changedPoint.previous!)
-                            realCrossPointArray.append(changedPoint)
+//                            changedPoint.previous!.isCross = true
+//                            changedPoint.isCross = true
+                            if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
+                                crossPointArray.remove(at: _index)
+                            }
+//                            realCrossPointArray.append(changedPoint.previous!)
+//                            realCrossPointArray.append(changedPoint)
                         } else {
-                            changedPoint.isCross = true
-                            changedPoint.next!.isCross = true
-                            realCrossPointArray.append(changedPoint)
-                            realCrossPointArray.append(changedPoint.next!)
+                            if let _index = crossPointArray.firstIndex(of: changedPoint.previous!) {
+                                crossPointArray.remove(at: _index)
+                            }
+//                            changedPoint.isCross = true
+//                            changedPoint.next!.isCross = true
+//                            realCrossPointArray.append(changedPoint)
+//                            realCrossPointArray.append(changedPoint.next!)
                         }
                     }
                 } else {
                     if changedPoint.value >= 0 && changedPoint.value <= changedPoint.next!.value {
-                        changedPoint.previous!.isCross = true
-                        changedPoint.isCross = true
-                        realCrossPointArray.append(changedPoint.previous!)
-                        realCrossPointArray.append(changedPoint)
+//                        changedPoint.previous!.isCross = true
+//                        changedPoint.isCross = true
+                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
+                            crossPointArray.remove(at: _index)
+                        }
+//                        realCrossPointArray.append(changedPoint.previous!)
+//                        realCrossPointArray.append(changedPoint)
                     } else if changedPoint.value >= changedPoint.previous!.value && changedPoint.value <= maximumValue {
-                        changedPoint.isCross = true
-                        changedPoint.next!.isCross = true
-                        realCrossPointArray.append(changedPoint)
-                        realCrossPointArray.append(changedPoint.next!)
+//                        changedPoint.isCross = true
+//                        changedPoint.next!.isCross = true
+                        if let _index = crossPointArray.firstIndex(of: changedPoint.previous!) {
+                            crossPointArray.remove(at: _index)
+                        }
+//                        realCrossPointArray.append(changedPoint)
+//                        realCrossPointArray.append(changedPoint.next!)
                     } else {
                         // 异常数据,这个时候,任务 最后一个和第一个才是跨 0 的
                         print("250250: 异常数据)")
-                        changedPoint.previous!.isCross = true
-                        changedPoint.isCross = true
-                        realCrossPointArray.append(changedPoint.previous!)
-                        realCrossPointArray.append(changedPoint)
+//                        changedPoint.previous!.isCross = true
+//                        changedPoint.isCross = true
+                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
+                            crossPointArray.remove(at: _index)
+                        }
+//                        realCrossPointArray.append(changedPoint.previous!)
+//                        realCrossPointArray.append(changedPoint)
                     }
                 }
             }
             // 特殊情况 算出来的两个点都在 0 点上, 第二个点和第二个点的下一个,算跨 0 的区间
+            for item in crossPointArray {
+                item.isCross = true
+            }
+            */
+            /*
             let realFirstPoint = realCrossPointArray.first!
             let realSecondPoint = realCrossPointArray.last!
             if realFirstPoint.value == 0 && realSecondPoint.value == 0 {
@@ -827,20 +873,21 @@ open class TYRangeRingSlider: TYRingSlider {
                     realSecondPoint.previous!.isCross = true
                 }
             }
-        }
-        if movementDirection == .counterclockwise {
-            print("250250: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓)")
-            print("250250: -------------start-------------)")
-            pointList.traverse { (item: TYRangePoint) in
-                print("250250: \(item), changedIndex: \(changedPointIndex)")
-                return true
-            }
-            print("250250: -------------end-------------)")
-            for item in crossPointArray {
-                print("260260: \(item)")
-            }
-            print("250250: ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑)")
-        }
+             */
+//        }
+//        if movementDirection == .clockwise {
+//            print("250250: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓)")
+//            print("250250: -------------start-------------)")
+//            pointList.traverse { (item: TYRangePoint) in
+//                print("250250: \(item), changedIndex: \(changedPointIndex)")
+//                return true
+//            }
+//            print("250250: -------------end-------------)")
+//            for item in crossPointArray {
+//                print("260260: \(item)")
+//            }
+//            print("250250: ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑)")
+//        }
         
         
         /*
