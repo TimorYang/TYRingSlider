@@ -300,6 +300,7 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            // 因为 0 和最大值是同一个点, 所以把最大值统一当成 0 处理
             value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.start = value
             if let _minDistance = minDistance {
@@ -307,26 +308,69 @@ open class TYRangeRingSlider: TYRingSlider {
                 switch movementDirection {
                 case .clockwise:
                     /// 顺时针旋转
-                    updatePointsCrossDayStatus(in: pointList, changedPointIndex: 0, movementDirection: .clockwise)
                     print("2222: ------------开始顺时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        // 运动前的旧值
+                        // 目标点的值
+                        // 上面两个可以找到是否跨天
+                        // 当前运动的值
+                        // 如果上面判断跨天了, 再根据运动的值, 判断自己在0的哪边
+                        // 如果上面判断没跨天, 直接计算
+                        // 运动方向
+                        var movePointOldValue = oldValue
+                        print("22221: 顺时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
                             let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, distance: distance, isCrossDay: currentPoint.isCross && nextPoint.isCross)
-                            if result {
+                            //                            if moveDistance > 0 {
+                            print("22221: index: \(index)")
+                            print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
+                            // 顺时针都是 ⬆️ 趋势, 如果运动点的就值到目标点是 ⬇️ 趋势, 认为跨天
+                            var isCross = false
+                            if movePointOldValue > nextPoint.value {
+                                print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
+                                // 计算当前点在哪边
+                                if currentPoint.value >= movePointOldValue && currentPoint.value <= maximumValue {
+                                    // 跨天了
+                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
+                                    isCross = true
+                                } else {
+                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
+                                }
+                                isCross = true
+                            } else {
+                                print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
+                            }
+                            print("22221: index: \(index)")
+                            //                            }
+                            print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
+                            /*
+                             // 1. 缓存 nextPoint 的原始值
+                             let originalNextPointValue = nextPoint.value
+                             // 2. 缓存 newNextPoint = nextPoint - distance
+                             nextPoint.value = nextPoint.value - distance >= 0 ? nextPoint.value - distance : maximumValue - nextPoint.value + distance
+                             */
+                            // 3. 把新的 pointList 交给查找 跨 0 线的 func 处理
+//                            updatePointsCrossDayStatus(in: pointList, changedPointIndex: currentPoint.index, movementDirection: .clockwise)
+                            // 4. 从处理好的 pointList 里面拿数据, 导入判断碰撞和越过的 func 处理
+                            // PS. 应该把处理好 distance 的数据传进去 比较, 这样比较碰撞的算法才更纯粹
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
+                            movePointOldValue = nextPoint.value
+                            if result <= distance {
+                                // 4.1 发生碰撞 更新nextPointValue
                                 print("133133:  发生碰撞")
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                let resultValue = currentPoint.value + distance > maximumValue ? currentPoint.value + distance - maximumValue : currentPoint.value + distance
                                 nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
-                                updatePointsCrossDayStatus(in: pointList, changedPointIndex: nextPoint.index, movementDirection: .clockwise)
                             } else {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
+                                // 4.2 没有碰撞 需要把之前保留的数据还原回去
+                                //                                nextPoint.value = originalNextPointValue
                                 break
                             }
                             currentPoint = nextPoint
@@ -341,23 +385,46 @@ open class TYRangeRingSlider: TYRingSlider {
                     print("2222: ------------结束顺时针旋转------------")
                 case .counterclockwise:
                     /// 逆时针旋转
-                    updatePointsCrossDayStatus(in: pointList, changedPointIndex: 0, movementDirection: .counterclockwise)
                     print("2222:: ------------开始逆时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        var movePointOldValue = oldValue
+                        print("22221: 逆时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let previousPoint = currentPoint.previous!
-                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, distance: distance, isCrossDay: currentPoint.isCross && previousPoint.isCross)
-                            if result {
+                            //                            if moveDistance > 0 {
+                            print("22221: index: \(index)")
+                            print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
+                            // 逆时针都是 ⬇️ 趋势, 如果运动点的就值到目标点是 ⬆️ 趋势, 认为跨天
+                            var isCross = false
+                            if movePointOldValue < previousPoint.value {
+                                print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
+                                // 计算当前点在哪边
+                                if currentPoint.value >= minimumValue && currentPoint.value <= oldValue {
+                                    // 跨天了
+                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
+                                    isCross = true
+                                } else {
+                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
+                                }
+                                isCross = true
+                            } else {
+                                
+                                print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
+                            }
+                            print("22221: index: \(index)")
+                            //                            }
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: isCross)
+                            movePointOldValue = previousPoint.value
+                            if result <= distance {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
+                                let resultValue = currentPoint.value - distance < minimumValue ? currentPoint.value - distance + maximumValue : currentPoint.value - distance
                                 previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
-                                updatePointsCrossDayStatus(in: pointList, changedPointIndex: previousPoint.index, movementDirection: .counterclockwise)
                             } else {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
@@ -365,6 +432,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             currentPoint = previousPoint
                             index += 1
                         } while currentPoint !== _firstPoint.next!
+                        print("22221: 逆时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
                         print("2222:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("2222:  ")
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
@@ -392,24 +460,48 @@ open class TYRangeRingSlider: TYRingSlider {
                 switch movementDirection {
                 case .clockwise:
                     /// 顺时针旋转
-                    updatePointsCrossDayStatus(in: pointList, changedPointIndex: 0, movementDirection: .clockwise)
                     print("2222: ------------开始顺时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
                         var index = 0
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
+                        var movePointOldValue = oldValue
+                        print("22221: 顺时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? 0.0 : _minDistance
                             let nextPoint = currentPoint.next!
-                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, distance: distance, isCrossDay: currentPoint.isCross && nextPoint.isCross)
-                            if result {
+                            //                            if moveDistance > 0 {
+                            print("22221: index: \(index)")
+                            print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
+                            // 顺时针都是 ⬆️ 趋势, 如果运动点的就值到目标点是 ⬇️ 趋势, 认为跨天
+                            var isCross = false
+//                            movePointOldValue == minimumValue ? maximumValue : movePointOldValue
+                            if movePointOldValue > nextPoint.value {
+                                print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
+                                // 计算当前点在哪边
+                                if currentPoint.value >= movePointOldValue && currentPoint.value <= maximumValue {
+                                    // 跨天了
+                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
+                                    isCross = true
+                                } else {
+                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
+                                }
+                                isCross = true
+                            } else {
+                                print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
+                            }
+                            print("22221: index: \(index)")
+                            //                            }
+                            print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
+                            movePointOldValue = nextPoint.value
+                            if result <= distance {
                                 print("133133:  发生碰撞")
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value + distance <= maximumValue ? currentPoint.value + distance : currentPoint.value + distance - maximumValue
+                                let resultValue = currentPoint.value + distance > maximumValue ? currentPoint.value + distance - maximumValue : currentPoint.value + distance
                                 nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
                                 print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
-                                updatePointsCrossDayStatus(in: pointList, changedPointIndex: nextPoint.index, movementDirection: .clockwise)
                             } else {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
                                 break
@@ -436,8 +528,8 @@ open class TYRangeRingSlider: TYRingSlider {
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
                             let previousPoint = currentPoint.previous!
-                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, distance: distance, isCrossDay: currentPoint.isCross && previousPoint.isCross)
-                            if result {
+                            let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: currentPoint.isCross && previousPoint.isCross)
+                            if result <= distance {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 let resultValue = currentPoint.value >= distance ? currentPoint.value - distance : currentPoint.value - distance + maximumValue
                                 previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
@@ -630,10 +722,9 @@ open class TYRangeRingSlider: TYRingSlider {
         return TYRingSliderHelper.arePointsTouchingOnSameCircle(point1: point1, point2: point2, movementDirection: movementDirection, touchRadius: radius, minAngle: 0, interval: interval)
     }
     
-    private func arePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat,  movementDirection:TYRingSliderHelper.MovementDirection, distance: CGFloat?, isCrossDay: Bool) -> Bool {
-        guard let _distance = distance else { return false }
+    private func arePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat,  movementDirection:TYRingSliderHelper.MovementDirection, isCrossDay: Bool) -> CGFloat {
         let interval = Interval(min: minimumValue, max: maximumValue, rounds: numberOfRounds)
-        return TYRingSliderHelper.arePointsTouchingOnSameCircle(point: point, targetPoint: targetPoint, movementDirection: movementDirection, distance: _distance, interval: interval, isCrossDay: isCrossDay)
+        return TYRingSliderHelper.arePointsTouchingOnSameCircle(point: point, targetPoint: targetPoint, movementDirection: movementDirection, interval: interval, isCrossDay: isCrossDay)
     }
     
     private func lineList2PointList(from lineList: TYRangeLineList, startPoint target:TYRangeLine, isBegin begin: Bool ) -> TYRangePointList {
@@ -694,39 +785,54 @@ open class TYRangeRingSlider: TYRingSlider {
             return true
         }
         
-        var isPointDirty = false
-        
-        var pointsArray = [TYRangePoint]()
+        var pointsArray = [CGFloat]()
         // 清除跨天标记
         pointList.traverse { (item: TYRangePoint) in
             item.isCross = false
-            pointsArray.append(item)
+            pointsArray.append(item.value)
             return true
         }
         
-        // 判断点是不是脏数据
-        
-        print("290290: ------start--------")
-//        if let _index = pointsArray.firstIndex(of: changedPoint) {
-//            if _index == pointsArray.count - 1 {
-//                let previousPoint = pointsArray[_index - 1]
-//                let nextPoint = pointsArray[0]
-//                if !(changedPoint.lineTag - 1 == previousPoint.lineTag && changedPoint.lineTag + 1 == nextPoint.lineTag) {
-//                    // 数据不正常
-//                    isPointDirty = true
-//                }
-//            }
-//        }
-        print("290290: \(isPointDirty)")
-        print("290290: ------end--------")
-        
-        /*
         print("280280: ------start--------")
         
+        // 判断是否存在脏数据,也是就是不应该出现在表盘上的数据
         var crossPointArray = [TYRangePoint]()
         var currentNode = _head
         print("240240: -------------start-------------)")
+        // 缓存移动点的原始值
+        let originalValue = changedPoint.value
         if movementDirection == .clockwise {
+            // 存在脏数据, 把数据先改成下一个点的数据
+            // 这样就脏数据就不见了
+            let isDirtyData = !isCircularlySorted(numbers: pointsArray, direction: movementDirection)
+            if isDirtyData {
+                print("TEST: 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
+                print("TEST: 发现脏数据")
+                print("TEST: --------清洗前----------|")
+                let stringRepresentation = pointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
+                print("TEST:  \(stringRepresentation)|")
+                print("TEST: -----------------------|")
+                let previousPoint = changedPoint.previous!.value
+                let nextPointPoint = changedPoint.next!.value
+                print("TEST: previousPoint: \(previousPoint / 3600), nextPointPoint: \(nextPointPoint / 3600), 趋势: \(nextPointPoint > previousPoint ? "⬆️" : "⬇️")")
+                changedPoint.value = changedPoint.next!.value
+                // MARK: TEST
+                #if DEBUG
+                var newPointsArray = [CGFloat]()
+                pointList.traverse { (item: TYRangePoint) in
+                    newPointsArray.append(item.value)
+                    return true
+                }
+                let testResult = isCircularlySorted(numbers: newPointsArray, direction: movementDirection)
+                print("TEST: --------清洗后----------|")
+                let newStringRepresentation = newPointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
+                print("TEST:  \(newStringRepresentation)|")
+                print("TEST: -----------------------|")
+                print("TEST: 清洗过的数据是否正常: \(testResult)")
+                #endif
+                print("TEST: 🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
+                // MARK: TEST
+            }
             // 按升序
             repeat {
                 // 进行比较
@@ -746,6 +852,12 @@ open class TYRangeRingSlider: TYRingSlider {
                 // 移动到下一个节点
                 currentNode = currentNode.next!
             } while currentNode !== _head // 当再次到达起始节点时停止
+            if isDirtyData {
+                changedPoint.value = originalValue
+            }
+            for item in crossPointArray {
+                item.isCross = true
+            }
         } else {
             // 按降序
             repeat {
@@ -768,176 +880,14 @@ open class TYRangeRingSlider: TYRingSlider {
             } while currentNode !== _head // 当再次到达起始节点时停止
         }
         print("240240: -------------end-------------)")
-        if crossPointArray.count >= 2 {
-            var dirtyPointArray = [TYRangePoint]()
-            for i in 0..<crossPointArray.count-1 {
-                let distance = abs(crossPointArray[i].index - crossPointArray[i + 1].index)
-                if distance == 1 || distance == pointList.nodeCount - 1 {
-                    continue
-                } else {
-                    if crossPointArray[i].index < crossPointArray[i + 1].index {
-                        dirtyPointArray.append(crossPointArray[i].next!)
-                    } else {
-                        dirtyPointArray.append(crossPointArray[i].previous!)
-                    }
-                }
-            }
-            var realCrossPointArray = [TYRangePoint]()
-            print("260260: -------------start-------------)")
-            let first = crossPointArray.first!
-            let end = crossPointArray.last!
-            let distance = abs(first.index - end.index)
-            print("260260: \(distance)")
-            print("260260: -------------end-------------)")
-            if dirtyPointArray.count == 0 {
-                for item in crossPointArray {
-                    item.isCross = true
-                    realCrossPointArray.append(item)
-                }
-            } else {
-                print("中间存在其他点")
-                if movementDirection == .clockwise {
-                    // 第一个需要和第二个比较
-                    if changedPoint.value > changedPoint.next!.value {
-                        // 异常数据,这个时候,任务 最后一个和被间隔的才是跨 0 的
-//                        changedPoint.previous!.isCross = true
-//                        changedPoint.isCross = true
-                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
-                            crossPointArray.remove(at: _index)
-                        }
-//                        realCrossPointArray.append(changedPoint.previous!)
-//                        realCrossPointArray.append(changedPoint)
-                    } else {
-                        // 正常数据, 最后一个和第一个比较, 看结果
-                        if changedPoint.previous!.value > changedPoint.value { // 这就是跨 0 了
-//                            changedPoint.previous!.isCross = true
-//                            changedPoint.isCross = true
-                            if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
-                                crossPointArray.remove(at: _index)
-                            }
-//                            realCrossPointArray.append(changedPoint.previous!)
-//                            realCrossPointArray.append(changedPoint)
-                        } else {
-                            if let _index = crossPointArray.firstIndex(of: changedPoint.previous!) {
-                                crossPointArray.remove(at: _index)
-                            }
-//                            changedPoint.isCross = true
-//                            changedPoint.next!.isCross = true
-//                            realCrossPointArray.append(changedPoint)
-//                            realCrossPointArray.append(changedPoint.next!)
-                        }
-                    }
-                } else {
-                    if changedPoint.value >= 0 && changedPoint.value <= changedPoint.next!.value {
-//                        changedPoint.previous!.isCross = true
-//                        changedPoint.isCross = true
-                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
-                            crossPointArray.remove(at: _index)
-                        }
-//                        realCrossPointArray.append(changedPoint.previous!)
-//                        realCrossPointArray.append(changedPoint)
-                    } else if changedPoint.value >= changedPoint.previous!.value && changedPoint.value <= maximumValue {
-//                        changedPoint.isCross = true
-//                        changedPoint.next!.isCross = true
-                        if let _index = crossPointArray.firstIndex(of: changedPoint.previous!) {
-                            crossPointArray.remove(at: _index)
-                        }
-//                        realCrossPointArray.append(changedPoint)
-//                        realCrossPointArray.append(changedPoint.next!)
-                    } else {
-                        // 异常数据,这个时候,任务 最后一个和第一个才是跨 0 的
-                        print("250250: 异常数据)")
-//                        changedPoint.previous!.isCross = true
-//                        changedPoint.isCross = true
-                        if let _index = crossPointArray.firstIndex(of: changedPoint.next!) {
-                            crossPointArray.remove(at: _index)
-                        }
-//                        realCrossPointArray.append(changedPoint.previous!)
-//                        realCrossPointArray.append(changedPoint)
-                    }
-                }
-            }
-            // 特殊情况 算出来的两个点都在 0 点上, 第二个点和第二个点的下一个,算跨 0 的区间
-            for item in crossPointArray {
-                item.isCross = true
-            }
-            */
-            /*
-            let realFirstPoint = realCrossPointArray.first!
-            let realSecondPoint = realCrossPointArray.last!
-            if realFirstPoint.value == 0 && realSecondPoint.value == 0 {
-                realFirstPoint.isCross = false
-                if movementDirection == .clockwise {
-                    realSecondPoint.next!.isCross = true
-                } else {
-                    realSecondPoint.previous!.isCross = true
-                }
-            }
-             */
-//        }
-//        if movementDirection == .clockwise {
-//            print("250250: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓)")
-//            print("250250: -------------start-------------)")
-//            pointList.traverse { (item: TYRangePoint) in
-//                print("250250: \(item), changedIndex: \(changedPointIndex)")
-//                return true
-//            }
-//            print("250250: -------------end-------------)")
-//            for item in crossPointArray {
-//                print("260260: \(item)")
-//            }
-//            print("250250: ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑)")
-//        }
         
-        
-        /*
-        // 排序
-        var pointArray = [TYRangePoint]()
+        print("250250: -------------point end-------------)")
+        print("250250: -------------start-------------)")
         pointList.traverse { (item: TYRangePoint) in
-            pointArray.append(item)
+            print("250250: \(item)")
             return true
         }
-        // 这里一定是 >= 2 的
-        if pointArray.count >= 2 {
-            pointArray.sort { $0.value < $1.value }
-            // 寻找异常的两个点
-            var isBigger = false
-            var comparePoint = pointArray.first!
-            for (index, item) in pointArray.enumerated() {
-                if index == 0 {
-                    continue
-                }
-                if (comparePoint.value > item.value) {
-                    isBigger = true
-                    comparePoint.isCross = true
-                    item.isCross = true
-                    break
-                } else {
-                    item.isCross = false
-                    comparePoint = item
-                }
-            }
-            
-            if isBigger == false {
-                // 循环数组没找到, 就判断首尾
-                let firstPoint = pointArray.first!
-                if firstPoint.value != 0 {
-                    if comparePoint.value > firstPoint.value {
-                        comparePoint.isCross = true
-                        firstPoint.isCross = true
-                        isBigger = true
-                    }
-                }
-            }
-            
-            print("250250: -------------point end-------------)")
-            print("250250: -------------start-------------)")
-            for item in pointArray {
-                print("250250: \(item)")
-            }
-            print("250250: -------------end-------------)")
-        }
-         */
+        print("250250: -------------end-------------)")
     }
     
     private func modifyLineList(by pointList: TYRangePointList, selectLine line: TYRangeLine) {
@@ -1059,4 +1009,34 @@ open class TYRangeRingSlider: TYRingSlider {
         case stationary
     }
 
+}
+
+extension TYRangeRingSlider {
+    
+    public func isCircularlySorted(numbers: [CGFloat], direction: MovementDirection) -> Bool {
+        let n = numbers.count
+        if n <= 1 { return true }
+
+        var ascCount = 0
+        var descCount = 0
+        for i in 0..<n {
+            let next = (i + 1) % n
+            if numbers[next] > numbers[i] {
+                ascCount += 1
+            } else if numbers[next] < numbers[i] {
+                descCount += 1
+            }
+        }
+
+        switch direction {
+        case .clockwise:
+            // Clockwise: One descending (from max to min) and the rest ascending
+            return descCount == 1
+        case .counterclockwise:
+            // Counterclockwise: One ascending (from min to max) and the rest descending
+            return ascCount == 1
+        default:
+            return true
+        }
+    }
 }
