@@ -300,6 +300,10 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            if value - oldValue == 0 || abs(value - oldValue) == 24 {
+                // 减少没有必要的计算
+                return true
+            }
             // 因为 0 和最大值是同一个点, 所以把最大值统一当成 0 处理
             value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.start = value
@@ -341,7 +345,6 @@ open class TYRangeRingSlider: TYRingSlider {
                                 } else {
                                     print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                                 }
-                                isCross = true
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
@@ -411,9 +414,7 @@ open class TYRangeRingSlider: TYRingSlider {
                                 } else {
                                     print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                                 }
-                                isCross = true
                             } else {
-                                
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                             }
                             print("22221: index: \(index)")
@@ -453,6 +454,10 @@ open class TYRangeRingSlider: TYRingSlider {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
             print("33333312: value: \(value)")
+            if value - oldValue == 0 || abs(value - oldValue) == 24 {
+                // 减少没有必要的计算
+                return true
+            }
             value = value == maximumValue ? minimumValue : value
             _selectedRangeLine.end = value
             if let _minDistance = minDistance {
@@ -486,7 +491,6 @@ open class TYRangeRingSlider: TYRingSlider {
                                 } else {
                                     print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                                 }
-                                isCross = true
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
@@ -505,6 +509,7 @@ open class TYRangeRingSlider: TYRingSlider {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
+                            checkPoints(with: pointList, movementDirection: .clockwise)
                             currentPoint = nextPoint
                             index += 1
                         } while currentPoint !== _firstPoint.previous!
@@ -544,9 +549,7 @@ open class TYRangeRingSlider: TYRingSlider {
                                 } else {
                                     print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                                 }
-                                isCross = true
                             } else {
-                                
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                             }
                             print("22221: index: \(index)")
@@ -982,6 +985,20 @@ open class TYRangeRingSlider: TYRingSlider {
         } else {
             return normalizedAngle >= normalizedStartAngle || normalizedAngle <= normalizedEndAngle
         }
+    }
+    
+    private func checkPoints(with pointsList: TYRangePointList, movementDirection: MovementDirection) {
+        var newPointsArray = [CGFloat]()
+        pointsList.traverse { (item: TYRangePoint) in
+            newPointsArray.append(item.value)
+            return true
+        }
+        let testResult = isCircularlySorted(numbers: newPointsArray, direction: movementDirection)
+        print("checkPoints: 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
+        let newStringRepresentation = newPointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
+        print("checkPoints:  \(newStringRepresentation)|")
+        print("checkPoints: 当前数据是否正常: \(testResult)")
+        print("checkPoints: 🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
     }
     
     // MARK: - Private Properties
