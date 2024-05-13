@@ -341,32 +341,26 @@ internal class TYRingSliderHelper {
         if movementDirection == .clockwise {
             if isCrossDay {
                 // 跨 0 的问题. point > targetPoint 恒成立, 所以当 point <= targetPoint 就认为碰撞或者越过了
-//                let point = point == interval.min ? interval.max : point
-//                result = interval.max - point + targetPoint
                 result = interval.max - point + targetPoint
                 print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result / 3600) 跨 0 喽")
             } else {
-                // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point >= targetPoint 就认为碰撞或者越过了
-                // 基于distance 计算 targetPoint
-//                let point = point == interval.min ? interval.max : point
-//                if point == 0 && targetPoint == 23.5 * 60 * 60 {
-//                    result = 0
-//                } else {
-                    result = targetPoint - point
-//                }
+                // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point > targetPoint 就认为碰撞或者越过了
+                result = targetPoint - point
                 print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result / 3600) 正常")
             }
-                
         } else if movementDirection == .counterclockwise {
             if isCrossDay {
                 // 跨 0 的问题. point < targetPoint 恒成立, 所以 当point >= targetPoint 就认为碰撞或者越过了
-                result = interval.max - targetPoint + point
+//                if point == 23.5 * 60 * 60 && targetPoint == 23.5 * 60 * 60 {
+//                    result = 0
+//                } else {
+                    result = interval.max - targetPoint + point
+//                }
                 print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result / 3600) 跨 0 喽")
             } else {
                 // 不讨论回到原点的问题. point > targetPoint 恒成立, 所以 当point <= targetPoint 就认为碰撞或者越过了
 //                let point = point == interval.max ? interval.min : point
 //                let point = point == interval.min ? interval.max : point
-                let targetPoint = targetPoint == interval.min ? interval.max : targetPoint
                 result = point - targetPoint
                 print("2222: point: \(point / 3600), targetPoint: \(targetPoint / 3600), isCrossDay: \(isCrossDay), 结果: \(result / 3600) 正常")
             }

@@ -267,7 +267,7 @@ open class TYRangeRingSlider: TYRingSlider {
         }
         let touchPosition = touch.location(in: self)
         selectedThumb = thumb(for: touchPosition)
-
+        oldTouchPoint = touchPosition
         return selectedThumb != .none
     }
     
@@ -290,7 +290,6 @@ open class TYRangeRingSlider: TYRingSlider {
         // the position of the pan gesture
         let touchPosition = touch.location(in: self)
         let startPoint = CGPoint(x: bounds.center.x, y: 0)
-        let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
         switch selectedThumb {
         case .startThumb:
             let oldValue = _selectedRangeLine.start
@@ -300,6 +299,7 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
             if value - oldValue == 0 || abs(value - oldValue) == 24 {
                 // 减少没有必要的计算
                 return true
@@ -336,15 +336,8 @@ open class TYRangeRingSlider: TYRingSlider {
                             // 顺时针都是 ⬆️ 趋势, 如果运动点的就值到目标点是 ⬇️ 趋势, 认为跨天
                             var isCross = false
                             if movePointOldValue > nextPoint.value {
+                                isCross = true
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
-                                // 计算当前点在哪边
-                                if currentPoint.value >= movePointOldValue && currentPoint.value <= maximumValue {
-                                    // 跨天了
-                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
-                                    isCross = true
-                                } else {
-                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
-                                }
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
@@ -356,30 +349,21 @@ open class TYRangeRingSlider: TYRingSlider {
                             print("22221: index: \(index)")
                             //                            }
                             print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
-                            /*
-                             // 1. 缓存 nextPoint 的原始值
-                             let originalNextPointValue = nextPoint.value
-                             // 2. 缓存 newNextPoint = nextPoint - distance
-                             nextPoint.value = nextPoint.value - distance >= 0 ? nextPoint.value - distance : maximumValue - nextPoint.value + distance
-                             */
-                            // 3. 把新的 pointList 交给查找 跨 0 线的 func 处理
-//                            updatePointsCrossDayStatus(in: pointList, changedPointIndex: currentPoint.index, movementDirection: .clockwise)
-                            // 4. 从处理好的 pointList 里面拿数据, 导入判断碰撞和越过的 func 处理
-                            // PS. 应该把处理好 distance 的数据传进去 比较, 这样比较碰撞的算法才更纯粹
+                            // 判断碰撞
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
-                            currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
+                            // 记录旧值
                             movePointOldValue = nextPoint.value
-                            if result <= distance {
+                            if result < distance {
                                 // 4.1 发生碰撞 更新nextPointValue
                                 print("133133:  发生碰撞")
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value + distance > maximumValue ? currentPoint.value + distance - maximumValue : currentPoint.value + distance
-                                nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                let resultValue = currentPoint.value + distance
+                                nextPoint.value = resultValue.truncatingRemainder(dividingBy: maximumValue)
+                                currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
                             } else {
+                                currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
-                                // 4.2 没有碰撞 需要把之前保留的数据还原回去
-                                //                                nextPoint.value = originalNextPointValue
                                 break
                             }
                             currentPoint = nextPoint
@@ -410,29 +394,35 @@ open class TYRangeRingSlider: TYRingSlider {
                             print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
                             // 逆时针都是 ⬇️ 趋势, 如果运动点的就值到目标点是 ⬆️ 趋势, 认为跨天
                             var isCross = false
+                            var movePointDoubleOldVale = movePointOldValue
                             if movePointOldValue < previousPoint.value {
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
-                                // 计算当前点在哪边
-                                if currentPoint.value >= minimumValue && currentPoint.value <= oldValue {
-                                    // 跨天了
-                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
-                                    isCross = true
-                                } else {
-                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
-                                }
+                                movePointOldValue = movePointOldValue + maximumValue
+                                isCross = true
+                                print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
                             } else {
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                             }
+                            var tmpPoint: CGFloat!
+                            if currentPoint.value > movePointDoubleOldVale {
+                                // 认为当前运动的点跨 0 点
+                                tmpPoint = movePointDoubleOldVale + maximumValue - currentPoint.value
+                            } else {
+                                tmpPoint = abs(currentPoint.value - movePointDoubleOldVale)
+                            }
+                            currentPoint.value = movePointOldValue - tmpPoint
                             print("22221: index: \(index)")
                             //                            }
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: isCross)
                             movePointOldValue = previousPoint.value
                             if result <= distance {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value - distance < minimumValue ? currentPoint.value - distance + maximumValue : currentPoint.value - distance
-                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                let resultValue = currentPoint.value - distance
+                                previousPoint.value = resultValue < 0 ? resultValue + maximumValue : resultValue.truncatingRemainder(dividingBy: maximumValue)
+                                currentPoint.value = currentPoint.value < 0 ? currentPoint.value + maximumValue : currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
                             } else {
+                                currentPoint.value = currentPoint.value < 0 ? currentPoint.value + maximumValue : currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
@@ -459,6 +449,7 @@ open class TYRangeRingSlider: TYRingSlider {
             } else {
                 value = newValue(from: oldValue, touch: touchPosition, start: startPoint)
             }
+            let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
             print("33333312: value: \(value)")
             if value - oldValue == 0 || abs(value - oldValue) == 24 {
                 // 减少没有必要的计算
@@ -488,15 +479,8 @@ open class TYRangeRingSlider: TYRingSlider {
                             // 顺时针都是 ⬆️ 趋势, 如果运动点的就值到目标点是 ⬇️ 趋势, 认为跨天
                             var isCross = false
                             if movePointOldValue > nextPoint.value {
+                                isCross = true
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
-                                // 计算当前点在哪边
-                                if currentPoint.value >= movePointOldValue && currentPoint.value <= maximumValue {
-                                    // 跨天了
-                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ✅")
-                                    isCross = true
-                                } else {
-                                    print("22221: 顺时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
-                                }
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
@@ -507,19 +491,22 @@ open class TYRangeRingSlider: TYRingSlider {
                             //                            }
                             print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
-                            currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                             movePointOldValue = nextPoint.value
                             if result <= distance {
                                 print("133133:  发生碰撞")
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value + distance > maximumValue ? currentPoint.value + distance - maximumValue : currentPoint.value + distance
-                                nextPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                let resultValue = currentPoint.value + distance
+                                nextPoint.value = resultValue.truncatingRemainder(dividingBy: maximumValue)
+                                currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 碰撞后的数据 targetPoint: \(nextPoint.value / 3600)")
                             } else {
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(nextPoint.value / 3600), distance: \(distance / 3600)")
+                                currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 break
                             }
-                            checkPoints(with: pointList, movementDirection: .clockwise)
+                            
+                            print("2222: 修正后: currentPoint: \(currentPoint.value / 3600)")
+                            print("2222: 修正后: nextPoint: \(nextPoint.value / 3600)")
                             currentPoint = nextPoint
                             index += 1
                         } while currentPoint !== _firstPoint.previous!
@@ -549,29 +536,34 @@ open class TYRangeRingSlider: TYRingSlider {
                             print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和 运动点的新值: \(currentPoint.value / 3600)")
                             // 逆时针都是 ⬇️ 趋势, 如果运动点的就值到目标点是 ⬆️ 趋势, 认为跨天
                             var isCross = false
+                            var movePointDoubleOldVale = movePointOldValue
                             if movePointOldValue < previousPoint.value {
+                                movePointOldValue = movePointOldValue + maximumValue
+                                isCross = true
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
-                                // 计算当前点在哪边
-                                if currentPoint.value >= minimumValue && currentPoint.value <= oldValue {
-                                    // 跨天了
-                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ✅")
-                                    isCross = true
-                                } else {
-                                    print("22221: 逆时针, 运动点的新值: \(currentPoint.value / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
-                                }
                             } else {
                                 print("22221: 逆时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(previousPoint.value / 3600) 跨天 ❌")
                             }
+                            var tmpPoint: CGFloat!
+                            if currentPoint.value > movePointDoubleOldVale {
+                                // 认为当前运动的点跨 0 点
+                                tmpPoint = movePointDoubleOldVale + maximumValue - currentPoint.value
+                            } else {
+                                tmpPoint = abs(currentPoint.value - movePointDoubleOldVale)
+                            }
+                            currentPoint.value = movePointOldValue - tmpPoint
                             print("22221: index: \(index)")
                             //                            }
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: previousPoint.value, movementDirection: .counterclockwise, isCrossDay: isCross)
                             movePointOldValue = previousPoint.value
                             if result <= distance {
                                 print("2222: 发生碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
-                                let resultValue = currentPoint.value - distance < minimumValue ? currentPoint.value - distance + maximumValue : currentPoint.value - distance
-                                previousPoint.value = resultValue == maximumValue ? minimumValue : resultValue
+                                let resultValue = currentPoint.value - distance
+                                previousPoint.value = resultValue < 0 ? resultValue + maximumValue : resultValue.truncatingRemainder(dividingBy: maximumValue)
+                                currentPoint.value = currentPoint.value < 0 ? currentPoint.value + maximumValue : currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 碰撞后的数据 targetPoint: \(previousPoint.value / 3600)")
                             } else {
+                                currentPoint.value = currentPoint.value < 0 ? currentPoint.value + maximumValue : currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                                 print("2222: 无法找到碰撞 currentPoint: \(currentPoint.value / 3600), targetPoint: \(previousPoint.value / 3600), distance: \(distance / 3600)")
                                 break
                             }
@@ -612,7 +604,7 @@ open class TYRangeRingSlider: TYRingSlider {
                     result = .startThumb
                     selectedRangeLine = item
                     print("找到控制点了 - 起点")
-                    return false
+                    return true
                 } else if isThumb(withCenter: item.endThumbCenter, containsPoint: touchPosition) {
                     result = .endThumb
                     selectedRangeLine = item

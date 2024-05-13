@@ -26,11 +26,11 @@ class ViewController: UIViewController {
     
     // MARK: - Init Data
     private func initData() {
-        let _timeRange1 = TYRingSliderTimeRange(start: 1 * 60 * 60, end: 3 * 60 * 60, lineColor: .red, showThumb: true)
+        let _timeRange1 = TYRingSliderTimeRange(start: 1 * 60 * 60, end: 4 * 60 * 60, lineColor: .red, showThumb: true)
         let _timeRange2 = TYRingSliderTimeRange(start: 8 * 60 * 60, end: 12 * 60 * 60, lineColor: .blue, showThumb: false)
         let _timeRange3 = TYRingSliderTimeRange(start: 14 * 60 * 60, end: 16 * 60 * 60, lineColor: .purple, showThumb: false)
         let _timeRange4 = TYRingSliderTimeRange(start: 17 * 60 * 60, end: 18 * 60 * 60, lineColor: .orange, showThumb: false)
-        rangeSlider.timeRangeList = [_timeRange1, _timeRange2, _timeRange3, _timeRange4]
+        rangeSlider.timeRangeList = [_timeRange1, _timeRange2]
     }
     
     // MARK: - UI
