@@ -348,6 +348,11 @@ open class TYRangeRingSlider: TYRingSlider {
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
+                            // if currentPoint.value < movePointOldValue 成立
+                            // currentPoint.value + max
+                            if currentPoint.value < movePointOldValue {
+                                currentPoint.value = currentPoint.value + maximumValue
+                            }
                             print("22221: index: \(index)")
                             //                            }
                             print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
@@ -362,6 +367,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             // 4. 从处理好的 pointList 里面拿数据, 导入判断碰撞和越过的 func 处理
                             // PS. 应该把处理好 distance 的数据传进去 比较, 这样比较碰撞的算法才更纯粹
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
+                            currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                             movePointOldValue = nextPoint.value
                             if result <= distance {
                                 // 4.1 发生碰撞 更新nextPointValue
@@ -494,10 +500,14 @@ open class TYRangeRingSlider: TYRingSlider {
                             } else {
                                 print("22221: 顺时针, 运动点的旧值: \(movePointOldValue / 3600) 和目标值: \(nextPoint.value / 3600) 跨天 ❌")
                             }
+                            if currentPoint.value < movePointOldValue {
+                                currentPoint.value = currentPoint.value + maximumValue
+                            }
                             print("22221: index: \(index)")
                             //                            }
                             print("22221: 顺时针, 检测是否跨天  🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
                             let result = arePointsTouchingOnSameCircle(point: currentPoint.value, targetPoint: nextPoint.value, movementDirection: .clockwise, isCrossDay: isCross)
+                            currentPoint.value = currentPoint.value.truncatingRemainder(dividingBy: maximumValue)
                             movePointOldValue = nextPoint.value
                             if result <= distance {
                                 print("133133:  发生碰撞")
