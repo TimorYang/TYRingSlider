@@ -30,6 +30,6 @@ class TYRangeLine: NSObject {
     }
     
     override var description: String {
-        return "CircularIntervalPoint(start: \(start), end: \(end))"
+        return "CircularIntervalPoint(start: \(start / 3600), end: \(end / 3600))"
     }
 }

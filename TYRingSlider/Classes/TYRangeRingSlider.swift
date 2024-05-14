@@ -179,12 +179,12 @@ open class TYRangeRingSlider: TYRingSlider {
     // MARK: - Override methods
     public override init(frame: CGRect) {
         super .init(frame: frame)
-        self.addGestureRecognizer(self.tapGestureRecognizer)
+//        self.addGestureRecognizer(self.tapGestureRecognizer)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.addGestureRecognizer(self.tapGestureRecognizer)
+//        self.addGestureRecognizer(self.tapGestureRecognizer)
     }
     
     // MARK: Drawing
@@ -351,6 +351,28 @@ open class TYRangeRingSlider: TYRingSlider {
                         // 如果上面判断没跨天, 直接计算
                         // 运动方向
                         var movePointOldValue = oldValue
+                        // 是否需要吸附, 当前连offpeak共有12条线段且摸的这个点和前一个点是重合的
+                        print("3213213: 🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽")
+                        print("3213213: selectLine: \(_selectedRangeLine)")
+                        print("3213213: previousLine \(_selectedRangeLine.previous!)")
+                        if pointList.nodeCount >= 22 {
+                            let previousPoint = _firstPoint.previous!
+                            let follow = shouldFollow(in: pointList)
+                            print("321321: 吸附: \(follow.shouldFollow ? "✅" : "🙅🏻‍♀️")")
+                            let valueIsEqual = previousPoint.value == oldValue
+                            print("321321: 吸附: 是否相等: \(valueIsEqual ? "✅" : "🙅🏻‍♀️") 运动的点旧值: \(oldValue), 需要跟随点的值: \(previousPoint.value)")
+                            let shouldFollow = follow.shouldFollow && valueIsEqual
+                            print("3213213: 吸附: \(shouldFollow ? "✅" : "🙅🏻‍♀️")")
+                            if shouldFollow {
+                                print("321321: 吸附 ✅ 运动的点旧值: \(oldValue / 3600), 需要跟随点的值: \(previousPoint.value / 3600), listCount: \(follow.count)")
+                                previousPoint.value = value
+                            } else {
+                                // 不要吸附
+//                                previousPoint.value = oldValue
+                                print("321321: 吸附 🙅🏻‍♀️ 运动的点旧值: \(oldValue / 3600), 需要跟随点的值: \(previousPoint.value / 3600), listCount: \(follow.count)")
+                                print("321321: 吸附 🙅🏻‍♀️")
+                            }
+                        }
                         print("22221: 顺时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
@@ -398,6 +420,14 @@ open class TYRangeRingSlider: TYRingSlider {
                         print("2222:  ")
                         print("133133:  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
                         print("133133:  ")
+                        var pointsArray = [CGFloat]()
+                        pointList.traverse { (item: TYRangePoint) in
+                            pointsArray.append(item.value)
+                            return true
+                        }
+                        let newStringRepresentation = pointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
+                        print("3213213: 当前数据: \(newStringRepresentation)")
+                        print("3213213: 🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼")
                         modifyLineList(by: pointList, selectLine: _selectedRangeLine)
                     }
                     print("2222: ------------结束顺时针旋转------------")
@@ -570,7 +600,6 @@ open class TYRangeRingSlider: TYRingSlider {
                     print("2222: ------------结束顺时针旋转------------")
                 case .counterclockwise:
                     /// 逆时针旋转
-                    updatePointsCrossDayStatus(in: pointList, changedPointIndex: 0, movementDirection: .counterclockwise)
                     print("2222: ------------开始逆时针旋转------------")
                     if let _firstPoint = pointList.head {
                         var currentPoint = _firstPoint
@@ -578,6 +607,23 @@ open class TYRangeRingSlider: TYRingSlider {
                         print("133133:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         print("2222:  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|")
                         var movePointOldValue = oldValue
+                        // 是否需要吸附, 当前连offpeak共有12条线段且摸的这个点和前一个点是重合的
+                        if pointList.nodeCount >= 22 {
+                            let nextPoint = _firstPoint.next!
+                            let follow = shouldFollow(in: pointList)
+                            print("321321: 吸附: \(follow.shouldFollow ? "✅" : "🙅🏻‍♀️")")
+                            let valueIsEqual = nextPoint.value == oldValue
+                            print("321321: 吸附: 是否相等: \(valueIsEqual ? "✅" : "🙅🏻‍♀️") 运动的点旧值: \(oldValue), 需要跟随点的值: \(nextPoint.value)")
+                            let shouldFollow = follow.shouldFollow && valueIsEqual
+                            if shouldFollow {
+                                print("321321: 吸附 ✅ 运动的点旧值: \(oldValue / 3600), 需要跟随点的值: \(nextPoint.value / 3600), listCount: \(follow.count)")
+                                nextPoint.value = currentPoint.value
+                            } else {
+                                // 不要吸附
+                                print("321321: 吸附 🙅🏻‍♀️ 运动的点旧值: \(oldValue / 3600), 需要跟随点的值: \(nextPoint.value / 3600), listCount: \(follow.count)")
+                                print("321321: 吸附 🙅🏻‍♀️")
+                            }
+                        }
                         print("22221: 逆时针, 检测是否跨天 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
                         repeat {
                             let distance = index % 2 == 0 ? _minDistance : 0.0
@@ -878,126 +924,6 @@ open class TYRangeRingSlider: TYRingSlider {
         return result
     }
     
-    private func updatePointsCrossDayStatus(in pointList: TYRangePointList, changedPointIndex:Int, movementDirection: MovementDirection) {
-        // 一直在变动的点不参与计算
-        guard let _head = pointList.head else {
-            return
-        }
-        
-        var changedPoint: TYRangePoint!
-        pointList.traverse { (item: TYRangePoint) in
-            if item.index == changedPointIndex {
-                changedPoint = item
-                return false
-            }
-            return true
-        }
-        
-        var pointsArray = [CGFloat]()
-        // 清除跨天标记
-        pointList.traverse { (item: TYRangePoint) in
-            item.isCross = false
-            pointsArray.append(item.value)
-            return true
-        }
-        
-        print("280280: ------start--------")
-        
-        // 判断是否存在脏数据,也是就是不应该出现在表盘上的数据
-        var crossPointArray = [TYRangePoint]()
-        var currentNode = _head
-        print("240240: -------------start-------------)")
-        // 缓存移动点的原始值
-        let originalValue = changedPoint.value
-        if movementDirection == .clockwise {
-            // 存在脏数据, 把数据先改成下一个点的数据
-            // 这样就脏数据就不见了
-            let isDirtyData = !isCircularlySorted(numbers: pointsArray, direction: movementDirection)
-            if isDirtyData {
-                print("TEST: 🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻")
-                print("TEST: 发现脏数据")
-                print("TEST: --------清洗前----------|")
-                let stringRepresentation = pointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
-                print("TEST:  \(stringRepresentation)|")
-                print("TEST: -----------------------|")
-                let previousPoint = changedPoint.previous!.value
-                let nextPointPoint = changedPoint.next!.value
-                print("TEST: previousPoint: \(previousPoint / 3600), nextPointPoint: \(nextPointPoint / 3600), 趋势: \(nextPointPoint > previousPoint ? "⬆️" : "⬇️")")
-                changedPoint.value = changedPoint.next!.value
-                // MARK: TEST
-                #if DEBUG
-                var newPointsArray = [CGFloat]()
-                pointList.traverse { (item: TYRangePoint) in
-                    newPointsArray.append(item.value)
-                    return true
-                }
-                let testResult = isCircularlySorted(numbers: newPointsArray, direction: movementDirection)
-                print("TEST: --------清洗后----------|")
-                let newStringRepresentation = newPointsArray.map { String(Double($0 / 3600)) }.joined(separator: ", ")
-                print("TEST:  \(newStringRepresentation)|")
-                print("TEST: -----------------------|")
-                print("TEST: 清洗过的数据是否正常: \(testResult)")
-                #endif
-                print("TEST: 🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚")
-                // MARK: TEST
-            }
-            // 按升序
-            repeat {
-                // 进行比较
-                if currentNode == changedPoint {
-                    // 手触摸的点不参与计算
-                } else {
-                    var nextNode = currentNode.next!
-                    if nextNode == changedPoint {
-                        nextNode = nextNode.next!
-                    }
-                    if currentNode.value > nextNode.value {
-                        // 认为跨 0
-                        crossPointArray.append(currentNode)
-                        crossPointArray.append(nextNode)
-                    }
-                }
-                // 移动到下一个节点
-                currentNode = currentNode.next!
-            } while currentNode !== _head // 当再次到达起始节点时停止
-            if isDirtyData {
-                changedPoint.value = originalValue
-            }
-            for item in crossPointArray {
-                item.isCross = true
-            }
-        } else {
-            // 按降序
-            repeat {
-                // 进行比较
-                if currentNode == changedPoint {
-                    // 手触摸的点不参与计算
-                } else {
-                    var previousNode = currentNode.previous!
-                    if previousNode == changedPoint {
-                        previousNode = previousNode.previous!
-                    }
-                    if currentNode.value < previousNode.value {
-                        // 认为跨 0
-                        crossPointArray.append(currentNode)
-                        crossPointArray.append(previousNode)
-                    }
-                }
-                // 移动到下一个节点
-                currentNode = currentNode.previous!
-            } while currentNode !== _head // 当再次到达起始节点时停止
-        }
-        print("240240: -------------end-------------)")
-        
-        print("250250: -------------point end-------------)")
-        print("250250: -------------start-------------)")
-        pointList.traverse { (item: TYRangePoint) in
-            print("250250: \(item)")
-            return true
-        }
-        print("250250: -------------end-------------)")
-    }
-    
     private func modifyLineList(by pointList: TYRangePointList, selectLine line: TYRangeLine) {
         var currentLine = line
         print("2341: @@@@@@@@@@@@@@@@@旧值开始@@@@@@@@@@@@@@@@@")
@@ -1104,25 +1030,46 @@ open class TYRangeRingSlider: TYRingSlider {
         return gestureRecognizer
     }
     
-    
-    public static func testArePointsTouchingOnSameCircle(point: CGFloat, targetPoint: CGFloat, movementDirection:MovementDirection, distance: CGFloat) -> Bool {
-        var result = false
-        if movementDirection == .clockwise {
-            // 不讨论回到原点的问题. point < targetPoint 恒成立, 所以当 point >= targetPoint 就认为碰撞或者越过了
-            // 如果 point < targePoint 说明跨越了0点, 所以targePoint需要偏移
-            let targetPoint = targetPoint < point ? targetPoint + 86400 : targetPoint
-            // 基于distance 计算 targetPoint
-            let newTargetPoint = targetPoint - distance >= 0 ? targetPoint - distance : 86400 + targetPoint - distance
-            result = point >= newTargetPoint
-        } else if movementDirection == .counterclockwise {
-            // 不讨论回到原点的问题. point > targetPoint 恒成立, 所以 当point <= targetPoint 就认为碰撞或者越过了
-            // 如果 point < targePoint 说明跨越了0点, 所以targePoint需要偏移
-            let targetPoint = targetPoint > point ? targetPoint - 86400 : targetPoint
-            // 基于distance 计算 targetPoint
-            let newTargetPoint = targetPoint + distance <= 86400 ? targetPoint + distance : targetPoint + distance - 86400
-            result = point <= newTargetPoint
+    private func shouldFollow(in pointList: TYRangePointList) -> (shouldFollow: Bool, count: Int) {
+        let count = getAllTimeListCount(pointList: pointList)
+        if count > 12 {
+            print("shouldFollow: 是否需要吸附: ✅")
+            return (true, count)
+        } else {
+            print("shouldFollow: 是否需要吸附: ❌")
+            return (false, count)
         }
-        return result
+    }
+    
+    private func getAllTimeListCount(pointList: TYRangePointList) -> Int {
+        let startPoint = pointList.head!
+        var current = startPoint
+        var freeCount = 0
+        let isStart = startPoint.isStart
+        print("222112112: 🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽")
+        repeat {
+            if isStart {
+                // 找到 终点 和下一个起点
+                let end = current.next!
+                let next = current.next!.next!
+                print("222112112: end: \(end.value / 3600), next: \(next.value / 3600), 差值: \(abs(end.value - next.value))")
+                if abs(end.value - next.value) > 0 {
+                    freeCount += 1
+                }
+                current = next
+            } else {
+                let end = current
+                let next = current.next!
+                print("222112112: end: \(end.value / 3600), next: \(next.value / 3600), 差值: \(abs(end.value - next.value))")
+                if abs(end.value - next.value) > 0 {
+                    freeCount += 1
+                }
+                current = next.next!
+            }
+        } while current != startPoint
+        print("222112112: freeCount: \(freeCount), points: \(pointList.nodeCount / 2)")
+        print("222112112: 🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼")
+        return freeCount + pointList.nodeCount / 2
     }
     
     public enum MovementDirection {
