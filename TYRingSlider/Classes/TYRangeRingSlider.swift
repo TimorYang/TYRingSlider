@@ -678,16 +678,18 @@ open class TYRangeRingSlider: TYRingSlider {
         var result: SelectedThumb = .none
         if let _rangeLineList = rangeLineList {
             _rangeLineList.traverse { (item: TYRangeLine) in
-                if isThumb(withCenter: item.startThumbCenter, containsPoint: touchPosition) {
-                    result = .startThumb
-                    selectedRangeLine = item
-                    print("找到控制点了 - 起点")
-                    return true
-                } else if isThumb(withCenter: item.endThumbCenter, containsPoint: touchPosition) {
-                    result = .endThumb
-                    selectedRangeLine = item
-                    print("找到控制点了 - 终点")
-                    return false
+                if item.showThumb {
+                    if isThumb(withCenter: item.startThumbCenter, containsPoint: touchPosition) {
+                        result = .startThumb
+                        selectedRangeLine = item
+                        print("找到控制点了 - 起点")
+                        return false
+                    } else if isThumb(withCenter: item.endThumbCenter, containsPoint: touchPosition) {
+                        result = .endThumb
+                        selectedRangeLine = item
+                        print("找到控制点了 - 终点")
+                        return false
+                    }
                 }
                 return true
             }
