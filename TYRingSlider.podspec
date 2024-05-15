@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 多点圆环选择器，支持多点选择，步长，碰撞
                        DESC
 
-  s.homepage         = 'https://github.com/zhidong.yang/TYRingSlider'
+  s.homepage         = 'https://github.com/TimorYang/TYRingSlider'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'zhidong.yang' => 'zhidong.yang@enjoyelec.net' }
-  s.source           = { :git => 'https://github.com/zhidong.yang/TYRingSlider.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TimorYang/TYRingSlider.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
 
