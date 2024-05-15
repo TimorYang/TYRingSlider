@@ -26,28 +26,39 @@ class ViewController: UIViewController {
     
     // MARK: - Init Data
     private func initData() {
-        let _timeRange1 = TYRingSliderTimeRange(start: 1 * 60 * 60, end: 4 * 60 * 60, lineColor: .red, showThumb: true)
-        let _timeRange2 = TYRingSliderTimeRange(start: 8 * 60 * 60, end: 12 * 60 * 60, lineColor: .blue, showThumb: false)
+        let _timeRange1 = TYRingSliderTimeRange(start: 1 * 60 * 60, end: 2 * 60 * 60, lineColor: .red, showThumb: false)
+        let _timeRange2 = TYRingSliderTimeRange(start: 2 * 60 * 60, end: 4 * 60 * 60, lineColor: .blue, showThumb: false)
+        let _timeRange3 = TYRingSliderTimeRange(start: 4 * 60 * 60, end: 5 * 60 * 60, lineColor: .yellow, showThumb: false)
+        let _timeRange4 = TYRingSliderTimeRange(start: 5 * 60 * 60, end: 6 * 60 * 60, lineColor: .purple, showThumb: false)
+        let _timeRange5 = TYRingSliderTimeRange(start: 6 * 60 * 60, end: 7 * 60 * 60, lineColor: .green, showThumb: false)
+        let _timeRange6 = TYRingSliderTimeRange(start: 7 * 60 * 60, end: 8 * 60 * 60, lineColor: .gray, showThumb: false)
+        let _timeRange7 = TYRingSliderTimeRange(start: 8 * 60 * 60, end: 9 * 60 * 60, lineColor: .orange, showThumb: false)
+        let _timeRange8 = TYRingSliderTimeRange(start: 9 * 60 * 60, end: 10 * 60 * 60, lineColor: .cyan, showThumb: false)
+        let _timeRange9 = TYRingSliderTimeRange(start: 10 * 60 * 60, end: 11 * 60 * 60, lineColor: .brown, showThumb: false)
+        let _timeRange10 = TYRingSliderTimeRange(start: 11 * 60 * 60, end: 12 * 60 * 60, lineColor: .black, showThumb: false)
+        let _timeRange11 = TYRingSliderTimeRange(start: 12 * 60 * 60, end: 16 * 60 * 60, lineColor: .blue, showThumb: true)
+        /*
         let _timeRange3 = TYRingSliderTimeRange(start: 14 * 60 * 60, end: 16 * 60 * 60, lineColor: .purple, showThumb: false)
         let _timeRange4 = TYRingSliderTimeRange(start: 17 * 60 * 60, end: 18 * 60 * 60, lineColor: .orange, showThumb: false)
-        rangeSlider.timeRangeList = [_timeRange1, _timeRange2, _timeRange3, _timeRange4]
+         */
+        rangeSlider.timeRangeList = [_timeRange1, _timeRange2, _timeRange3, _timeRange4, _timeRange5, _timeRange6, _timeRange7, _timeRange8, _timeRange9, _timeRange10, _timeRange10, _timeRange11]
     }
     
     // MARK: - UI
     private func setupUI() {
-//        view.addSubview(seasonSlider)
-//        
-//        seasonSlider.snp.makeConstraints { make in
-//            make.center.equalTo(view)
-//            make.size.equalTo(CGSizeMake(300, 300))
-//        }
+        view.addSubview(seasonSlider)
         
-        view.addSubview(rangeSlider)
-        
-        rangeSlider.snp.makeConstraints { make in
+        seasonSlider.snp.makeConstraints { make in
             make.center.equalTo(view)
             make.size.equalTo(CGSizeMake(300, 300))
         }
+        
+//        view.addSubview(rangeSlider)
+//        
+//        rangeSlider.snp.makeConstraints { make in
+//            make.center.equalTo(view)
+//            make.size.equalTo(CGSizeMake(300, 300))
+//        }
         
 //        // 创建控件并设置大小和位置
 //        let circularControl = CircularControl(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
