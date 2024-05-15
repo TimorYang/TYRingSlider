@@ -179,12 +179,12 @@ open class TYRangeRingSlider: TYRingSlider {
     // MARK: - Override methods
     public override init(frame: CGRect) {
         super .init(frame: frame)
-//        self.addGestureRecognizer(self.tapGestureRecognizer)
+        self.addGestureRecognizer(self.tapGestureRecognizer)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        self.addGestureRecognizer(self.tapGestureRecognizer)
+        self.addGestureRecognizer(self.tapGestureRecognizer)
     }
     
     // MARK: Drawing
@@ -774,17 +774,8 @@ open class TYRangeRingSlider: TYRingSlider {
         if includeFreeTime == false {
             return rangeLineList2TimeRangeList(from: lineList)
         } else {
-            var minStart = maximumValue
-            var targetLine: TYRangeLine?
-            lineList.traverse { (item: TYRangeLine) in
-                if minStart >= item.start {
-                    minStart = item.start
-                    targetLine = item
-                }
-                return true
-            }
             var list = [TYRingSliderTimeRange]()
-            lineList.traverse(from: targetLine!, forward: true) { (item: TYRangeLine) in
+            lineList.traverse { (item: TYRangeLine) in
                 let tmp = TYRingSliderTimeRange()
                 tmp.start = item.start
                 tmp.end = item.end == maximumValue ? 0 : item.end
@@ -825,6 +816,7 @@ open class TYRangeRingSlider: TYRingSlider {
             if list.count == 0 {
                 return nil
             }
+            list.sort{ $0.start! < $1.start! }
             return list
         }
     }
