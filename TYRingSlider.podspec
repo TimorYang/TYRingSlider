@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TYRingSlider'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'TYRingSlider 圆环选择器'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/TimorYang/TYRingSlider'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zhidong.yang' => 'zhidong.yang@enjoyelec.net' }
+  s.author           = { 'TeemoYang' => 'iyangzhidong@gmail.com' }
   s.source           = { :git => 'https://github.com/TimorYang/TYRingSlider.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
