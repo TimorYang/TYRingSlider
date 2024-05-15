@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TYRingSlider'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of TYRingSlider.'
+  s.version          = '1.0.0'
+  s.summary          = 'TYRingSlider 圆环选择器'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+多点圆环选择器，支持多点选择，步长，碰撞
                        DESC
 
   s.homepage         = 'https://github.com/zhidong.yang/TYRingSlider'
@@ -26,17 +26,12 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'zhidong.yang' => 'zhidong.yang@enjoyelec.net' }
   s.source           = { :git => 'https://github.com/zhidong.yang/TYRingSlider.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'TYRingSlider/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'TYRingSlider' => ['TYRingSlider/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.resource_bundles = {
+    'TYRingSlider' => ['TYRingSlider/Assets/**/*']
+  }
 end
