@@ -134,12 +134,13 @@ open class TYMultiRingSlider: TYRingSlider {
             case .counterclockwise:
                 /// 逆时针旋转
                 print("11111: ------------开始逆时针旋转------------")
+                print("222212: 前一个点: \(_seletedThumbPoint.previous!.value), 后一个点: \(_seletedThumbPoint.next!.value)")
                 let previousPoint = _seletedThumbPoint.previous!
                 let previousValue = previousPoint.value == maximumValue ? minimumValue : previousPoint.value
                 if oldValue < previousValue {
                     // 跨天
                     var dealValue: CGFloat!
-                    if value <= oldValue && value >= 1 {
+                    if value <= oldValue && value >= 0 {
                         dealValue = value
                     } else {
                         dealValue = value - maximumValue
