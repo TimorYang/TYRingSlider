@@ -76,9 +76,6 @@ open class TYMultiRingSlider: TYRingSlider {
         let touchPosition = touch.location(in: self)
         selectedThumb = thumb(for: touchPosition)
         oldTouchPoint = touchPosition
-        if let _selectedThumbPoint = selectedThumbPoint, let _thumbPointList = thumbPointList {
-            moveableRange = findMoveableRange(the: _selectedThumbPoint, in: _thumbPointList)
-        }
         return selectedThumb != .none
     }
     
@@ -94,7 +91,7 @@ open class TYMultiRingSlider: TYRingSlider {
         let touchPosition = touch.location(in: self)
         let startPoint = CGPoint(x: bounds.center.x, y: 0)
         print("11111: ***********开始***********")
-        let oldValue = _seletedThumbPoint.value
+        var oldValue = _seletedThumbPoint.value
         var value = 0.0
         if let _step = step {
             value = round(newValue(from: oldValue, touch: touchPosition, start: startPoint) /  _step) * _step
@@ -104,47 +101,58 @@ open class TYMultiRingSlider: TYRingSlider {
         let realValue = newValue(from: oldValue, touch: touchPosition, start: startPoint)
         print("11111: oldValue: \(oldValue), realValue: \(realValue) moveableRange: \(moveableRange)")
         print("11111: oldValue: \(oldValue), newValue: \(value) moveableRange: \(moveableRange)")
-        if let _minDistance = minDistance, let _moveableRange = moveableRange {
+        if let _minDistance = minDistance {
+            // 先看滑动方向,再定间距
             let movementDirection = TYRingSliderHelper.determineMovementDirection(oldPoint: oldTouchPoint, newPoint: touchPosition, circleCenter: bounds.center)
             switch movementDirection {
             case .clockwise:
                 /// 顺时针旋转
+                /// 始终升序
                 print("11111: ------------开始顺时针旋转------------")
-                if _seletedThumbPoint.value > _moveableRange.end {
-                    if (value >= _seletedThumbPoint.value && value <= maximumValue) ||
-                        (value >= minimumValue && value <= _moveableRange.end) {
+                let previousPoint = _seletedThumbPoint.previous!
+                let nextPoint = _seletedThumbPoint.next!
+                let nextValue = nextPoint.value == minimumValue ? maximumValue : nextPoint.value
+                if oldValue > nextValue { 
+                    // 跨天
+                    var dealValue: CGFloat!
+                    if value >= oldValue && value <= maximumValue - 1 {
+                        dealValue = value
+                    } else {
+                        dealValue = value + maximumValue
+                    }
+                    let dealNextValue = nextValue + maximumValue
+                    if dealValue < dealNextValue {
                         _seletedThumbPoint.value = value
-                    } 
-//                    else {
-//                        _seletedThumbPoint.value = _moveableRange.end
-//                    }
+                    }
                 } else {
-                    if value >= _seletedThumbPoint.value && value <= _moveableRange.end {
+                    // 不跨天
+                    if value >= oldValue && value < nextValue {
                         _seletedThumbPoint.value = value
-                    } 
-//                    else {
-//                        _seletedThumbPoint.value = _moveableRange.end
-//                    }
+                    }
                 }
                 print("11111: ------------结束顺时针旋转------------")
             case .counterclockwise:
                 /// 逆时针旋转
                 print("11111: ------------开始逆时针旋转------------")
-                if _seletedThumbPoint.value < _moveableRange.start {
-                    if (value >= _moveableRange.start && value <= maximumValue) ||
-                        (value >= minimumValue && value <= _seletedThumbPoint.value) {
+                let previousPoint = _seletedThumbPoint.previous!
+                let previousValue = previousPoint.value == maximumValue ? minimumValue : previousPoint.value
+                if oldValue < previousValue {
+                    // 跨天
+                    var dealValue: CGFloat!
+                    if value <= oldValue && value >= 1 {
+                        dealValue = value
+                    } else {
+                        dealValue = value - maximumValue
+                    }
+                    let dealNextValue = previousValue - maximumValue
+                    if dealValue > dealNextValue {
                         _seletedThumbPoint.value = value
                     }
-//                    else {
-//                        _seletedThumbPoint.value = _moveableRange.start
-//                    }
                 } else {
-                    if value >= _moveableRange.start && value <= _seletedThumbPoint.value {
+                    // 不跨天
+                    if value <= oldValue && value > previousValue {
                         _seletedThumbPoint.value = value
-                    } 
-//                    else {
-//                        _seletedThumbPoint.value = _moveableRange.start
-//                    }
+                    }
                 }
                 print("11111: ------------结束逆时针旋转------------")
             case .stationary:
@@ -218,8 +226,8 @@ open class TYMultiRingSlider: TYRingSlider {
         var startValue = CGFLOAT_MIN
         var endValue = CGFLOAT_MAX
         if let _minDistance = minDistance {
-            startValue = previousPoint.value + _minDistance > maximumValue ? minimumValue + _minDistance : previousPoint.value + _minDistance
-            endValue = nextPoint.value - _minDistance < 0 ? maximumValue - _minDistance : nextPoint.value - _minDistance
+            startValue = previousPoint.value + _minDistance > maximumValue ? previousPoint.value + _minDistance - maximumValue : previousPoint.value + _minDistance
+            endValue = nextPoint.value - _minDistance < 0 ? maximumValue + nextPoint.value - _minDistance : nextPoint.value - _minDistance
         } else {
             startValue = nextPoint.value
             endValue = previousPoint.value
