@@ -75,6 +75,7 @@ open class TYMultiRingSlider: TYRingSlider {
         // the position of the pan gesture
         let touchPosition = touch.location(in: self)
         selectedThumb = thumb(for: touchPosition)
+        oldTouchPoint = touchPosition
         if let _selectedThumbPoint = selectedThumbPoint, let _thumbPointList = thumbPointList {
             moveableRange = findMoveableRange(the: _selectedThumbPoint, in: _thumbPointList)
         }
