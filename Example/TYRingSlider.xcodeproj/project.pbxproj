@@ -215,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HEF52D2UP4;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HEF52D2UP4;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -486,6 +488,7 @@
 			baseConfigurationReference = B93A1CCE1CA45BE4F97B4B4A /* Pods-TYRingSlider_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HEF52D2UP4;
 				INFOPLIST_FILE = TYRingSlider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -502,6 +505,7 @@
 			baseConfigurationReference = 6829C4206D8C953DF628A6AC /* Pods-TYRingSlider_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HEF52D2UP4;
 				INFOPLIST_FILE = TYRingSlider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -517,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1CEA87716C3748E298CC782E /* Pods-TYRingSlider_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HEF52D2UP4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -540,6 +545,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 196290DD05E710E6C7C4F09D /* Pods-TYRingSlider_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HEF52D2UP4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
