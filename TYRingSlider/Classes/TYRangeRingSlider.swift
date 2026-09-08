@@ -794,7 +794,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             tmp.start = item.end
                             tmp.end = _nextLine.start
                             tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
-                            tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
+                            tmp.lineType = NSLocalizedString("off_peak", comment: "Off-peak")
                             tmp.backgroundColor = .white
                             list.append(tmp)
                         }
@@ -805,7 +805,7 @@ open class TYRangeRingSlider: TYRingSlider {
                             tmp.start = item.end
                             tmp.end = _nextLine.start
                             tmp.lineColor = UIColor(red: 0.45, green: 0.78, blue: 0.54, alpha: 1)
-                            tmp.lineType = NSLocalizedString("offpeak", comment: "Off-peak")
+                            tmp.lineType = NSLocalizedString("off_peak", comment: "Off-peak")
                             tmp.backgroundColor = .white
                             list.append(tmp)
                         }
