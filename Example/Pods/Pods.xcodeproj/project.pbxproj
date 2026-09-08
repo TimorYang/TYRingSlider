@@ -263,7 +263,7 @@
 		12CE3DA06FBFA0C6012988BFFD7690E6 /* Lookin_PTProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Lookin_PTProtocol.h; path = Src/Main/Shared/Peertalk/Lookin_PTProtocol.h; sourceTree = "<group>"; };
 		131B5E00F8DD98F6DB027DC60A855BB8 /* LookinCustomAttrModification.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinCustomAttrModification.m; path = Src/Main/Shared/LookinCustomAttrModification.m; sourceTree = "<group>"; };
 		13D3EF8F036701563F00498AE5A05C4B /* LookinAttrType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttrType.h; path = Src/Main/Shared/LookinAttrType.h; sourceTree = "<group>"; };
-		159DA5683DD04889C55100A2AA4CAA61 /* Pods-TYRingSlider_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYRingSlider_Tests"; path = Pods_TYRingSlider_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		159DA5683DD04889C55100A2AA4CAA61 /* Pods_TYRingSlider_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYRingSlider_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1670E1EE5C32ACA633030217B80FDC59 /* LKS_CustomAttrSetterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_CustomAttrSetterManager.m; path = Src/Main/Server/Others/LKS_CustomAttrSetterManager.m; sourceTree = "<group>"; };
 		17973901639D096418C39EB43905E0C9 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Sources/ConstraintDescription.swift; sourceTree = "<group>"; };
 		17FC73E52FC6F3B5CFDF1DF1EB0D010A /* LookinAttributesSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttributesSection.m; path = Src/Main/Shared/LookinAttributesSection.m; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		23DAA047CFB43C6CF1864DBE0DA8D780 /* LookinEventHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinEventHandler.h; path = Src/Main/Shared/LookinEventHandler.h; sourceTree = "<group>"; };
 		24249E4CABD052DA4821E4862E754EF9 /* LookinObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinObject.m; path = Src/Main/Shared/LookinObject.m; sourceTree = "<group>"; };
 		2459DDF5BBBB1BCF104B78C27DC33858 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
-		25664483ABF4DC8EC03E7472AA04333B /* LookinServer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LookinServer; path = LookinServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25664483ABF4DC8EC03E7472AA04333B /* LookinServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LookinServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A7007A5B2EDF3B5C74EA8E76A879FF /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Sources/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		2862076428DA110141B39AEE5A517A68 /* TYRingSlider+Draw.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TYRingSlider+Draw.swift"; path = "TYRingSlider/Classes/TYRingSlider+Draw.swift"; sourceTree = "<group>"; };
 		28A6901D2B0AEA4D49265FA436D8667B /* CALayer+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+Lookin.m"; path = "Src/Main/Shared/Category/CALayer+Lookin.m"; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		2E51540F8AE4A411833FBE86ECACCB12 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Sources/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		2EE74279A8EEDDC3DF034D9119E2D4E1 /* Pods-TYRingSlider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYRingSlider_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0A335B03F28F882FDFD395320E9F7B /* NSArray+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+Lookin.h"; path = "Src/Main/Shared/Category/NSArray+Lookin.h"; sourceTree = "<group>"; };
-		2F67C769ED293E1EDDF09C1AE591C2FD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2F67C769ED293E1EDDF09C1AE591C2FD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		320C0A43839335C5662EB87DAF6793DA /* TYMultiRingPointList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYMultiRingPointList.swift; path = TYRingSlider/Classes/TYMultiRingPointList.swift; sourceTree = "<group>"; };
 		33458BAEDC6FE7F9E67B37F60CA23E98 /* LookinServer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LookinServer-umbrella.h"; sourceTree = "<group>"; };
 		33A768D4FAEF20EE57253AB0EB117BF0 /* LookinAutoLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAutoLayoutConstraint.h; path = Src/Main/Shared/LookinAutoLayoutConstraint.h; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 		41FEE6343132F8081E51F10DB204713A /* LKS_AttrGroupsMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKS_AttrGroupsMaker.m; path = Src/Main/Server/Others/LKS_AttrGroupsMaker.m; sourceTree = "<group>"; };
 		433D13AF7C012F06AF5A7C44D0901F40 /* Pods-TYRingSlider_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TYRingSlider_Example-dummy.m"; sourceTree = "<group>"; };
 		445886007589A4203A10EE327A736D89 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Sources/ConstraintPriority.swift; sourceTree = "<group>"; };
-		4562CC17F82ACAF731A9C1FDD8E5D197 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4562CC17F82ACAF731A9C1FDD8E5D197 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		45649678CEDA187663016D7C82B7D490 /* UIVisualEffectView+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIVisualEffectView+LookinServer.m"; path = "Src/Main/Server/Category/UIVisualEffectView+LookinServer.m"; sourceTree = "<group>"; };
 		4655D926DF506B16B565619366010C37 /* Pods-TYRingSlider_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TYRingSlider_Example-umbrella.h"; sourceTree = "<group>"; };
 		489C76569825DBF8328C0A3EC36F7A19 /* LKS_Helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_Helper.h; path = Src/Main/Server/Others/LKS_Helper.h; sourceTree = "<group>"; };
@@ -352,14 +352,14 @@
 		721FF6CCFD374DE12D70A0396BEA8A6B /* LKSConfigManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LKSConfigManager.m; path = Src/Main/Server/Others/LKSConfigManager.m; sourceTree = "<group>"; };
 		7275A98C9EBEF859D2005C5AC2C4A2C8 /* UIColor+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+LookinServer.h"; path = "Src/Main/Server/Category/UIColor+LookinServer.h"; sourceTree = "<group>"; };
 		753C2860547FB973EB655596C7D3D700 /* LookinWeakContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinWeakContainer.h; path = Src/Main/Shared/LookinWeakContainer.h; sourceTree = "<group>"; };
-		7587A65AA8E7FFF45750DEE513DABE15 /* Pods-TYRingSlider_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYRingSlider_Example"; path = Pods_TYRingSlider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7587A65AA8E7FFF45750DEE513DABE15 /* Pods_TYRingSlider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TYRingSlider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		772CE17751235F7F0065BE2BD4FCC8C7 /* Pods-TYRingSlider_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYRingSlider_Tests-Info.plist"; sourceTree = "<group>"; };
 		78C746B15950EF299686F59F6972FAAF /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Sources/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
 		7B253B20AAD07529C4445540E5EAA335 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Sources/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		7B5C2F6C3F5A5D27EDF33F18C44A1AC7 /* LookinAttributeModification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinAttributeModification.h; path = Src/Main/Shared/LookinAttributeModification.h; sourceTree = "<group>"; };
 		7BC34806D19D1420BA4DC61EFC49AD08 /* Lookin_PTChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Lookin_PTChannel.m; path = Src/Main/Shared/Peertalk/Lookin_PTChannel.m; sourceTree = "<group>"; };
 		7DA17A302DA4E1A6CA8CA645B5B4E175 /* LKS_InbuiltAttrModificationHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_InbuiltAttrModificationHandler.h; path = Src/Main/Server/Connection/RequestHandler/LKS_InbuiltAttrModificationHandler.h; sourceTree = "<group>"; };
-		7EC87BC63C11D3F629B61631CC332207 /* TYRingSlider.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TYRingSlider.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7EC87BC63C11D3F629B61631CC332207 /* TYRingSlider.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TYRingSlider.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		81A7E9F241E94190D8EF74E8F5A5B305 /* Lookin_PTUSBHub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Lookin_PTUSBHub.h; path = Src/Main/Shared/Peertalk/Lookin_PTUSBHub.h; sourceTree = "<group>"; };
 		81FAAD3A284F86F060BC50566F443996 /* UIBlurEffect+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBlurEffect+LookinServer.m"; path = "Src/Main/Server/Category/UIBlurEffect+LookinServer.m"; sourceTree = "<group>"; };
 		828D09221335F80DA869D5CB993870E7 /* LookinCodingValueType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinCodingValueType.h; path = Src/Main/Shared/LookinCodingValueType.h; sourceTree = "<group>"; };
@@ -387,13 +387,13 @@
 		94D3E8900ED770C5D24F268B7FDB717D /* TYRangeLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRangeLine.swift; path = TYRingSlider/Classes/TYRangeLine.swift; sourceTree = "<group>"; };
 		964D6ACDF96F624923480E235E4BAD71 /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Sources/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
 		96CAEF8B2DB2B7E194ACE2DC0D102F0E /* LKS_CustomAttrGroupsMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_CustomAttrGroupsMaker.h; path = Src/Main/Server/Others/LKS_CustomAttrGroupsMaker.h; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9883200EF03F8DCC0DE6947249AE437B /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Sources/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		9AB5E55342C0F1F1092F595EC2034666 /* NSArray+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Lookin.m"; path = "Src/Main/Shared/Category/NSArray+Lookin.m"; sourceTree = "<group>"; };
 		9AD3E1F8F3AE93E266BE621BCAAA0158 /* UIView+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LookinServer.m"; path = "Src/Main/Server/Category/UIView+LookinServer.m"; sourceTree = "<group>"; };
 		9C7C731EF3EDA0760D56938CBA124991 /* NSSet+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+Lookin.h"; path = "Src/Main/Shared/Category/NSSet+Lookin.h"; sourceTree = "<group>"; };
 		9CEA298B9739EE9696DF3D68C2D8442C /* TYRingSliderHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TYRingSliderHelper.swift; path = TYRingSlider/Classes/TYRingSliderHelper.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E72D78C8BBA18F708C4B161B621D467 /* LookinHierarchyInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinHierarchyInfo.m; path = Src/Main/Shared/LookinHierarchyInfo.m; sourceTree = "<group>"; };
 		9EC9547F422DE74ADD6908E6DF7A30E8 /* LKS_ExportManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKS_ExportManager.h; path = Src/Main/Server/Others/LKS_ExportManager.h; sourceTree = "<group>"; };
 		9F0D32641A77B988B88C8DEB0A57AB12 /* UIBlurEffect+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBlurEffect+LookinServer.h"; path = "Src/Main/Server/Category/UIBlurEffect+LookinServer.h"; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 		F25FEFE1EC89E4BC25D7FA3C194EFD10 /* CALayer+LookinServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+LookinServer.m"; path = "Src/Main/Server/Category/CALayer+LookinServer.m"; sourceTree = "<group>"; };
 		F3A5918193CB6070D750C26EB7A196AD /* Lookin_PTUSBHub.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Lookin_PTUSBHub.m; path = Src/Main/Shared/Peertalk/Lookin_PTUSBHub.m; sourceTree = "<group>"; };
 		F5E8AFEBA2E2526C3FE28829DBEF1C6C /* UIViewController+LookinServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+LookinServer.h"; path = "Src/Main/Server/Category/UIViewController+LookinServer.h"; sourceTree = "<group>"; };
-		F9617CE16BB8276DD4434083C851F636 /* TYRingSlider */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TYRingSlider; path = TYRingSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9617CE16BB8276DD4434083C851F636 /* TYRingSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TYRingSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB763E4FECBDF317FF0572DDD6981850 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Sources/ConstraintInsets.swift; sourceTree = "<group>"; };
 		FDDE1E9C1EDF8B5187BF44393B911E3B /* LookinCustomAttrModification.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LookinCustomAttrModification.h; path = Src/Main/Shared/LookinCustomAttrModification.h; sourceTree = "<group>"; };
 		FE535C5941822A966B7D223E17F2AA9D /* TYRingSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TYRingSlider-dummy.m"; sourceTree = "<group>"; };
@@ -518,11 +518,11 @@
 		031FFA41914BE11D3C0BFE17B0054049 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25664483ABF4DC8EC03E7472AA04333B /* LookinServer */,
-				7587A65AA8E7FFF45750DEE513DABE15 /* Pods-TYRingSlider_Example */,
-				159DA5683DD04889C55100A2AA4CAA61 /* Pods-TYRingSlider_Tests */,
-				979486118B3E90C08386079D57962701 /* SnapKit */,
-				F9617CE16BB8276DD4434083C851F636 /* TYRingSlider */,
+				25664483ABF4DC8EC03E7472AA04333B /* LookinServer.framework */,
+				7587A65AA8E7FFF45750DEE513DABE15 /* Pods_TYRingSlider_Example.framework */,
+				159DA5683DD04889C55100A2AA4CAA61 /* Pods_TYRingSlider_Tests.framework */,
+				979486118B3E90C08386079D57962701 /* SnapKit.framework */,
+				F9617CE16BB8276DD4434083C851F636 /* TYRingSlider.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -636,7 +636,6 @@
 				7984D416E2D18FA530FDF921EDE92556 /* Core */,
 				5BFE83A48A625E2E7E567D0DC8FF750B /* Support Files */,
 			);
-			name = LookinServer;
 			path = LookinServer;
 			sourceTree = "<group>";
 		};
@@ -837,7 +836,6 @@
 				E294A24D13257CC0EED3667221DCE028 /* UILayoutSupport+Extensions.swift */,
 				7B688345AD03199CC608FF6917D66CEF /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1018,7 +1016,7 @@
 			);
 			name = SnapKit;
 			productName = SnapKit;
-			productReference = 979486118B3E90C08386079D57962701 /* SnapKit */;
+			productReference = 979486118B3E90C08386079D57962701 /* SnapKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		237B02002D13833AA5A6A1820015C560 /* Pods-TYRingSlider_Tests */ = {
@@ -1037,7 +1035,7 @@
 			);
 			name = "Pods-TYRingSlider_Tests";
 			productName = Pods_TYRingSlider_Tests;
-			productReference = 159DA5683DD04889C55100A2AA4CAA61 /* Pods-TYRingSlider_Tests */;
+			productReference = 159DA5683DD04889C55100A2AA4CAA61 /* Pods_TYRingSlider_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		638FEAAFC575BB76BC6AC055CDDA3506 /* LookinServer */ = {
@@ -1055,7 +1053,7 @@
 			);
 			name = LookinServer;
 			productName = LookinServer;
-			productReference = 25664483ABF4DC8EC03E7472AA04333B /* LookinServer */;
+			productReference = 25664483ABF4DC8EC03E7472AA04333B /* LookinServer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BCAF7EB289D2AA58140D1D99D75BCA17 /* TYRingSlider */ = {
@@ -1073,7 +1071,7 @@
 			);
 			name = TYRingSlider;
 			productName = TYRingSlider;
-			productReference = F9617CE16BB8276DD4434083C851F636 /* TYRingSlider */;
+			productReference = F9617CE16BB8276DD4434083C851F636 /* TYRingSlider.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D523C021652E40D8F1C6974D5AEF841F /* Pods-TYRingSlider_Example */ = {
@@ -1094,7 +1092,7 @@
 			);
 			name = "Pods-TYRingSlider_Example";
 			productName = Pods_TYRingSlider_Example;
-			productReference = 7587A65AA8E7FFF45750DEE513DABE15 /* Pods-TYRingSlider_Example */;
+			productReference = 7587A65AA8E7FFF45750DEE513DABE15 /* Pods_TYRingSlider_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1529,8 +1527,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
